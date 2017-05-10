@@ -14,6 +14,9 @@ import mormonoregontrail.model.Player;
 public class MormonOregonTrail {
 
     public static void teamClassTest(){
+        
+        // create instance
+        
         Player playerOne = new Player();
         
         playerOne.setName("Fred Flintstone");
