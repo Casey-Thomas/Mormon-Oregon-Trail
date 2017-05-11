@@ -31,6 +31,7 @@ public class MormonOregonTrail {
         
     }
     public static void mariamClassTest(){
+        //
        Scene testScene = new Scene();
        testScene.setName("Nauvoo");
        testScene.setType("water");
