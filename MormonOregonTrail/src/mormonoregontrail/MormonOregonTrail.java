@@ -5,6 +5,8 @@
  */
 package mormonoregontrail;
 
+import mormonoregontrail.model.Player;
+
 /**
  *
  * @author Laura
@@ -13,6 +15,14 @@ public class MormonOregonTrail {
 
     public static void teamClassTest(){
         
+        // create instance
+        
+        Player playerOne = new Player();
+        
+        playerOne.setName("Fred Flintstone");
+        
+        String playerInfo = playerOne.toString();
+        System.out.println(playerInfo);
     }
     public static void lauraClassTest(){
         
