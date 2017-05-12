@@ -5,6 +5,7 @@
  */
 package mormonoregontrail;
 
+import mormonoregontrail.model.Game;
 import mormonoregontrail.model.Player;
 
 /**
@@ -26,6 +27,14 @@ public class MormonOregonTrail {
     }
     public static void lauraClassTest(){
         
+        // Game Class Test
+        Game gameOne = new Game();
+        
+        gameOne.setTotalTime(5000);
+        gameOne.setNoPeople(5);
+        
+        String gameInfo = gameOne.toString();
+        System.out.println(gameInfo);
     }
     public static void bradenClassTest(){
         
