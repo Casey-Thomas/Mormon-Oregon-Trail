@@ -5,6 +5,9 @@
  */
 package mormonoregontrail;
 
+import mormonoregontrail.model.InventoryItem;
+import mormonoregontrail.model.Location;
+import mormonoregontrail.model.Map;
 import mormonoregontrail.model.Player;
 
 /**
@@ -28,7 +31,32 @@ public class MormonOregonTrail {
         
     }
     public static void bradenClassTest(){
+        //
+        Map testMap = new Map();
+        testMap.setDescription("Trail");
+        testMap.setRowCount("2");
+        testMap.setColumnCount("13");
         
+        Location testLocation = new Location();
+        testLocation.setDistanceFromNauvoo("52");
+        testLocation.setColumn("1");
+        testLocation.setRow("6");
+        testLocation.setVisited("Yes");
+        
+        InventoryItem testInventoryItem = new InventoryItem();
+        testInventoryItem.setType("Wheel");
+        testInventoryItem.setDescription("Axle");
+        testInventoryItem.setQuantityInStock("1");
+        testInventoryItem.setRequiredAmount("0");
+        testInventoryItem.setUnits("1");
+        
+        String mapInfo = testMap.toString();
+        System.out.println(mapInfo);
+        String locationInfo = testLocation.toString();
+        System.out.println(locationInfo);
+        String inventoryItemInfo = testInventoryItem.toString();
+        System.out.println(inventoryItemInfo);
+                
     }
     public static void mariamClassTest(){
         //
