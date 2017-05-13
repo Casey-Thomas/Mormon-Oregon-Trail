@@ -10,6 +10,7 @@ import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
 import mormonoregontrail.model.Scene;
 import mormonoregontrail.model.Question;
+import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.Player;
 
@@ -40,6 +41,16 @@ public class MormonOregonTrail {
         
         String gameInfo = gameOne.toString();
         System.out.println(gameInfo);
+        
+        // Actor Class Test
+        
+        Actor testActor = new Actor();
+        testActor.setName("Joseph Smith");
+        testActor.setDescription("Prophet");
+        testActor.setCoordinates("Black River");
+        
+        String actorInfo = testActor.toString();
+        System.out.println(actorInfo);
     }
     public static void bradenClassTest(){
         //
