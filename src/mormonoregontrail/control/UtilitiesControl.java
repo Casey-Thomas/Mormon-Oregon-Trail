@@ -5,6 +5,8 @@
  */
 package mormonoregontrail.control;
 
+import java.util.Random;
+
 /**
  *
  * @author haradab
@@ -43,5 +45,80 @@ public class UtilitiesControl {
         return amtRemaining;
         
     }
+    
+    /**
+     * Validating and controlling advancement along the trail.
+     * Mariam Erickson
+     * @param currentLocation
+     * @param numOfDaysTraveled
+     * @param distanceFromNauvoo
+     * @param obstacle
+     * @param allowedDirection
+     * @param userDirection
+     * @return 
+     */
+    public int advanceAlongTheTrail(int currentLocation, int numOfDaysTraveled, int distanceFromNauvoo,
+                                    String obstacle, String allowedDirection, String userDirection) {
+    
+        if (currentLocation < 1) { 
+            return -1; //Current location is invalid
+        }	
+        if (currentLocation > 26) { 
+            return -2; //Location is out of range
+        }	
+        if (numOfDaysTraveled < 1) { 
+            return -3; //Number of days traveled is too small
+        }	
+        if (numOfDaysTraveled > 365) { 
+            return -4; //Excess number of days
+        }	
+        if (distanceFromNauvoo < 1) { 
+            return -5; //Distance is too short
+        }	
+        if (distanceFromNauvoo > 1325) { 
+            return -6; //Distance is exceeded
+        }
+        
+        Random rand = new Random();
+        int randomValue = rand.nextInt(10); //50 percent chance of being less than 5.
+        if (numOfDaysTraveled > 10 && numOfDaysTraveled < 20 && randomValue < 5) {
+            return -7; //You have an ox that's sick
+        }
+        randomValue = rand.nextInt(10); //50 percent chance of being less than 5.
+        if (distanceFromNauvoo > 500 && distanceFromNauvoo < 700 && randomValue < 5) {
+            return -8; //You have a health challenge
+        }
+        randomValue = rand.nextInt(10); //50 percent chance of being less than 5.
+        if (distanceFromNauvoo > 500 && distanceFromNauvoo < 700 && randomValue < 5) {
+            return -9; //Wagon damage
+        }	
+        if (obstacle != null) {
+            return -10; //Obstacle in your path
+        }	
+		//Show user current location description (found inside of scene object).
+	double avgRequiredPace = (1325 - distanceFromNauvoo) / (26 - currentLocation);
+		//Output average required pace to complete the journey.
+		//Ask which direction user wants to go.
+                
+        if (allowedDirection == null || !(allowedDirection.equalsIgnoreCase("n") || allowedDirection.equalsIgnoreCase("s")
+                || allowedDirection.equalsIgnoreCase("e") || allowedDirection.equalsIgnoreCase("w")))
+        {
+            return -12; //Allowed direction is bad
+        }
+	
+        if (userDirection == null || !(userDirection.equalsIgnoreCase("n") || userDirection.equalsIgnoreCase("s")
+                || userDirection.equalsIgnoreCase("e") || userDirection.equalsIgnoreCase("w")))
+        {
+            return -13; //User direction is bad
+        }
+            
+        if (!allowedDirection.equalsIgnoreCase(userDirection)) {
+            return -11; //Invalid direction
+        }	
+	return currentLocation + 1;    
+        
+        
+    }
+            
     
 }

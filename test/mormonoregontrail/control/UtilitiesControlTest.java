@@ -138,5 +138,203 @@ public class UtilitiesControlTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of advanceAlongTheTrail method, of class UtilitiesControl.
+     * By Mariam Erickson
+     */
+    @Test
+    public void testAdvanceAlongTheTrail() {
+        System.out.println("advanceAlongTheTrail");
+        int currentLocation = 0;
+        int numOfDaysTraveled = 0;
+        int distanceFromNauvoo = 0;
+        String obstacle = "";
+        String allowedDirection = "";
+        String userDirection = "";
+        UtilitiesControl instance = new UtilitiesControl();
+        int expResult = 0;
+        int result = 0;
+                        
+        /*************************************
+        *  Test case #1 - All valid variables *
+        *************************************/
+        
+        currentLocation = 1;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = 1;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = 2;
+        System.out.println("\tTest case #1");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+
+        /*************************************
+        *  Test case #2 - Current location is invalid *
+        *************************************/
+        
+        currentLocation = 0;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = 1;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = -1;
+        System.out.println("\tTest case #2");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+        
+                /*************************************
+        *  Test case #3 - Location is out of range *
+        *************************************/
+        
+        currentLocation = 27;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = 1;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = -2;
+        System.out.println("\tTest case #3");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+     
+                /*************************************
+        *  Test case #4 - Number of days traveled is too small *
+        *************************************/
+        
+        currentLocation = 5;
+        numOfDaysTraveled = -1;
+        distanceFromNauvoo = 1;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = -3;
+        System.out.println("\tTest case #4");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+    
+                /*************************************
+        *  Test case #5 - Excess number of travel days *
+        *************************************/
+        
+        currentLocation = 5;
+        numOfDaysTraveled = 377;
+        distanceFromNauvoo = 1;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = -4;
+        System.out.println("\tTest case #5");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+   
+                /*************************************
+        *  Test case #6 - Distance is too short *
+        *************************************/
+        
+        currentLocation = 5;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = -1;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = -5;
+        System.out.println("\tTest case #6");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+        
+                /*************************************
+        *  Test case #7 - Distance is exceeded *
+        *************************************/
+        
+        currentLocation = 5;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = 1400;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = -6;
+        System.out.println("\tTest case #7");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+        
+                /*************************************
+        *  Test case #8 -  Invalid direction *
+        *************************************/
+        
+        currentLocation = 1;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = 1;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "s";
+        instance = new UtilitiesControl();
+        expResult = -11;
+        System.out.println("\tTest case #8");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+        
+                /*************************************
+        *  Test case #9 - Allowed direction is bad *
+        *************************************/
+        
+        currentLocation = 1;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = 1;
+        obstacle = null;
+        allowedDirection = "x";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = -12;
+        System.out.println("\tTest case #9");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+        
+                /*************************************
+        *  Test case #10 - User direction is bad *
+        *************************************/
+        
+        currentLocation = 1;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = 1;
+        obstacle = null;
+        allowedDirection = "n";
+        userDirection = "y";
+        instance = new UtilitiesControl();
+        expResult = -13;
+        System.out.println("\tTest case #10");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+        
+                /*************************************
+        *  Test case #11 - Obstacle in your path *
+        *************************************/
+        
+        currentLocation = 5;
+        numOfDaysTraveled = 1;
+        distanceFromNauvoo = 1;
+        obstacle = "a river is in your path";
+        allowedDirection = "n";
+        userDirection = "n";
+        instance = new UtilitiesControl();
+        expResult = -10;
+        System.out.println("\tTest case #11");
+        result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
+        assertEquals(expResult, result);
+
+  
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
     
 }
