@@ -119,6 +119,62 @@ public class UtilitiesControl {
         
         
     }
-            
     
+    /*********************************************************
+     * Calculating Resources Needed for group for the journey.
+     * Laura Friedman
+     * @param journeyTime
+     * @param noPeople
+     * @param minRequired
+     * @param resourceType
+     * @param qtyInStock
+     * @return 
+     *********************************************************/
+            
+    public int calcResourcesNeeded(int journeyTime, int noPeople, int minRequired, char resourceType, int qtyInStock) {
+
+        int resourcesNeeded; //Resources needed for the group for the journey
+        
+        if (journeyTime < 100) { 
+            return -1; //Journey Time is too low
+        }	
+        if (journeyTime > 365) { 
+            return -2; //Journey Time is too high
+        }	
+        if (noPeople < 1) { 
+            return -3; //Number of people is too low
+        }	
+        if (noPeople > 5) { 
+            return -4; //Number of people is too high
+        }	
+        if (minRequired < 1) { 
+            return -5; //Minimum supplies required is too low
+        }	
+        if (minRequired > 200) { 
+            return -6; //Minimum supplies required is too high
+        }
+        if (resourceType != 'J'&& resourceType != 'D') {
+            return -7; //Resource type does not equal Journey or Daily
+        }	
+        if (qtyInStock < 10) { 
+            return -8; //Quantity in stock is too low
+        }	
+        if (qtyInStock > 365000) { 
+            return -9; //Quantity in stock is too high
+        }
+        
+        if (resourceType == 'J') {
+            resourcesNeeded = minRequired * noPeople;
+        }
+        else {
+            resourcesNeeded = journeyTime * minRequired * noPeople;
+        }
+        
+        if (resourcesNeeded > qtyInStock) {
+            return 0; //Not enough Quantity in Stock available
+        }
+        else {
+            return resourcesNeeded;
+        }
+    }    
 }

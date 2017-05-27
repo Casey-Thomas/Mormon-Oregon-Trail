@@ -337,4 +337,177 @@ public class UtilitiesControlTest {
         //fail("The test case is a prototype.");
     }
     
+    /**
+     * Test of calcResourcesNeeded method, of class UtilitiesControl.
+     */
+    @Test
+    public void testCalcResourcesNeeded() {
+        System.out.println("calcResourcesNeeded");
+        
+        /**************************************
+        *  Test case #1 - All valid variables *
+        ***************************************/
+        
+        System.out.println("\tTest case #1 - all valid variables");
+        
+        int journeyTime = 200;
+        int noPeople = 5;
+        int minRequired = 10;
+        char resourceType = 'J';
+        int qtyInStock = 50;
+        
+        UtilitiesControl instance = new UtilitiesControl();
+        
+        int expResult = 50;
+        int result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /******************************************
+        *  Test case #2 - Journey Time is too low *
+        *******************************************/
+        
+        System.out.println("\tTest case #2 - Journey Time is too low");
+        
+        journeyTime = 50;
+        noPeople = 5;
+        minRequired = 10;
+        resourceType = 'J';
+        qtyInStock = 50;
+                
+        expResult = -1;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /*******************************************
+        *  Test case #3 - Journey Time is too high *
+        ********************************************/
+        
+        System.out.println("\tTest case #3 - Journey Time is too high");
+        
+        journeyTime = 375;
+        noPeople = 5;
+        minRequired = 10;
+        resourceType = 'J';
+        qtyInStock = 50;
+                
+        expResult = -2;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /**********************************************
+        *  Test case #4 - Number of People is too low *
+        ***********************************************/
+        
+        System.out.println("\tTest case #4 - Number of People is too low");
+        
+        journeyTime = 200;
+        noPeople = 0;
+        minRequired = 10;
+        resourceType = 'J';
+        qtyInStock = 50;
+                
+        expResult = -3;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /***********************************************
+        *  Test case #5 - Number of People is too high *
+        ************************************************/
+        
+        System.out.println("\tTest case #5 - Number of People is too high");
+        
+        journeyTime = 200;
+        noPeople = 6;
+        minRequired = 10;
+        resourceType = 'J';
+        qtyInStock = 50;
+                
+        expResult = -4;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /**********************************************
+        *  Test case #6 - Minimum Required is too low *
+        ***********************************************/
+        
+        System.out.println("\tTest case #6 - Minimum Required is too low");
+        
+        journeyTime = 200;
+        noPeople = 5;
+        minRequired = 0;
+        resourceType = 'D';
+        qtyInStock = 50;
+                
+        expResult = -5;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /**********************************************
+        *  Test case #7- Minimum Required is too high *
+        ***********************************************/
+        
+        System.out.println("\tTest case #7 - Minimum Required is too high");
+        
+        journeyTime = 200;
+        noPeople = 5;
+        minRequired = 250;
+        resourceType = 'D';
+        qtyInStock = 50;
+                
+        expResult = -6;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /****************************************************************
+        *  Test case #8 - Resource Type is not invalid - not "J" or "D" *
+        *****************************************************************/
+        
+        System.out.println("\tTest case #8 - Resource Type is not invalid");
+        
+        journeyTime = 200;
+        noPeople = 5;
+        minRequired = 10;
+        resourceType = 'A';
+        qtyInStock = 50;
+                
+        expResult = -7;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /***********************************************
+        *  Test case #9 - Quantity in Stock is too low *
+        ************************************************/
+        
+        System.out.println("\tTest case #9 - Quantity in Stock is too low");
+        
+        journeyTime = 200;
+        noPeople = 5;
+        minRequired = 10;
+        resourceType = 'D';
+        qtyInStock = 5;
+                
+        expResult = -8;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+        /*************************************************
+        *  Test case #10 - Quantity in Stock is too high *
+        **************************************************/
+        
+        System.out.println("\tTest case #10 - Quantity in Stock is too high");
+        
+        journeyTime = 200;
+        noPeople = 5;
+        minRequired = 10;
+        resourceType = 'D';
+        qtyInStock = 375000;
+                
+        expResult = -9;
+        result = instance.calcResourcesNeeded(journeyTime, noPeople, minRequired, resourceType, qtyInStock);
+        assertEquals(expResult, result);
+
+         // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
 }
