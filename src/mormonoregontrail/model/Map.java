@@ -14,35 +14,35 @@ import java.util.Objects;
  */
 public class Map implements Serializable{
     
-    private String description;
-    private String rowCount;
-    private String columnCount;
+    private int description;
+    private int rowCount;
+    private int columnCount;
     
     public Map(){
         
     }
 
-    public String getDescription() {
+    public int getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(int description) {
         this.description = description;
     }
 
-    public String getRowCount() {
+    public int getRowCount() {
         return rowCount;
     }
 
-    public void setRowCount(String rowCount) {
+    public void setRowCount(int rowCount) {
         this.rowCount = rowCount;
     }
 
-    public String getColumnCount() {
+    public int getColumnCount() {
         return columnCount;
     }
 
-    public void setColumnCount(String columnCount) {
+    public void setColumnCount(int columnCount) {
         this.columnCount = columnCount;
     }
 

@@ -509,5 +509,114 @@ public class UtilitiesControlTest {
          // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of calcDistToNext method, of class UtilitiesControl.
+     */
+    @Test
+    public void testCalcDistToNext() {
+        System.out.println("calcDistToNext");
+        
+        /**************************************
+        *  Test case #1 - All valid variables *
+        ***************************************/
+        
+        System.out.println("\tTest case #1 - all valid variables");
+        
+        int currentRow = 6;
+        int currentColumn = 2;
+        int nextStopRow = 4;
+        int nextStopColumn = 2;
+        
+        UtilitiesControl instance = new UtilitiesControl();
+        
+        int expResult = 92;
+        int result = instance.calcDistToNext(currentRow, currentColumn, nextStopRow, nextStopColumn);
+        
+        assertEquals(expResult, result);
+        
+        /********************************************************************
+        *  Test case #2 - Next stop and current coordinates cannot be equal *
+        ********************************************************************/
+        
+        System.out.println("\tTest case #2");
+        
+        currentRow = 6;
+        currentColumn = 2;
+        nextStopRow = 6;
+        nextStopColumn = 2;
+        
+        expResult = -1;
+        result = instance.calcDistToNext(currentRow, currentColumn, nextStopRow, nextStopColumn);
+        
+        assertEquals(expResult, result);
+        
+        /***************************************************
+        *  Test case #3 - Current row cannot be less than 1*
+        ***************************************************/
+        
+        System.out.println("\tTest case #3");
+        
+        currentRow = 0;
+        currentColumn = 2;
+        nextStopRow = 4;
+        nextStopColumn = 2;
+        
+        expResult = -2;
+        result = instance.calcDistToNext(currentRow, currentColumn, nextStopRow, nextStopColumn);
+        
+        assertEquals(expResult, result);
+        
+        /*******************************************************
+        *  Test case #4 - Current column cannot be less than 1 *
+        *******************************************************/
+        
+        System.out.println("\tTest case #4");
+        
+        currentRow = 6;
+        currentColumn = 0;
+        nextStopRow = 4;
+        nextStopColumn = 2;
+        
+        expResult = -3;
+        result = instance.calcDistToNext(currentRow, currentColumn, nextStopRow, nextStopColumn);
+        
+        assertEquals(expResult, result);
+        
+        /******************************************************
+        *  Test case #5 - Next stop row cannot be less than 1 *
+        ******************************************************/
+        
+        System.out.println("\tTest case #5");
+        
+        currentRow = 6;
+        currentColumn = 2;
+        nextStopRow = 0;
+        nextStopColumn = 2;
+        
+        expResult = -4;
+        result = instance.calcDistToNext(currentRow, currentColumn, nextStopRow, nextStopColumn);
+        
+        assertEquals(expResult, result);
+        
+        /******************************************************
+        *  Test case #6 - Next stop column cannot be less than 1 *
+        ******************************************************/
+        
+        System.out.println("\tTest case #6");
+        
+        currentRow = 6;
+        currentColumn = 2;
+        nextStopRow = 4;
+        nextStopColumn = 0;
+        
+        expResult = -5;
+        result = instance.calcDistToNext(currentRow, currentColumn, nextStopRow, nextStopColumn);
+        
+        assertEquals(expResult, result);
+        
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
     
 }

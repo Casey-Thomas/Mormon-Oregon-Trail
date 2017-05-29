@@ -177,4 +177,38 @@ public class UtilitiesControl {
             return resourcesNeeded;
         }
     }    
+    
+     /*********************************************************
+     * Calculating Resources Needed for group for the journey.
+     * Braden Harada
+     * @param calcDistToNext
+     * @param distToPoint
+     * @param currentRow
+     * @param currentColumn
+     * @param nextStopRow
+     * @param nextStopColumn
+     * @return 
+     *********************************************************/
+    
+    public int calcDistToNext(int currentRow, int currentColumn, int nextStopRow, int nextStopColumn) {
+	int distToPoint;  // Distance to the next map point
+        if (currentRow  ==  nextStopRow) {
+            if (currentColumn  ==  nextStopColumn) {
+                return -1; //Current location cannot equal next stop coordinates
+            }
+        }
+        if (currentRow < 1) {
+            return -2; //Current row cannot be less than 1
+        }
+        if (currentColumn < 1) {
+            return -3; //Current column cannot be less than 1
+        }
+        if (nextStopRow < 1) {
+            return -4; //Next stop row cannot be less than 1
+        }
+        if (nextStopColumn < 1) {
+            return -5; //Next stop column cannot be less than 1
+        }
+        else return distToPoint = ((currentRow - nextStopRow) + (currentColumn - nextStopColumn)) * 46;
+    }
 }

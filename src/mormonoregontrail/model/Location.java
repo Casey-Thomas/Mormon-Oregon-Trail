@@ -14,44 +14,44 @@ import java.util.Objects;
  */
 public class Location implements Serializable{
     
-    private String row;
-    private String column;
-    private String visited;
-    private String distanceFromNauvoo;
+    private int row;
+    private int column;
+    private int visited;
+    private int distanceFromNauvoo;
     
     public Location() {
         
     }
 
-    public String getRow() {
+    public int getRow() {
         return row;
     }
 
-    public void setRow(String row) {
+    public void setRow(int row) {
         this.row = row;
     }
 
-    public String getColumn() {
+    public int getColumn() {
         return column;
     }
 
-    public void setColumn(String column) {
+    public void setColumn(int column) {
         this.column = column;
     }
 
-    public String getVisited() {
+    public int getVisited() {
         return visited;
     }
 
-    public void setVisited(String visited) {
+    public void setVisited(int visited) {
         this.visited = visited;
     }
 
-    public String getDistanceFromNauvoo() {
+    public int getDistanceFromNauvoo() {
         return distanceFromNauvoo;
     }
 
-    public void setDistanceFromNauvoo(String distanceFromNauvoo) {
+    public void setDistanceFromNauvoo(int distanceFromNauvoo) {
         this.distanceFromNauvoo = distanceFromNauvoo;
     }
 
