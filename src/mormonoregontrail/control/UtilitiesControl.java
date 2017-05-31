@@ -192,10 +192,8 @@ public class UtilitiesControl {
     
     public int calcDistToNext(int currentRow, int currentColumn, int nextStopRow, int nextStopColumn) {
 	int distToPoint;  // Distance to the next map point
-        if (currentRow  ==  nextStopRow) {
-            if (currentColumn  ==  nextStopColumn) {
-                return -1; //Current location cannot equal next stop coordinates
-            }
+        if ((currentRow  ==  nextStopRow) && (currentColumn  ==  nextStopColumn)) {
+            return -1; //Current location cannot equal next stop coordinates
         }
         if (currentRow < 1) {
             return -2; //Current row cannot be less than 1

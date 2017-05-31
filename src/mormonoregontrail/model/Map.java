@@ -14,19 +14,46 @@ import java.util.Objects;
  */
 public class Map implements Serializable{
     
-    private int description;
+    private String description;
     private int rowCount;
     private int columnCount;
+    private int currentRow;
+    private int currentColumn;
+    private Scene currentScene;   
+
+    public int getCurrentRow() {
+        return currentRow;
+    }
+
+    public void setCurrentRow(int currentRow) {
+        this.currentRow = currentRow;
+    }
+
+    public int getCurrentColumn() {
+        return currentColumn;
+    }
+
+    public void setCurrentColumn(int currentColumn) {
+        this.currentColumn = currentColumn;
+    }
+
+    public Scene getCurrentScene() {
+        return currentScene;
+    }
+
+    public void setCurrentScene(Scene currentScene) {
+        this.currentScene = currentScene;
+    }
     
     public Map(){
         
     }
 
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

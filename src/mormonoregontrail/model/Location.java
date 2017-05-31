@@ -16,7 +16,7 @@ public class Location implements Serializable{
     
     private int row;
     private int column;
-    private int visited;
+    private boolean visited;
     private int distanceFromNauvoo;
     
     public Location() {
@@ -39,11 +39,11 @@ public class Location implements Serializable{
         this.column = column;
     }
 
-    public int getVisited() {
+    public boolean getVisited() {
         return visited;
     }
 
-    public void setVisited(int visited) {
+    public void setVisited(boolean visited) {
         this.visited = visited;
     }
 
