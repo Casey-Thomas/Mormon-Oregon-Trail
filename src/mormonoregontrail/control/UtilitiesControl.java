@@ -181,8 +181,6 @@ public class UtilitiesControl {
      /*********************************************************
      * Calculating Resources Needed for group for the journey.
      * Braden Harada
-     * @param calcDistToNext
-     * @param distToPoint
      * @param currentRow
      * @param currentColumn
      * @param nextStopRow
