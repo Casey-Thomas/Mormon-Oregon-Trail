@@ -7,7 +7,7 @@ package mormonoregontrail.view;
 
 /**
  *
- * @author Laura
+ * @author Team
  */
 public class GameMenuView {
     

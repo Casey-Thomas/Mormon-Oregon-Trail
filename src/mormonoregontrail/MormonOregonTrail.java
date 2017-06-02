@@ -17,7 +17,7 @@ import mormonoregontrail.view.StartProgramView;
 
 /**
  *
- * @author Laura
+ * @author Team
  */
 public class MormonOregonTrail {
     

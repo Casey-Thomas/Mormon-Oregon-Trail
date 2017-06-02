@@ -11,7 +11,7 @@ import mormonoregontrail.model.Player;
 
 /**
  *
- * @author Laura
+ * @author Team
  */
 public class StartProgramView {
     

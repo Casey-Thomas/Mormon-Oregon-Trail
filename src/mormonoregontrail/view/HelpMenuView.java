@@ -13,31 +13,31 @@ import mormonoregontrail.control.GameControl;
  *
  * @author Team
  */
-public class MainMenuView {
-
+public class HelpMenuView {
     private String menu;
     private String promptMessage;
     
     /**
      * MainMenuView function
      */
-    public MainMenuView() {
+    public HelpMenuView() {
         
         this.promptMessage = "\nPlease choose an option: ";
             
         this.menu = "\n"
                  + "\n------------------------------------------------"
-                 + "\n| Main Menu                                    |"
+                 + "\n| Help Menu                                    |"
                  + "\n------------------------------------------------"
-                 + "\nN - Start new game"
-                 + "\nG - Get and start saved game"
-                 + "\nH - Get help on how to play the game"
-                 + "\nS - Save game"
+                 + "\nG - What is the goal of the game?"
+                 + "\nM - How to move"
+                 + "\nE - Estimating the amout of resources"
+                 + "\nH - Harvesting resources"
+                 + "\nD - Delivering resources to warehouse"
                  + "\nQ - Quit"
                  + "\n------------------------------------------------";
     }
     
-    public void displayMainMenuView() {
+    public void displayHelpMenuView() {
         boolean done = false; // set flag to not done
         do {
             // prompt for and get players name
@@ -78,19 +78,22 @@ public class MainMenuView {
         choice = choice.toUpperCase(); // convert choice to upper case
         
         switch (choice) {
-            case "N": // create and start a new game
-                this.startNewGame();
+            case "G": // goal of the game
+                this.goal();
                 break;
-            case "G": // get and start an existing game
-                this.startExistingGame();
+            case "M": // how to move
+                this.move();
                 break;
-            case "H": // display the help menu
-                this.displayHelpMenu();
+            case "E": // estimating resources
+                this.estimate();
                 break;
-            case "S": // save the current game
-                this.saveGame();
+            case "H": // harvesting resources
+                this.harvest();
                 break;
-            default:
+            case "D": // delivering resources to warehouse
+                this.deliver();
+                break;
+             default:
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;
         }
@@ -98,27 +101,23 @@ public class MainMenuView {
         return false;
     }
 
-    private void startNewGame() {
-        // create a new game
-        GameControl.createNewGame(MormonOregonTrail.getPlayer());
-        
-        // display the game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+    private void goal() {
+        System.out.println("\n*** goal() help function called ***");
     }
 
-    private void startExistingGame() {
-        System.out.println("\n*** startExistingGame() function called ***");
+    private void move() {
+        System.out.println("\n*** move() help function called ***");
     }
 
-    private void displayHelpMenu() {        
-        // display the help menu
-        HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayHelpMenuView();
+    private void estimate() {
+        System.out.println("\n*** estimate() help function called ***");
     }
 
-    private void saveGame() {
-        System.out.println("\n*** saveGame() function called ***");
-    }
+    private void harvest() {
+        System.out.println("\n*** harvest() help function called ***");
+    }    
 
+    private void deliver() {
+        System.out.println("\n*** deliver() help function called ***");
+    }    
 }
