@@ -11,7 +11,7 @@ import mormonoregontrail.control.GameControl;
 
 /**
  *
- * @author Team
+ * @author Team - Braden, Laura, Mariam
  */
 public class MainMenuView {
 
