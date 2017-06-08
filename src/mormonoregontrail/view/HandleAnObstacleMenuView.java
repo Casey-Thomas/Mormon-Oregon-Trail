@@ -1,0 +1,143 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mormonoregontrail.view;
+
+import java.util.Random;
+import java.util.Scanner;
+import mormonoregontrail.MormonOregonTrail;
+import mormonoregontrail.control.GameControl;
+
+/**
+ *
+ * @author Mariam
+ */
+public class HandleAnObstacleMenuView {
+
+    private String menu;
+    private String promptMessage;
+    
+    /**
+     * HandleAnObstacleMenuView function
+     */
+    public HandleAnObstacleMenuView() {
+        
+        this.promptMessage = "\nPlease choose an option: ";
+            
+        this.menu = "\n"
+                 + "\n------------------------------------------------"
+                 + "\n| Handle an obstacle Menu                                    |"
+                 + "\n------------------------------------------------"
+                 + "\nG - Get spiritual guidance."
+                 + "\nH - Say a 'Hail Mary' prayer."
+                 + "\nN - Do nothing and hope for a miracle."
+                 + "\nP - Pray about it."
+                 + "\nS - Sleep on it."
+                 + "\nQ - Quit"
+                 + "\n------------------------------------------------";
+    }
+    
+    public void displayHandleAnObstacleMenuView() {
+        boolean done = false; // set flag to not done
+        do {
+            // prompt for and get players name
+            String menuOption = this.getMenuOption();
+            if (menuOption.toUpperCase().equals("Q")) // user wants to quit
+                return; // exit the game
+            
+            // do the requested action and display the next view
+            done = this.doAction(menuOption);
+            
+        } while (!done);
+    }
+
+    private String getMenuOption() {
+        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
+        String value = ""; // value to be returned
+        boolean valid = false; // initialize to not valid
+        
+        while (!valid) { // loop while an invalid value is entered
+            System.out.println("\n" + this.menu);
+            System.out.println("\n" + this.promptMessage);
+            
+            value = keyboard.nextLine(); // get next line typed on keyboard
+            value = value.trim(); // trim off leading and trailing blanks
+            
+            if (value.length() < 1) { // value is blank
+                System.out.println("\nInvalid value: value cannot be blank");
+                continue;
+            }
+            
+            break; // end the loop
+        }
+        
+        return value; // return the value entered
+    }
+
+    private boolean doAction(String choice) {
+        choice = choice.toUpperCase(); // convert choice to upper case
+        
+        switch (choice) {
+            case "G": // Get spiritual guidance.
+                this.spiritualGuidance();
+                break;
+            case "H": // Say a 'Hail Mary' prayer.
+                this.hailMary();
+                break;    
+            case "N": // Do nothing and hope for a miracle.
+                this.doNothing();
+                break;
+            case "P": // Pray about it.
+                this.prayAboutIt();
+                break;
+            case "S": // Sleep on it.
+                this.sleepOnIt();
+                break;    
+            default:
+                System.out.println("\n*** Invalid selection *** Try again.");
+                break;
+        }
+        
+        Random rand = new Random();
+        int randomValue = rand.nextInt(10); //50 percent chance of being less than 5.
+        if (randomValue < 4){
+            System.out.println("\n*** It worked! *** ");
+            return true;
+        }else{
+            System.out.println("\n*** It didn't work. *** Try again.");
+        }
+
+        return false;
+    }
+
+    private void spiritualGuidance() {
+        System.out.println("\nI went to my Bishop and repented.");
+    }
+
+    private void hailMary() {
+        System.out.println("\n" + "Hail Mary, full of grace. " +
+            "Our Lord is with thee." +
+            "\nBlessed art thou among women, " +
+            "and blessed is the fruit of thy womb," +
+            "\nJesus." +
+            "\nHoly Mary, Mother of God, " +
+            "pray for us sinners," +
+            "\nNow and at the hour of our death. " +
+            "Amen." + "\nThis prayer may not work. You are on the Mormon trail!");
+    }
+
+    private void doNothing() {        
+        System.out.println("\nOkay, I am doing nothing.");
+    }
+
+    private void prayAboutIt() {        
+        System.out.println("\nOkay, I am saying a 'Mormon' prayer.");
+    }
+
+    private void sleepOnIt() {
+        System.out.println("\nzzzzz, Wow, I feel better already.");
+    }
+
+}

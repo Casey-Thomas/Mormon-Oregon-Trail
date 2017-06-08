@@ -13,7 +13,9 @@ import mormonoregontrail.model.Question;
 import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.Player;
+import mormonoregontrail.view.HandleAnObstacleMenuView;
 import mormonoregontrail.view.StartProgramView;
+import mormonoregontrail.view.UserDirectionMenuView;
 
 /**
  *
@@ -32,6 +34,16 @@ public class MormonOregonTrail {
         // create StartProgramViewOrig and display the start program view
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.displayStartProgramView();
+        
+        //for testing only
+        UserDirectionMenuView userDirectionView = new UserDirectionMenuView();
+        userDirectionView.displayUserDirectionMenuView();
+        
+        //for testing only
+        HandleAnObstacleMenuView handleObstacleView = new HandleAnObstacleMenuView();
+        handleObstacleView.displayHandleAnObstacleMenuView();
+        
+
     }
 
     public static Game getCurrentGame() {
