@@ -14,6 +14,7 @@ import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.Player;
 import mormonoregontrail.view.HandleAnObstacleMenuView;
+import mormonoregontrail.view.InventoryMenuView;
 import mormonoregontrail.view.StartProgramView;
 import mormonoregontrail.view.UserDirectionMenuView;
 
@@ -43,6 +44,9 @@ public class MormonOregonTrail {
         HandleAnObstacleMenuView handleObstacleView = new HandleAnObstacleMenuView();
         handleObstacleView.displayHandleAnObstacleMenuView();
         
+        //@LauraFriedman for testing only
+        InventoryMenuView inventoryMenuView = new InventoryMenuView();
+        inventoryMenuView.displayInventoryMenuView();
 
     }
 
