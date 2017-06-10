@@ -80,22 +80,22 @@ public class InventoryMenuView {
         choice = choice.toUpperCase(); // convert choice to upper case
         
         switch (choice) {
-            case "O": // Get spiritual guidance.
+            case "O": // Oxen
                 this.oxen();
                 break;
-             case "W": // Get spiritual guidance.
+             case "W": // Handcart/Wagon Wheels
                 this.wheels();
                 break;
-            case "A": // Say a 'Hail Mary' prayer.
+            case "A": // Handcart/Wagon Axles
                 this.axles();
                 break;    
-            case "T": // Do nothing and hope for a miracle.
+            case "T": // Handcart/Wagon Tongues
                 this.tongues();
                 break;
-            case "B": // Pray about it.
+            case "B": // Bullets
                 this.bullets();
                 break;
-            case "F": // Sleep on it.
+            case "F": // Food
                 this.food();
                 break;    
             default:
