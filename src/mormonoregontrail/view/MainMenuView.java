@@ -13,71 +13,29 @@ import mormonoregontrail.control.GameControl;
  *
  * @author Team - Braden, Laura, Mariam
  */
-public class MainMenuView {
-
-    private String menu;
-    private String promptMessage;
-    
+public class MainMenuView extends View{  
     /**
      * MainMenuView function
      */
-    public MainMenuView() {
-        
-        this.promptMessage = "\nPlease choose an option: ";
-            
-        this.menu = "\n"
-                 + "\n------------------------------------------------"
-                 + "\n| Main Menu                                    |"
-                 + "\n------------------------------------------------"
-                 + "\nN - Start new game"
-                 + "\nG - Get and start saved game"
-                 + "\nH - Get help on how to play the game"
-                 + "\nS - Save game"
-                 + "\nQ - Quit"
-                 + "\n------------------------------------------------";
+    public MainMenuView() {            
+        super("\n"
+            + "\n------------------------------------------------"
+            + "\n| Main Menu                                    |"
+            + "\n------------------------------------------------"
+            + "\nN - Start new game"
+            + "\nG - Get and start saved game"
+            + "\nH - Get help on how to play the game"
+            + "\nS - Save game"
+            + "\nQ - Quit"
+            + "\n------------------------------------------------"
+            + "\nPlease choose an option: ");
     }
     
-    public void displayMainMenuView() {
-        boolean done = false; // set flag to not done
-        do {
-            // prompt for and get players name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) // user wants to quit
-                return; // exit the game
-            
-            // do the requested action and display the next view
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-    }
-
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
-        String value = ""; // value to be returned
-        boolean valid = false; // initialize to not valid
+    @Override
+    public boolean doAction(String value) {
+        value = value.toUpperCase(); // convert choice to upper case
         
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + this.menu);
-            System.out.println("\n" + this.promptMessage);
-            
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim(); // trim off leading and trailing blanks
-            
-            if (value.length() < 1) { // value is blank
-                System.out.println("\nInvalid value: value can not be blank");
-                continue;
-            }
-            
-            break; // end the loop
-        }
-        
-        return value; // return the value entered
-    }
-
-    private boolean doAction(String choice) {
-        choice = choice.toUpperCase(); // convert choice to upper case
-        
-        switch (choice) {
+        switch (value) {
             case "N": // create and start a new game
                 this.startNewGame();
                 break;
@@ -114,7 +72,7 @@ public class MainMenuView {
     private void displayHelpMenu() {        
         // display the help menu
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayHelpMenuView();
+        helpMenu.display();
     }
 
     private void saveGame() {

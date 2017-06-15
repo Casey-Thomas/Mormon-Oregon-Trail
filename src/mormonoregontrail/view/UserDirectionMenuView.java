@@ -13,19 +13,12 @@ import mormonoregontrail.control.GameControl;
  *
  * @author Mariam
  */
-public class UserDirectionMenuView {
-
-    private String menu;
-    private String promptMessage;
-    
+public class UserDirectionMenuView extends View{   
     /**
      * UserDirectionView function
      */
-    public UserDirectionMenuView() {
-        
-        this.promptMessage = "\nPlease choose an option: ";
-            
-        this.menu = "\n"
+    public UserDirectionMenuView() {            
+        super("\n"
                  + "\n------------------------------------------------"
                  + "\n| User Direction Menu                                    |"
                  + "\n------------------------------------------------"
@@ -34,50 +27,15 @@ public class UserDirectionMenuView {
                  + "\nE - Go East"
                  + "\nW - Go West"
                  + "\nQ - Go to Main Menu"
-                 + "\n------------------------------------------------";
+                 + "\n------------------------------------------------"
+                 + "\nPlease choose an option: ");
     }
     
-    public void displayUserDirectionMenuView() {
-        boolean done = false; // set flag to not done
-        do {
-            // prompt for and get players name
-            String menuOption = this.getMenuOption();
-            if (menuOption.equals("Q")) // user wants to quit
-                return; // exit the game
-            
-            // do the requested action and display the next view
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-    }
-
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
-        String value = ""; // value to be returned
-        boolean valid = false; // initialize to not valid
+    @Override
+    public boolean doAction(String value) {
+        value = value.toUpperCase(); // convert choice to upper case
         
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + this.menu);
-            System.out.println("\n" + this.promptMessage);
-            
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim().toUpperCase(); // trim off leading and trailing blanks
-            
-            if (value.length() < 1) { // value is blank
-                System.out.println("\nInvalid value: value cannot be blank");
-                continue;
-            }
-            
-            break; // end the loop
-        }
-        
-        return value; // return the value entered
-    }
-
-    private boolean doAction(String choice) {
-        choice = choice.toUpperCase(); // convert choice to upper case
-        
-        switch (choice) {
+        switch (value) {
             case "N": // create and start a new game
                 this.goNorth();
                 break;
@@ -151,7 +109,7 @@ public class UserDirectionMenuView {
         if(needToHandleObstacle){
             // display the HandleAnObstacle Menu
             HandleAnObstacleMenuView obstacleMenu = new HandleAnObstacleMenuView();
-            obstacleMenu.displayHandleAnObstacleMenuView();
+            obstacleMenu.display();
             
         }
     }

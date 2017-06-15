@@ -14,19 +14,12 @@ import mormonoregontrail.control.GameControl;
  *
  * @author Mariam
  */
-public class HandleAnObstacleMenuView {
-
-    private String menu;
-    private String promptMessage;
-    
+public class HandleAnObstacleMenuView extends View {
     /**
      * HandleAnObstacleMenuView function
      */
-    public HandleAnObstacleMenuView() {
-        
-        this.promptMessage = "\nPlease choose an option: ";
-            
-        this.menu = "\n"
+    public HandleAnObstacleMenuView() {            
+        super("\n"
                  + "\n------------------------------------------------"
                  + "\n| Handle an obstacle Menu                                    |"
                  + "\n------------------------------------------------"
@@ -36,50 +29,15 @@ public class HandleAnObstacleMenuView {
                  + "\nP - Pray about it."
                  + "\nS - Sleep on it."
                  + "\nQ - Quit"
-                 + "\n------------------------------------------------";
+                 + "\n------------------------------------------------"
+                 + "\nPlease choose an option: ");
     }
     
-    public void displayHandleAnObstacleMenuView() {
-        boolean done = false; // set flag to not done
-        do {
-            // prompt for and get players name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) // user wants to quit
-                return; // exit the game
-            
-            // do the requested action and display the next view
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-    }
-
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
-        String value = ""; // value to be returned
-        boolean valid = false; // initialize to not valid
+    @Override
+    public boolean doAction(String value) {
+        value = value.toUpperCase(); // convert choice to upper case
         
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + this.menu);
-            System.out.println("\n" + this.promptMessage);
-            
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim(); // trim off leading and trailing blanks
-            
-            if (value.length() < 1) { // value is blank
-                System.out.println("\nInvalid value: value cannot be blank");
-                continue;
-            }
-            
-            break; // end the loop
-        }
-        
-        return value; // return the value entered
-    }
-
-    private boolean doAction(String choice) {
-        choice = choice.toUpperCase(); // convert choice to upper case
-        
-        switch (choice) {
+        switch (value) {
             case "G": // Get spiritual guidance.
                 this.spiritualGuidance();
                 break;

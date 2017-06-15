@@ -17,6 +17,7 @@ import mormonoregontrail.view.HandleAnObstacleMenuView;
 import mormonoregontrail.view.InventoryMenuView;
 import mormonoregontrail.view.ResourcesNeededView;
 import mormonoregontrail.view.StartProgramView;
+import mormonoregontrail.view.StorePurchaseView;
 import mormonoregontrail.view.UserDirectionMenuView;
 
 /**
@@ -39,20 +40,23 @@ public class MormonOregonTrail {
         
         //for testing only
         UserDirectionMenuView userDirectionView = new UserDirectionMenuView();
-        userDirectionView.displayUserDirectionMenuView();
+        userDirectionView.display();
         
         //for testing only
         HandleAnObstacleMenuView handleObstacleView = new HandleAnObstacleMenuView();
-        handleObstacleView.displayHandleAnObstacleMenuView();
+        handleObstacleView.display();
         
         //@author LauraFriedman for testing only
         InventoryMenuView inventoryMenuView = new InventoryMenuView();
-        inventoryMenuView.displayInventoryMenuView();
+        inventoryMenuView.display();
         
-        //@author LauraFriedman - for teting only
+        //@author LauraFriedman - for testing only
         ResourcesNeededView resourcesNeededView = new ResourcesNeededView();
         resourcesNeededView.displayResourcesNeededView();
 
+        //@author Braden Harada - for testing only
+        StorePurchaseView storePurchaseView = new StorePurchaseView();
+        storePurchaseView.display();
     }
 
     public static Game getCurrentGame() {
