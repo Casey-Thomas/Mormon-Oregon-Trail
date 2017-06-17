@@ -38,11 +38,17 @@ public class MormonOregonTrail {
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.displayStartProgramView();
         
-        //for testing only
+        //@author Mariam E. for testing only
         UserDirectionMenuView userDirectionView = new UserDirectionMenuView();
+        int location = 1;
+        int daysTraveled = 1;
+        userDirectionView.setLocation(location);
+        userDirectionView.setDaysTraveled(daysTraveled);
         userDirectionView.display();
+        location = userDirectionView.getLocation();
+        daysTraveled = userDirectionView.getDaysTraveled();
         
-        //for testing only
+        //@author Mariam E. for testing only
         HandleAnObstacleMenuView handleObstacleView = new HandleAnObstacleMenuView();
         handleObstacleView.display();
         

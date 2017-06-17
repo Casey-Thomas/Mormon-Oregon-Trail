@@ -15,6 +15,8 @@ public abstract class View implements ViewInterface {
     
     protected String promptMessage;
     
+    protected String additionalMessage = null;
+    
     public View() {
         
     }
@@ -37,6 +39,14 @@ public abstract class View implements ViewInterface {
             
         } while (!done); // exit the view when done == true
     }
+
+    public String getAdditionalMessage() {
+        return additionalMessage;
+    }
+
+    public void setAdditionalMessage(String additionalMessage) {
+        this.additionalMessage = additionalMessage;
+    }
     
     @Override
     public String getInput() {
@@ -46,7 +56,11 @@ public abstract class View implements ViewInterface {
         
         // while a valid name has not been retrieved
         while (!valid) { // loop while an invalid value is entered
-            
+
+            if (additionalMessage != null) {
+                // display the additional message
+                System.out.println(this.additionalMessage);               
+            }
             // display the prompt message
             System.out.println("\n" + this.promptMessage);
             

@@ -57,7 +57,7 @@ public class UtilitiesControl {
      * @param userDirection
      * @return 
      */
-    public int advanceAlongTheTrail(int currentLocation, int numOfDaysTraveled, int distanceFromNauvoo,
+    public static int advanceAlongTheTrail(int currentLocation, int numOfDaysTraveled, int distanceFromNauvoo,
                                     String obstacle, String allowedDirection, String userDirection) {
     
         if (currentLocation < 1) { 
@@ -72,7 +72,7 @@ public class UtilitiesControl {
         if (numOfDaysTraveled > 365) { 
             return -4; //Excess number of days
         }	
-        if (distanceFromNauvoo < 1) { 
+        if (distanceFromNauvoo < 0) { 
             return -5; //Distance is too short
         }	
         if (distanceFromNauvoo > 1325) { 
@@ -89,14 +89,14 @@ public class UtilitiesControl {
             return -8; //You have a health challenge
         }
         randomValue = rand.nextInt(10); //50 percent chance of being less than 5.
-        if (distanceFromNauvoo > 500 && distanceFromNauvoo < 700 && randomValue < 5) {
+        if (distanceFromNauvoo > 100 && distanceFromNauvoo < 1000 && randomValue < 5) {
             return -9; //Wagon damage
         }	
         if (obstacle != null) {
             return -10; //Obstacle in your path
         }	
 		//Show user current location description (found inside of scene object).
-	double avgRequiredPace = (1325 - distanceFromNauvoo) / (26 - currentLocation);
+	double avgRequiredPace = (1300 - distanceFromNauvoo) / (26 - currentLocation);
 		//Output average required pace to complete the journey.
 		//Ask which direction user wants to go.
                 
