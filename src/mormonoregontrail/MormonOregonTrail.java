@@ -38,31 +38,6 @@ public class MormonOregonTrail {
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.displayStartProgramView();
         
-        //@author Mariam E. for testing only
-        UserDirectionMenuView userDirectionView = new UserDirectionMenuView();
-        int location = 1;
-        int daysTraveled = 1;
-        userDirectionView.setLocation(location);
-        userDirectionView.setDaysTraveled(daysTraveled);
-        userDirectionView.display();
-        location = userDirectionView.getLocation();
-        daysTraveled = userDirectionView.getDaysTraveled();
-        
-        //@author Mariam E. for testing only
-        HandleAnObstacleMenuView handleObstacleView = new HandleAnObstacleMenuView();
-        handleObstacleView.display();
-        
-        //@author LauraFriedman for testing only
-        InventoryMenuView inventoryMenuView = new InventoryMenuView();
-        inventoryMenuView.display();
-        
-        //@author LauraFriedman - for testing only
-        ResourcesNeededView resourcesNeededView = new ResourcesNeededView();
-        resourcesNeededView.displayResourcesNeededView();
-
-        //@author Braden Harada - for testing only
-        StorePurchaseView storePurchaseView = new StorePurchaseView();
-        storePurchaseView.display();
     }
 
     public static Game getCurrentGame() {
