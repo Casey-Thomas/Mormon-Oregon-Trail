@@ -5,10 +5,6 @@
  */
 package mormonoregontrail.view;
 
-import java.util.Scanner;
-import mormonoregontrail.MormonOregonTrail;
-import mormonoregontrail.control.GameControl;
-
 /**
  *
  * @author Laura
@@ -23,11 +19,12 @@ public class InventoryMenuView extends View {
                  + "\n| View Inventory Menu                          |"
                  + "\n------------------------------------------------"
                  + "\nO - Oxen"
-                 + "\nW - Wheels for handcart/wagon"
-                 + "\nA - Axles for handcart/wagon"
-                 + "\nT - Tongue for handcart/wagon"
-                 + "\nB - Bullets"
-                 + "\nF - Food (in pounds)"
+                 + "\nW - Spare Wheel(s) for handcart/wagon"
+                 + "\nA - Spare Axle(s) for handcart/wagon"
+                 + "\nT - Spare Tongue(s) for handcart/wagon"
+                 + "\nB - Amount of Bullets"
+                 + "\nF - Amount of Food (in pounds)"
+                 + "\nM - Money"
                  + "\nQ - Quit"
                  + "\n------------------------------------------------"
                  + "\nPlease choose an option: ");
@@ -56,6 +53,9 @@ public class InventoryMenuView extends View {
             case "F": // Food
                 this.food();
                 break;    
+            case "M": // Quantity of money
+                this.money();
+                break;                
             default:
                 System.out.println("\n*** Invalid selection *** Try again.");
                 break;
@@ -85,6 +85,10 @@ public class InventoryMenuView extends View {
 
     private void food() {
         System.out.println("\n*** food() inventory function called ***");
+    }
+    
+    private void money() {
+        System.out.println("\n*** money() inventory function called ***");
     }
 
 }
