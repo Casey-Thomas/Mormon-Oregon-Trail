@@ -5,10 +5,6 @@
  */
 package mormonoregontrail.view;
 
-import java.util.Scanner;
-import mormonoregontrail.MormonOregonTrail;
-import mormonoregontrail.control.GameControl;
-
 /**
  *
  * @author Team
