@@ -7,10 +7,10 @@ package mormonoregontrail.view;
 
 /**
  *
- * @author haradab
+ * @author Braden
  */
 public class StorePurchaseView extends View{
-        /**
+    /**
      * Store Purchase function
      */
     
@@ -66,30 +66,30 @@ public class StorePurchaseView extends View{
     }
     
     private void buyOxen() {
-        System.out.println("\nThis function is not ready yet.");
+        System.out.println("\n*** buyOxen function called ***");
     }
     
     private void buyFood() {
-        System.out.println("\nThis function is not ready yet.");
+        System.out.println("\n*** buyFood function called ***");
     }
     
     private void buyClothes() {
-        System.out.println("\nThis function is not ready yet.");
+        System.out.println("\n*** buyClothes function called ***");
     }
     
     private void buyBullets() {
-        System.out.println("\nThis function is not ready yet.");
+        System.out.println("\n*** buyBullets function called ***");
     }
     
     private void buyAxles() {
-        System.out.println("\nThis function is not ready yet.");
+        System.out.println("\n*** buyAxles function called ***");
     }
     
     private void buyWheels() {
-        System.out.println("\nThis function is not ready yet.");
+        System.out.println("\n*** buyWheels function called ***");
     }
     
     private void buyTongues() {
-        System.out.println("\nThis function is not ready yet.");
+        System.out.println("\n*** buyTongues function called ***");
     }
 }

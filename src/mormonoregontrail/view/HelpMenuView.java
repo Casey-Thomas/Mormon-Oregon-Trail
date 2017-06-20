@@ -18,11 +18,8 @@ public class HelpMenuView extends View{
                  + "\n------------------------------------------------"
                  + "\n| Help Menu                                    |"
                  + "\n------------------------------------------------"
+                 + "\nA - About the Pioneer Trek"
                  + "\nG - What is the goal of the game?"
-                 + "\nM - How to move"
-                 + "\nE - Estimating the amout of resources"
-                 + "\nH - Harvesting resources"
-                 + "\nD - Delivering resources to warehouse"
                  + "\nQ - Quit"
                  + "\n------------------------------------------------"
                  + "\nPlease choose an option: ");
@@ -36,17 +33,8 @@ public class HelpMenuView extends View{
             case "G": // goal of the game
                 this.goal();
                 break;
-            case "M": // how to move
-                this.move();
-                break;
-            case "E": // estimating resources
-                this.estimate();
-                break;
-            case "H": // harvesting resources
-                this.harvest();
-                break;
-            case "D": // delivering resources to warehouse
-                this.deliver();
+            case "A": // about the trek
+                this.aboutTrek();
                 break;
              default:
                 System.out.println("\n*** Invalid selection *** Try again");
@@ -57,22 +45,20 @@ public class HelpMenuView extends View{
     }
 
     private void goal() {
-        System.out.println("\n*** goal() help function called ***");
+        System.out.println("\n"
+                + "\nThe overall goal of the game is to travel from"
+                + "\n Nauvoo, Illinois to the Salt Lake Valley in "
+                + "\n less than 365 days (or one full year.");
     }
 
-    private void move() {
-        System.out.println("\n*** move() help function called ***");
-    }
-
-    private void estimate() {
-        System.out.println("\n*** estimate() help function called ***");
-    }
-
-    private void harvest() {
-        System.out.println("\n*** harvest() help function called ***");
-    }    
-
-    private void deliver() {
-        System.out.println("\n*** deliver() help function called ***");
-    }    
+    private void aboutTrek() {
+        System.out.println("\n"
+                + "\nThere will be many things to take on your journey"
+                + "\n and many trials to overcome during your travels."
+                + "\n You will get to choose how many people are in your"
+                + "\n group and choose their names as well. You will then"
+                + "\n visit a store and purchase items and food to take"
+                + "\n with you. There will be a calculator available to"
+                + "\n assist you with choosing resources wisely.");
+    }   
 }

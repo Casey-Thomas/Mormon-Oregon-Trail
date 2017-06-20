@@ -106,7 +106,8 @@ public class GameMenuView extends View{
     }
 
     private void wagonStatus() {
-        System.out.println("\n*** wagonStatus() function called ***");
+        WagonOrHandcartStatusView wagonOrHandcartStatusView = new WagonOrHandcartStatusView();
+        wagonOrHandcartStatusView.display();
     }
 
     private void verifyWagonCanFunction() {
@@ -114,7 +115,8 @@ public class GameMenuView extends View{
     }
 
     private void performMaintenance() {
-        System.out.println("\n*** performMaintenance() function called ***");
+        PerformMaintenanceView performMaintenanceView = new PerformMaintenanceView();
+        performMaintenanceView.display();
     }
 
     private void seekSpiritualGuidance() {
