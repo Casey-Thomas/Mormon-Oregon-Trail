@@ -13,7 +13,7 @@ import mormonoregontrail.model.Player;
  *
  * @author Team
  */
-public class StartProgramView {
+public class StartProgramView extends View{
     
     private String promptMessage;
     
@@ -85,8 +85,9 @@ public class StartProgramView {
         
         return value; // return the value entered
     }
-
-    private boolean doAction(String playersName) {
+    
+    @Override
+    public boolean doAction(String playersName) {
         
         if (playersName.length() < 2) {
             System.out.println("\nInvalid players name: "

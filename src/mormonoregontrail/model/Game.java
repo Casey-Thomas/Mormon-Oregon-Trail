@@ -18,6 +18,43 @@ public class Game implements Serializable{
     private double totalTime;
     private double noPeople;
     
+    private Map map;
+    private Player player;
+    private Actor[] actor;
+    private InventoryItem[] inventory;
+
+    public Actor[] getActor() {
+        return actor;
+    }
+
+    public void setActor(Actor[] actor) {
+        this.actor = actor;
+    }
+
+    public InventoryItem[] getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(InventoryItem[] inventory) {
+        this.inventory = inventory;
+    }
+    
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
     // Default Constructor
 
     public Game() {
