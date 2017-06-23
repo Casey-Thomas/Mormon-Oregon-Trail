@@ -6,7 +6,6 @@
 package mormonoregontrail.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
@@ -20,6 +19,7 @@ public class Game implements Serializable{
     
     private Map map;
     private Player player;
+    private Question question;
     private Actor[] actor;
     private InventoryItem[] inventory;
 
@@ -112,7 +112,4 @@ public class Game implements Serializable{
         }
         return true;
     }
-    
-    
-    
 }

@@ -20,6 +20,8 @@ public class Scene implements Serializable {
     private int mapLocation; // this represents integer location associated with this scence
     private String validDirection;
     private int distanceFromNauvoo;
+    private String mapSymbol;
+    private boolean blocked;
 
     public String getName() {
         return name;
@@ -67,6 +69,22 @@ public class Scene implements Serializable {
 
     public void setDistanceFromNauvoo(int distanceFromNauvoo) {
         this.distanceFromNauvoo = distanceFromNauvoo;
+    }
+
+    public String getMapSymbol() {
+        return mapSymbol;
+    }
+
+    public void setMapSymbol(String mapSymbol) {
+        this.mapSymbol = mapSymbol;
+    }
+
+    public boolean getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
     @Override

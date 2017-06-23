@@ -12,7 +12,7 @@ package mormonoregontrail.model;
 class Point {
 
     Point(int i, int i0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("\n*** point() function called ***");
     }
-    
+
 }

@@ -5,6 +5,14 @@
  */
 package mormonoregontrail.view;
 
+import mormonoregontrail.MormonOregonTrail;
+import mormonoregontrail.control.MapControl;
+import mormonoregontrail.model.Game;
+import mormonoregontrail.model.InventoryItem;
+import mormonoregontrail.model.Location;
+import mormonoregontrail.model.Map;
+import mormonoregontrail.model.Scene;
+
 /**
  *
  * @author Team - stub function
@@ -22,6 +30,7 @@ public class GameMenuView extends View{
             + "\n------------------------------------------------"
             + "\nM - Show Map"
             + "\nI - Show Inventory"
+            + "\nA - Show List of Actors"
             + "\nP - Purchase Items from Store"
             + "\nH - Hunt (Scavenge) for Supplies"
             + "\nO - Overcome an Obstacle"
@@ -29,7 +38,7 @@ public class GameMenuView extends View{
             + "\nV - Verify Wagon or Cart can Function"
             + "\nF - Perform Maintenance (Fix)"
             + "\nG - Seek Spiritual Guidance"
-            + "\nA - Advance Along the Trail"
+            + "\nT - Advance Along the Trail"
             + "\nN - Estimate Resources Needed"
             + "\nQ - Quit"
             + "\n------------------------------------------------"
@@ -45,7 +54,10 @@ public class GameMenuView extends View{
                 this.showMap();
                 break;
             case "I": // show inventory
-                this.displayInventoryMenu();
+                this.viewInventory();
+                break;
+            case "A": // show list of actors
+                this.viewActors();
                 break;
             case "P": // purchase items from the store
                 this.displayPurchaseFromStoreMenu();
@@ -68,9 +80,8 @@ public class GameMenuView extends View{
             case "G": // seek spiritual guidance
                 this.seekSpiritualGuidance();
                 break;
-            case "A": // advance along the trail
-                this.displayUserDirectionMenu();
-                break;
+            case "T": // advance along the trail
+                return this.advanceAlongTheTrail();
             case "N": // estimate resources needed
                 this.displayResourcesNeeded();
                 break;
@@ -83,9 +94,93 @@ public class GameMenuView extends View{
     }
 
     private void showMap() {
-        System.out.println("\n*** showMap() function called ***");
+        String leftIndicator;
+        String rightIndicator;
+
+        Game game = MormonOregonTrail.getCurrentGame(); // retreive the game
+        Map map = game.getMap(); // retreive the map from game
+        Location[][] locations = map.getLocations(); // retreive the locations from map
+        
+          // Game Title
+          System.out.println("               MORMON OREGON TRAIL");
+          // Build the heading of the map
+          System.out.print("  |");
+          for( int column = 0; column < locations[0].length; column++){
+            // print col numbers to side of map
+            if (column < 10)
+                System.out.print("  " + column + " |");
+            else
+                System.out.print(" " + column + " |");
+          }
+          // Now build the map.  For each row, show the column information
+          System.out.println();
+          for( int row = 0; row < locations.length; row++){
+           System.out.print(row + " "); // print row numbers to side of map
+            for( int column = 0; column < locations[row].length; column++){
+              // set default indicators as blanks
+              leftIndicator = " ";
+              rightIndicator = " ";
+              if(locations[row][column] == map.getCurrentLocation()){
+                // Set star indicators to show this is the current location.
+                leftIndicator = "*"; 
+                rightIndicator = "*"; 
+              } 
+              else if(locations[row][column].isVisited()){
+                 // Set < > indicators to show this location has been visited.
+                 leftIndicator = ">"; // can be stars or whatever these are indicators showing visited
+                 rightIndicator = "<"; // same as above
+              }
+             System.out.print("|"); // start map with a |
+              if(locations[row][column].getScene() == null)
+              {
+                   // No scene assigned here so use ?? for the symbol
+                   System.out.print(leftIndicator + "??" + rightIndicator);
+              }
+              else
+                System.out.print(leftIndicator
+                   + locations[row][column].getScene().getMapSymbol()
+                   + rightIndicator);
+            }
+           System.out.println("|");
+          } 
+          if (map.getCurrentLocation().getScene() != null)
+              System.out.println("Your current location is: "
+                + map.getCurrentLocation().getScene().getName()
+                + "\n" + map.getCurrentLocation().getScene().getDescription());
     }
 
+    private void viewInventory() {
+        StringBuilder line;
+        
+        Game game = MormonOregonTrail.getCurrentGame();
+        InventoryItem[] inventory = game.getInventory();
+        
+        System.out.println("\n          LIST OF INVENTORY ITEMS");
+        line = new StringBuilder("                                                                                ");
+        line.insert(0, "DESCRIPTION");
+        line.insert(20, "REQUIRED");
+        line.insert(30, "IN STOCK");
+        line.insert(40, "UNITS");
+        line.insert(50, "COST");
+        System.out.println(line.toString());
+        
+        // for each inventory item
+        for (InventoryItem item : inventory) {
+            line = new StringBuilder("                                                                                ");
+            line.insert(0, item.getDescription());
+            line.insert(20, String.valueOf(item.getRequiredAmount()));
+            line.insert(30, String.valueOf(item.getQuantityInStock()));
+            line.insert(40, item.getUnits());
+            line.insert(50, String.valueOf(item.getCost()));
+            
+            // Display the line
+            System.out.println(line.toString());
+        }
+    }
+
+    private void viewActors() {
+    }
+    
     private void displayInventoryMenu() {
         InventoryMenuView inventoryMenuView = new InventoryMenuView();
         inventoryMenuView.display();
@@ -123,6 +218,27 @@ public class GameMenuView extends View{
         System.out.println("\n*** seekSpiritualGuidance() function called ***");
     }
 
+    private boolean advanceAlongTheTrail() {
+        Game game = MormonOregonTrail.getCurrentGame(); // retreive the game
+        Map map = game.getMap(); // retreive the map from game
+
+        int currentRow = map.getCurrentRow();
+        int currentColumn = map.getCurrentColumn();
+        
+        if (currentColumn < 12)
+            MapControl.movePlayer(map, currentRow, currentColumn + 1);
+        else
+            MapControl.movePlayer(map, currentRow + 1, 0);
+        
+        if (map.getCurrentRow() == 1 && map.getCurrentColumn() == 12) {
+            System.out.println("You've arrived at the Salt Lake Valley!! "
+                              + "\n The game is over! Thanks for playing . . .");
+            return true;
+        }
+        // this is where we should go to a scene associated with the new location
+        showMap();
+        return false;
+    }
     private void displayUserDirectionMenu() {
         UserDirectionMenuView userDirectionView = new UserDirectionMenuView();
         int location = 1;

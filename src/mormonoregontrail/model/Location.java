@@ -6,6 +6,7 @@
 package mormonoregontrail.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -16,8 +17,10 @@ public class Location implements Serializable{
     
     private int row;
     private int column;
-    private boolean visited;
+    private Boolean visited;
     private int distanceFromNauvoo;
+    private Scene scene;
+    private ArrayList<Actor> actors;
     
     public Location() {
         
@@ -96,6 +99,16 @@ public class Location implements Serializable{
         }
         return true;
     }
-    
-    
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public Scene getScene() {
+        return scene;
+    }    
 }

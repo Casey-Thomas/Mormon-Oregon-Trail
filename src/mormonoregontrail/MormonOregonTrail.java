@@ -5,20 +5,9 @@
  */
 package mormonoregontrail;
 
-import mormonoregontrail.model.InventoryItem;
-import mormonoregontrail.model.Location;
-import mormonoregontrail.model.Map;
-import mormonoregontrail.model.Scene;
-import mormonoregontrail.model.Question;
-import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.Player;
-import mormonoregontrail.view.HandleAnObstacleMenuView;
-import mormonoregontrail.view.InventoryMenuView;
-import mormonoregontrail.view.ResourcesNeededView;
 import mormonoregontrail.view.StartProgramView;
-import mormonoregontrail.view.StorePurchaseView;
-import mormonoregontrail.view.UserDirectionMenuView;
 
 /**
  *

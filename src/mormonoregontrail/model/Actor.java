@@ -6,30 +6,45 @@
 package mormonoregontrail.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  *
  * @author Team (06.21.2017)
  */
-public enum Actor implements Serializable{
+public class Actor implements Serializable{
     
-    Brigham("He is the prophet chosen to lead the church to the Salt Lake Valley."),
-    Mariam("Brigham's wife and confidant."),
-    William("Chosen to be a help and guide for this journey."),
-    Eliza("First born daughter whose age is now 17 years and a very good cook."),
-    Laura("The youngest daughter and loyal helper to her older sister, Eliza.");
+    private String name;
+    private String description;
+    private int row;
+    private int column;
+    private Point coordinates;
     
-    private final String description;
-    private final Point coordinates;
-    
-    Actor(String description){
+//    Actor(String description){
+//        this.description = description;
+//        coordinates = new Point(1,1);
+//    }
+
+    public Actor() {
+        this.name = name;
         this.description = description;
-        coordinates = new Point(1,1);
+        this.row = row;
+        this.column = column;
+        this.coordinates = coordinates;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
         return description;
+    }
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
     }
 
     public Point getCoordinates() {
@@ -39,4 +54,24 @@ public enum Actor implements Serializable{
 //    public String toString() {
 //        return "Actor{" + "name=" + name + ", description=" + description + ", coordinates=" + coordinates + '}';
 //    } 
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public void coordinates(Point coordinates) {
+        this.coordinates = coordinates;
+    }
 }

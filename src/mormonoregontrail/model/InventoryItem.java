@@ -16,9 +16,10 @@ public class InventoryItem implements Serializable{
     
     private String type;
     private String description;
-    private String quantityInStock;
-    private String requiredAmount;
+    private int quantityInStock;
+    private int requiredAmount;
     private String units;
+    private int cost;
     
     public InventoryItem() {
         
@@ -40,19 +41,19 @@ public class InventoryItem implements Serializable{
         this.description = description;
     }
 
-    public String getQuantityInStock() {
+    public int getQuantityInStock() {
         return quantityInStock;
     }
 
-    public void setQuantityInStock(String quantityInStock) {
+    public void setQuantityInStock(int quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
 
-    public String getRequiredAmount() {
+    public int getRequiredAmount() {
         return requiredAmount;
     }
 
-    public void setRequiredAmount(String requiredAmount) {
+    public void setRequiredAmount(int requiredAmount) {
         this.requiredAmount = requiredAmount;
     }
 
@@ -108,6 +109,14 @@ public class InventoryItem implements Serializable{
             return false;
         }
         return true;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public int getCost() {
+        return cost;
     }
     
 }
