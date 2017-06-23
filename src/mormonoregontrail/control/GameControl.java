@@ -217,7 +217,27 @@ public class GameControl {
         locations[0][2].setScene(scenes[MapControl.SceneType.locust.ordinal()]);
         locations[0][3].setScene(scenes[MapControl.SceneType.pisgah.ordinal()]);
         locations[0][4].setScene(scenes[MapControl.SceneType.nishnabotna.ordinal()]);
-        locations[1][12].setScene(scenes[MapControl.SceneType.finish.ordinal()]);
+        locations[0][5].setScene(scenes[MapControl.SceneType.millers.ordinal()]);
+        locations[0][6].setScene(scenes[MapControl.SceneType.elkhorn.ordinal()]);
+//        locations[0][7].setScene(scenes[MapControl.SceneType.???.ordinal()]);
+//        locations[0][8].setScene(scenes[MapControl.SceneType.???.ordinal()]);
+        locations[0][9].setScene(scenes[MapControl.SceneType.kearny.ordinal()]);
+//        locations[0][10].setScene(scenes[MapControl.SceneType.???.ordinal()]);
+        locations[0][11].setScene(scenes[MapControl.SceneType.confluence.ordinal()]);
+        locations[0][12].setScene(scenes[MapControl.SceneType.ash.ordinal()]);
+        locations[1][0].setScene(scenes[MapControl.SceneType.chimney.ordinal()]);
+        locations[1][1].setScene(scenes[MapControl.SceneType.scotts.ordinal()]);
+        locations[1][2].setScene(scenes[MapControl.SceneType.laramie.ordinal()]);
+//        locations[1][3].setScene(scenes[MapControl.SceneType.???.ordinal()]);
+//        locations[1][4].setScene(scenes[MapControl.SceneType.???.ordinal()]);
+        locations[1][5].setScene(scenes[MapControl.SceneType.platte.ordinal()]);
+        locations[1][6].setScene(scenes[MapControl.SceneType.martins.ordinal()]);
+        locations[1][7].setScene(scenes[MapControl.SceneType.rocky.ordinal()]);
+        locations[1][8].setScene(scenes[MapControl.SceneType.south.ordinal()]);
+        locations[1][9].setScene(scenes[MapControl.SceneType.green.ordinal()]);
+        locations[1][10].setScene(scenes[MapControl.SceneType.bridger.ordinal()]);
+        locations[1][11].setScene(scenes[MapControl.SceneType.needles.ordinal()]);
+        locations[1][12].setScene(scenes[MapControl.SceneType.saltLakeValley.ordinal()]);
     }
     
     

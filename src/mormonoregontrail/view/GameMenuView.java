@@ -11,7 +11,6 @@ import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
 import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
-import mormonoregontrail.model.Scene;
 
 /**
  *
@@ -146,6 +145,7 @@ public class GameMenuView extends View{
           if (map.getCurrentLocation().getScene() != null)
               System.out.println("Your current location is: "
                 + map.getCurrentLocation().getScene().getName()
+                + "\nYou are " + map.getCurrentLocation().getScene().getDistanceFromNauvoo() + " miles from Nauvoo!"
                 + "\n" + map.getCurrentLocation().getScene().getDescription());
     }
 
