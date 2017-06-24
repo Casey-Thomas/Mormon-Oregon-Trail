@@ -49,17 +49,17 @@ public class MapControl {
         nishnabotna,
         millers,
         elkhorn,
-        // Loup Fork, Nebraska (352 mi.)
-        // Nebraska 401-450 need additional place
+        murdock,
         kearny,
-        // 501-551 need additional place
+        sand,
         confluence,
         ash,
+        ancient,
         chimney,
         scotts,
         laramie,
-        // Wyoming	800-850	need additional place
-        // Wyoming 851-900 need additional place
+        porters,
+        ayres,
         platte,
         martins,
         rocky,
@@ -161,7 +161,17 @@ public class MapControl {
         
         // Loup Fork, Nebraska (352 mi.)
         
-        //  ,Nebraska 401-450 need additional place
+        // Murdock Trail, Nebraska. 
+        Scene murdockTrailScene = new Scene();
+        murdockTrailScene.setName("Murdock Trail Nebraska");
+	murdockTrailScene.setDescription(
+                    "You are surrounded by pastureland as you move along the south side of the Wood River."
+                  + "\n The terrain is fairly even and should make for decent traveling.");
+        murdockTrailScene.setMapSymbol("MT");
+        murdockTrailScene.setBlocked(false);
+        murdockTrailScene.setDistanceFromNauvoo(425);
+        scenes[SceneType.murdock.ordinal()] = murdockTrailScene;
+
         
         // Fort Kearny, Nebraska
         Scene fortKearnyScene = new Scene();
@@ -175,7 +185,17 @@ public class MapControl {
         fortKearnyScene.setDistanceFromNauvoo(469);
         scenes[SceneType.kearny.ordinal()] = fortKearnyScene;
 
-        //  ,Nebraska 501-550 need additional place
+        // Sand Hill, Nebraska. 
+        Scene sandHillScene = new Scene();
+        sandHillScene.setName("Sand Hill Nebraska");
+	sandHillScene.setDescription(
+                    ".Great sand bluffs plunge to the river's edge. You will have to travel "
+                  + "\n on the north side of the North Platte River due to all of the loose sand. "
+                  + "\n Your patience will be tested.");
+        sandHillScene.setMapSymbol("SH");
+        sandHillScene.setBlocked(false);
+        sandHillScene.setDistanceFromNauvoo(528);
+        scenes[SceneType.sand.ordinal()] = sandHillScene;
         
         // Confluence Point, Nebraska
         Scene confluencePointScene = new Scene();
@@ -202,6 +222,18 @@ public class MapControl {
         ashHollowScene.setBlocked(false);
         ashHollowScene.setDistanceFromNauvoo(646);
         scenes[SceneType.ash.ordinal()] = ashHollowScene;
+
+        // Ancient Bluff, Nebraska
+        Scene ancientBluffScene = new Scene();
+        ancientBluffScene.setName("Ancient Bluff Nebraska");
+	ancientBluffScene.setDescription(
+                    "This landmark is along the north side of the North Platte River. "
+                  + "\n Will you follow some Mormon leaders who climbed the highest bluff, "
+                  + "\n and write your name on the buffalo skull that's placed at the southwest corner.");		
+        ancientBluffScene.setMapSymbol("AB");
+        ancientBluffScene.setBlocked(false);
+        ancientBluffScene.setDistanceFromNauvoo(678);
+        scenes[SceneType.ancient.ordinal()] = ancientBluffScene;		
         
         // Chimney Rock, Nebraska
         Scene chimneyScene = new Scene();
@@ -239,10 +271,31 @@ public class MapControl {
         fortLaramieScene.setDistanceFromNauvoo(788);
         scenes[SceneType.laramie.ordinal()] = fortLaramieScene;
 
-        // Wyoming	800-850	need additional place
-        
-        // Wyoming 851-900 need additional place
-        
+        // Porter's Rock, Wyoming. 
+        Scene portersRockScene = new Scene();
+        portersRockScene.setName("Porter's Rock Wyoming");
+        portersRockScene.setDescription(
+                    "You are reaching a summit of 4682 feet. "
+                  + "\n The exposed forty foot high rock bears Porter Rockwells name. "
+                  + "\n The trail descends to lower land at this point.");
+        portersRockScene.setMapSymbol("PR");
+        portersRockScene.setBlocked(false);
+        portersRockScene.setDistanceFromNauvoo(824);
+        scenes[SceneType.porters.ordinal()] = portersRockScene;
+		
+        // Ayres Natural Bridge, Wyoming. 
+        Scene naturalBridgeScene = new Scene();
+        naturalBridgeScene.setName("Ayres Natural Bridge");
+        naturalBridgeScene.setDescription(
+                    "This may be a good place to refresh. "
+                  + "\n This bridge is one of only three natural bridges in" 
+                  + "\n the United States with water beneath. You may need to" 
+                  + "\n find one of the nearby caves to hide from the Indians.");
+        naturalBridgeScene.setMapSymbol("NB");
+        naturalBridgeScene.setBlocked(false);
+        naturalBridgeScene.setDistanceFromNauvoo(880);
+        scenes[SceneType.ayres.ordinal()] = naturalBridgeScene;
+
         // Upper Platte, Wyoming. 
         Scene upperPlatteScene = new Scene();
         upperPlatteScene.setName("Upper Platte");

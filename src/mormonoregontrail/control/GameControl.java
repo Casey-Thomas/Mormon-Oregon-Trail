@@ -71,73 +71,82 @@ public class GameControl {
         // Axles
         InventoryItem axles = new InventoryItem();
         axles.setDescription("Axles");
-        axles.setQuantityInStock(0);
-        axles.setRequiredAmount(0);
-        axles.setCost(0);
+        axles.setQuantityInStock(10);
+        axles.setRequiredAmount(1);
+        axles.setCost(10);
+        axles.setUnits("Each");
         inventory[Item.axles.ordinal()] = axles;
         
         // Wheels
         InventoryItem wheels = new InventoryItem();
         wheels.setDescription("Wheels");
-        wheels.setQuantityInStock(0);
-        wheels.setRequiredAmount(0);
-        wheels.setCost(0);
+        wheels.setQuantityInStock(20);
+        wheels.setRequiredAmount(2);
+        wheels.setCost(15);
+        wheels.setUnits("Each");      
         inventory[Item.wheels.ordinal()] = wheels;
 
         // Tongues
         InventoryItem tongues = new InventoryItem();
         tongues.setDescription("Tongues");
-        tongues.setQuantityInStock(0);
-        tongues.setRequiredAmount(0);
-        tongues.setCost(0);
+        tongues.setQuantityInStock(20);
+        tongues.setRequiredAmount(1);
+        tongues.setCost(5);
+        tongues.setUnits("Each");
         inventory[Item.tongues.ordinal()] = tongues;
 
         // Oxen
         InventoryItem oxen = new InventoryItem();
         oxen.setDescription("Oxen");
-        oxen.setQuantityInStock(0);
-        oxen.setRequiredAmount(0);
-        oxen.setCost(0);
+        oxen.setQuantityInStock(30);
+        oxen.setRequiredAmount(2);
+        oxen.setCost(20);
+        oxen.setUnits("Each");
         inventory[Item.oxen.ordinal()] = oxen;
 
         // Bullets
         InventoryItem bullets = new InventoryItem();
         bullets.setDescription("Bullets");
-        bullets.setQuantityInStock(0);
-        bullets.setRequiredAmount(0);
-        bullets.setCost(0);
+        bullets.setQuantityInStock(500);
+        bullets.setRequiredAmount(100);
+        bullets.setCost(12);
+        bullets.setUnits("50 Rounds");
         inventory[Item.bullets.ordinal()] = bullets;
 
         // Food
         InventoryItem food = new InventoryItem();
         food.setDescription("Food");
-        food.setQuantityInStock(0);
-        food.setRequiredAmount(0);
-        food.setCost(0);
+        food.setQuantityInStock(500);
+        food.setRequiredAmount(150);
+        food.setCost(2);
+        food.setUnits("Pound");
         inventory[Item.food.ordinal()] = food;
 
         // Money
         InventoryItem money = new InventoryItem();
         money.setDescription("Money");
-        money.setQuantityInStock(0);
-        money.setRequiredAmount(0);
-        money.setCost(0);
+        money.setQuantityInStock(1000);
+        money.setRequiredAmount(250);
+        money.setCost(1);
+        money.setUnits("Dollar");
         inventory[Item.money.ordinal()] = money;
 
         // Wagon
         InventoryItem wagon = new InventoryItem();
         wagon.setDescription("Wagon");
-        wagon.setQuantityInStock(0);
-        wagon.setRequiredAmount(0);
-        wagon.setCost(0);
+        wagon.setQuantityInStock(18);
+        wagon.setRequiredAmount(1);
+        wagon.setCost(25);
+        wagon.setUnits("Each");
         inventory[Item.wagon.ordinal()] = wagon;
 
         // Handcart
         InventoryItem handcart = new InventoryItem();
         handcart.setDescription("Handcart");
-        handcart.setQuantityInStock(0);
-        handcart.setRequiredAmount(0);
-        handcart.setCost(0);
+        handcart.setQuantityInStock(22);
+        handcart.setRequiredAmount(1);
+        handcart.setCost(16);
+        handcart.setUnits("Each");
         inventory[Item.handcart.ordinal()] = handcart;
 
         return inventory;
@@ -205,7 +214,7 @@ public class GameControl {
 //        joseph.coordinates("");
         actor[Actors.joseph.ordinal()] = joseph;
 
-        return null;
+        return actor;
     }
     
     static void assignScenesToLocations(Map map, Scene[] scenes){
@@ -219,17 +228,17 @@ public class GameControl {
         locations[0][4].setScene(scenes[MapControl.SceneType.nishnabotna.ordinal()]);
         locations[0][5].setScene(scenes[MapControl.SceneType.millers.ordinal()]);
         locations[0][6].setScene(scenes[MapControl.SceneType.elkhorn.ordinal()]);
-//        locations[0][7].setScene(scenes[MapControl.SceneType.???.ordinal()]);
-//        locations[0][8].setScene(scenes[MapControl.SceneType.???.ordinal()]);
-        locations[0][9].setScene(scenes[MapControl.SceneType.kearny.ordinal()]);
-//        locations[0][10].setScene(scenes[MapControl.SceneType.???.ordinal()]);
-        locations[0][11].setScene(scenes[MapControl.SceneType.confluence.ordinal()]);
-        locations[0][12].setScene(scenes[MapControl.SceneType.ash.ordinal()]);
+        locations[0][7].setScene(scenes[MapControl.SceneType.murdock.ordinal()]);
+        locations[0][8].setScene(scenes[MapControl.SceneType.kearny.ordinal()]);
+        locations[0][9].setScene(scenes[MapControl.SceneType.sand.ordinal()]);
+        locations[0][10].setScene(scenes[MapControl.SceneType.confluence.ordinal()]);
+        locations[0][11].setScene(scenes[MapControl.SceneType.ash.ordinal()]);
+        locations[0][12].setScene(scenes[MapControl.SceneType.ancient.ordinal()]);
         locations[1][0].setScene(scenes[MapControl.SceneType.chimney.ordinal()]);
         locations[1][1].setScene(scenes[MapControl.SceneType.scotts.ordinal()]);
         locations[1][2].setScene(scenes[MapControl.SceneType.laramie.ordinal()]);
-//        locations[1][3].setScene(scenes[MapControl.SceneType.???.ordinal()]);
-//        locations[1][4].setScene(scenes[MapControl.SceneType.???.ordinal()]);
+        locations[1][3].setScene(scenes[MapControl.SceneType.porters.ordinal()]);
+        locations[1][4].setScene(scenes[MapControl.SceneType.ayres.ordinal()]);
         locations[1][5].setScene(scenes[MapControl.SceneType.platte.ordinal()]);
         locations[1][6].setScene(scenes[MapControl.SceneType.martins.ordinal()]);
         locations[1][7].setScene(scenes[MapControl.SceneType.rocky.ordinal()]);
@@ -239,6 +248,5 @@ public class GameControl {
         locations[1][11].setScene(scenes[MapControl.SceneType.needles.ordinal()]);
         locations[1][12].setScene(scenes[MapControl.SceneType.saltLakeValley.ordinal()]);
     }
-    
     
 }

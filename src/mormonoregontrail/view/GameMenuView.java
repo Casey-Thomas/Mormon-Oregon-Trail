@@ -7,6 +7,7 @@ package mormonoregontrail.view;
 
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.MapControl;
+import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
 import mormonoregontrail.model.Location;
@@ -179,6 +180,25 @@ public class GameMenuView extends View{
     }
 
     private void viewActors() {
+        StringBuilder line;
+        
+        Game game = MormonOregonTrail.getCurrentGame();
+        Actor[] actor = game.getActor();
+        
+        System.out.println("\n          LIST OF ACTORS IN THE GAME");
+        line = new StringBuilder("                                                                                ");
+        line.insert(0, "NAME");
+        line.insert(12, "DESCRIPTION");
+        System.out.println(line.toString());
+        
+        // for each inventory item
+        for (Actor oneactor : actor) {
+            line = new StringBuilder("                                                                                ");
+            line.insert(0, oneactor.getName());
+            line.insert(12, oneactor.getDescription());            
+            // Display the line
+            System.out.println(line.toString());
+        }
     }
     
     private void displayInventoryMenu() {
