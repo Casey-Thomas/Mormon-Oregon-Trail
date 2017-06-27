@@ -210,6 +210,22 @@ public class UtilitiesControl {
         else return distToPoint = ((currentRow - nextStopRow) + (currentColumn - nextStopColumn)) * 46;
     }
     
+    // sort inventory by maximum value
+    public static InventoryItem[] doDescInventorySort(InventoryItem[] item) {
+        for (int i = 0; i < item.length - 1; i++)
+        {
+            int index = i;
+            for (int j = i + 1; j < item.length; j++)
+                if (item[j].getQuantityInStock() > item[index].getQuantityInStock())
+                    index = j;
+      
+            InventoryItem largerItem = item[index]; 
+            item[index] = item[i];
+            item[i] = largerItem;
+        }
+        return item;        
+    }    
+    
     // getting the maximum value
     public static InventoryItem getMaxInventoryItem(InventoryItem[] item) {
         int maxValue = item[0].getQuantityInStock();
@@ -222,7 +238,6 @@ public class UtilitiesControl {
         }
         return item[arrayvalue];
     }    
-    
     // getting the minimum value
     public static InventoryItem getMinInventoryItem(InventoryItem[] item) {
         int minValue = item[0].getQuantityInStock();

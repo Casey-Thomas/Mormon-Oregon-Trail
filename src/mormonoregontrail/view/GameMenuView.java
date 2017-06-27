@@ -7,6 +7,7 @@ package mormonoregontrail.view;
 
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.MapControl;
+import static mormonoregontrail.control.UtilitiesControl.doDescInventorySort;
 import static mormonoregontrail.control.UtilitiesControl.getMaxInventoryItem;
 import static mormonoregontrail.control.UtilitiesControl.getMinInventoryItem;
 import mormonoregontrail.model.Actor;
@@ -253,15 +254,44 @@ public class GameMenuView extends View{
         }
     }
 
+    // @Laura
     private void viewMaxInventory() {
-        Game game = MormonOregonTrail.getCurrentGame();
-        InventoryItem[] inventory = game.getInventory();
+        StringBuilder line;
         
-        InventoryItem item = getMaxInventoryItem(inventory);
-        
+        Game game = MormonOregonTrail.getCurrentGame(); // get the game
+        InventoryItem[] inventory = game.getInventory(); // get the inventory list
+                
+        // Find the Maximum Value in the inventory list
+        InventoryItem item = getMaxInventoryItem(inventory);     
         System.out.println("\nInventory Item with Max Quantity in Stock:"
                 + "\nDescription: " + item.getDescription()
                 + "\nQuanity In Stock: " + item.getQuantityInStock());
+        
+        // Sort the inventory items by quanity in stock in descending order
+        InventoryItem[] sortedArray = doDescInventorySort(inventory);
+        
+        // Display a sorted list, in descending order
+        System.out.println("\nLIST OF INVENTORY ITEMS BY QUANITY IN STOCK IN DESCENDING ORDER");
+        line = new StringBuilder("                                                                                ");
+        line.insert(0, "DESCRIPTION");
+        line.insert(20, "REQUIRED");
+        line.insert(30, "IN STOCK");
+        line.insert(40, "UNITS");
+        line.insert(50, "COST");
+        System.out.println(line.toString());
+        
+        // for each inventory item
+        for (InventoryItem sortedItem : sortedArray) {
+            line = new StringBuilder("                                                                                ");
+            line.insert(0, sortedItem.getDescription());
+            line.insert(20, String.valueOf(sortedItem.getRequiredAmount()));
+            line.insert(30, String.valueOf(sortedItem.getQuantityInStock()));
+            line.insert(40, sortedItem.getUnits());
+            line.insert(50, String.valueOf(item.getCost()));
+            
+            // Display the line
+            System.out.println(line.toString());
+        }
     }
     
     private void viewMinInventory() {
