@@ -222,4 +222,17 @@ public class UtilitiesControl {
         }
         return item[arrayvalue];
     }    
+    
+    // getting the minimum value
+    public static InventoryItem getMinInventoryItem(InventoryItem[] item) {
+        int minValue = item[0].getQuantityInStock();
+        int arrayvalue = 0;
+        for (int i = 1; i < item.length; i++) {
+            if (item[i].getQuantityInStock() < minValue) {
+                minValue = item[i].getQuantityInStock();
+                arrayvalue = i;
+            }
+        }
+        return item[arrayvalue];
+    }
 }

@@ -8,6 +8,7 @@ package mormonoregontrail.view;
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.MapControl;
 import static mormonoregontrail.control.UtilitiesControl.getMaxInventoryItem;
+import static mormonoregontrail.control.UtilitiesControl.getMinInventoryItem;
 import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
@@ -34,6 +35,7 @@ public class GameMenuView extends View{
             + "\nE - View Scenes"
             + "\nI - Show Inventory"
             + "\nX - Show Inventory Item with Maximum Quantity In Stock"
+            + "\nU - Show Inventory Item with Minimum Quantity In Stock"
             + "\nA - Show List of Actors"
             + "\nP - Purchase Items from Store"
             + "\nH - Hunt (Scavenge) for Supplies"
@@ -68,6 +70,9 @@ public class GameMenuView extends View{
                 break;
             case "X": // show item with maximum inventory
                 this.viewMaxInventory();
+                break;
+            case "U": // show item with minimum inventory
+                this.viewMinInventory();
                 break;
             case "A": // show list of actors
                 this.viewActors();
@@ -249,7 +254,6 @@ public class GameMenuView extends View{
     }
 
     private void viewMaxInventory() {
-        int itemValue;
         Game game = MormonOregonTrail.getCurrentGame();
         InventoryItem[] inventory = game.getInventory();
         
@@ -259,6 +263,19 @@ public class GameMenuView extends View{
                 + "\nDescription: " + item.getDescription()
                 + "\nQuanity In Stock: " + item.getQuantityInStock());
     }
+    
+    private void viewMinInventory() {
+        Game game = MormonOregonTrail.getCurrentGame();
+        InventoryItem[] inventory = game.getInventory();
+        
+        InventoryItem item = getMinInventoryItem(inventory);
+        
+        System.out.println("\nInventory Item with the Lowest Quantity in Stock:"
+                + "\nDescription: " + item.getDescription()
+                + "\nQuanity In Stock: " + item.getQuantityInStock()
+                + "\nPlease re-order soon!");
+    }
+    
     private void viewActors() {
         StringBuilder line;
         

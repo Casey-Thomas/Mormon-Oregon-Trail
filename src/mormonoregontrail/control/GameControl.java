@@ -199,7 +199,7 @@ public class GameControl {
         // Eliza
         Actor eliza = new Actor();
         eliza.setName("Eliza");
-        eliza.setDescription("First born daughter is 17 years old and a very good cook.");
+        eliza.setDescription("Your first born daughter who is now 17 years old and a very good cook.");
         eliza.setRow(0);
         eliza.setColumn(0);
  //       eliza.coordinates("");
@@ -208,7 +208,7 @@ public class GameControl {
         // Joseph
         Actor joseph = new Actor();
         joseph.setName("Joseph");
-        joseph.setDescription("The youngest child and a loyal helper in the family.");
+        joseph.setDescription("Your youngest child and loyal helper in the family.");
         joseph.setRow(0);
         joseph.setColumn(0);
 //        joseph.coordinates("");

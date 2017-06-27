@@ -251,8 +251,7 @@ public class MapControl {
         Scene scottsBluffScene = new Scene();
         scottsBluffScene.setName("Scotts Bluff");
 		scottsBluffScene.setDescription(
-                    "You are now in western Nebraska, which is located on the south side of the North Platte River. "
-		  + "\n Before getting to Scotts Bluff, you will see Chimney Rock which is a prominant landmark along the trail. "
+                    "You are now in western Nebraska, which is located on the south side of the North Platte River."
             	  + "\n This area contains multiple bluffs (steep hills). Scotts Bluff rises over 800 feet above the plains.");				
         scottsBluffScene.setMapSymbol("SB");
         scottsBluffScene.setBlocked(false);
