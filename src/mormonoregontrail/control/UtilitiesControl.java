@@ -6,6 +6,8 @@
 package mormonoregontrail.control;
 
 import java.util.Random;
+import mormonoregontrail.model.InventoryItem;
+import mormonoregontrail.model.Map;
 
 /**
  *
@@ -207,4 +209,17 @@ public class UtilitiesControl {
         }
         else return distToPoint = ((currentRow - nextStopRow) + (currentColumn - nextStopColumn)) * 46;
     }
+    
+    // getting the maximum value
+    public static InventoryItem getMaxInventoryItem(InventoryItem[] item) {
+        int maxValue = item[0].getQuantityInStock();
+        int arrayvalue = 0;
+        for (int i = 1; i < item.length; i++) {
+            if (item[i].getQuantityInStock() > maxValue) {
+                maxValue = item[i].getQuantityInStock();
+                arrayvalue = i;
+            }
+        }
+        return item[arrayvalue];
+    }    
 }

@@ -7,6 +7,7 @@ package mormonoregontrail.view;
 
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.MapControl;
+import static mormonoregontrail.control.UtilitiesControl.getMaxInventoryItem;
 import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
@@ -29,7 +30,10 @@ public class GameMenuView extends View{
             + "\n| Game Menu                                    |"
             + "\n------------------------------------------------"
             + "\nM - Show Map"
+            + "\nL - View Current Location"
+            + "\nE - View Scenes"
             + "\nI - Show Inventory"
+            + "\nX - Show Inventory Item with Maximum Quantity In Stock"
             + "\nA - Show List of Actors"
             + "\nP - Purchase Items from Store"
             + "\nH - Hunt (Scavenge) for Supplies"
@@ -53,8 +57,17 @@ public class GameMenuView extends View{
             case "M": // show the map
                 this.showMap();
                 break;
+            case "L": // show distance traveled
+                this.viewCurrentLocation();
+                break;
+            case "E": // show all scenes
+                this.viewScenes();
+                break;
             case "I": // show inventory
                 this.viewInventory();
+                break;
+            case "X": // show item with maximum inventory
+                this.viewMaxInventory();
                 break;
             case "A": // show list of actors
                 this.viewActors();
@@ -147,7 +160,63 @@ public class GameMenuView extends View{
               System.out.println("Your current location is: "
                 + map.getCurrentLocation().getScene().getName()
                 + "\nYou are " + map.getCurrentLocation().getScene().getDistanceFromNauvoo() + " miles from Nauvoo!"
-                + "\n" + map.getCurrentLocation().getScene().getDescription());
+                + "\n" + map.getCurrentLocation().getScene().getDescription()
+                + "\nYou have " + (1300 - map.getCurrentLocation().getScene().getDistanceFromNauvoo()) + " miles to go!");
+    }
+    
+    private void viewCurrentLocation(){
+        Game game = MormonOregonTrail.getCurrentGame(); // retreive the game
+        Map map = game.getMap(); // retreive the map from game
+        
+        int locationcount = (map.getCurrentLocation().getRow() + 1) * (map.getCurrentLocation().getColumn());
+        
+          if (map.getCurrentLocation().getScene() != null)
+              System.out.println("Your current location is "
+                + "(" + map.getCurrentLocation().getScene().getMapSymbol() + ") " + map.getCurrentLocation().getScene().getName()
+                + " and you are " + map.getCurrentLocation().getScene().getDistanceFromNauvoo() + " miles from Nauvoo!"
+                + "\n" + map.getCurrentLocation().getScene().getDescription()
+                + "\n\nYou have also traveled to " + locationcount + " locations and have "
+                + (1300 - map.getCurrentLocation().getScene().getDistanceFromNauvoo()) + " miles to go!");
+          
+    }
+
+    private void viewScenes() {
+        StringBuilder line;
+        
+        Game game = MormonOregonTrail.getCurrentGame(); // retrieve the game
+        Map map = game.getMap(); // retrieve the map from the game
+        Location[][] locations = map.getLocations(); // retrieve the locations from map
+                       
+        System.out.println("\n          LIST OF SCENES");
+        line = new StringBuilder("                                                                                ");
+        line.insert(0, "NAME");
+        line.insert(30, "SYMBOL");
+        line.insert(40, "BLOCKED");
+        line.insert(50, "DIST. FROM NAUVOO");
+        line.insert(70, "LOCATION");
+        System.out.println(line.toString());
+        
+       // for each scene
+       for (int row = 0; row < locations.length; row++) {
+            for (int column = 0; column < locations[row].length; column++) {
+                 if (locations[row][column].getScene() != null) {                      
+                     line = new StringBuilder("                                                                                ");
+                     line.insert(0, locations[row][column].getScene().getName());
+                     line.insert(30, locations[row][column].getScene().getMapSymbol());
+                     line.insert(40, locations[row][column].getScene().getBlocked());
+                     line.insert(50, String.valueOf(locations[row][column].getScene().getDistanceFromNauvoo()));
+                     if(row == 0){
+                         line.insert(70, String.valueOf(((row + 1)*(column + 1))));
+                     }
+                     else {
+                         line.insert(70, String.valueOf(((row * 13) + (column + 1))));
+                     }
+            
+                     // Display the line
+                     System.out.println(line.toString());
+                 }
+            }
+       }
     }
 
     private void viewInventory() {
@@ -155,7 +224,7 @@ public class GameMenuView extends View{
         
         Game game = MormonOregonTrail.getCurrentGame();
         InventoryItem[] inventory = game.getInventory();
-        
+                
         System.out.println("\n          LIST OF INVENTORY ITEMS");
         line = new StringBuilder("                                                                                ");
         line.insert(0, "DESCRIPTION");
@@ -179,6 +248,17 @@ public class GameMenuView extends View{
         }
     }
 
+    private void viewMaxInventory() {
+        int itemValue;
+        Game game = MormonOregonTrail.getCurrentGame();
+        InventoryItem[] inventory = game.getInventory();
+        
+        InventoryItem item = getMaxInventoryItem(inventory);
+        
+        System.out.println("\nInventory Item with Max Quantity in Stock:"
+                + "\nDescription: " + item.getDescription()
+                + "\nQuanity In Stock: " + item.getQuantityInStock());
+    }
     private void viewActors() {
         StringBuilder line;
         

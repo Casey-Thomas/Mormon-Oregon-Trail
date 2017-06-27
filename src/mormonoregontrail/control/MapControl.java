@@ -5,7 +5,6 @@
  */
 package mormonoregontrail.control;
 
-import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
 import mormonoregontrail.model.Scene;
 
