@@ -5,8 +5,10 @@
  */
 package mormonoregontrail.control;
 
+import mormonoregontrail.exceptions.MapControlException;
 import mormonoregontrail.model.Map;
 import mormonoregontrail.model.Scene;
+
 
 /**
  *
@@ -27,14 +29,24 @@ public class MapControl {
         return map;
     }
 
-    static void moveActorsToStartingLocation(Map map) {
+    static void moveActorsToStartingLocation(Map map) 
+                    throws MapControlException {
         // Set starting location to 0,0
         movePlayer(map, 0, 0);
     }
 
-    public static void movePlayer(Map map, int row, int column) {
+    public static void movePlayer(Map map, int row, int column)
+                            throws MapControlException {
+        if (map == null) {
+            throw new MapControlException("Invalid, map cannot be null.");
+        }
         map.setCurrentLocation(map.getLocations()[row][column]);
         map.getCurrentLocation().setVisited(true);
+
+        if (row < 0 || row >= map.getLocations().length || 
+                column < 0 || column >= map.getLocations()[row].length) {
+            throw new MapControlException("Invalid, coordinates are outside map boundaries.");
+        }
 
         map.setCurrentRow(row);
         map.setCurrentColumn(column);

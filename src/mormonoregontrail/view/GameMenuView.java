@@ -10,6 +10,7 @@ import mormonoregontrail.control.MapControl;
 import static mormonoregontrail.control.UtilitiesControl.doDescInventorySort;
 import static mormonoregontrail.control.UtilitiesControl.getMaxInventoryItem;
 import static mormonoregontrail.control.UtilitiesControl.getMinInventoryItem;
+import mormonoregontrail.exceptions.MapControlException;
 import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
@@ -372,10 +373,21 @@ public class GameMenuView extends View{
         int currentRow = map.getCurrentRow();
         int currentColumn = map.getCurrentColumn();
         
-        if (currentColumn < 12)
-            MapControl.movePlayer(map, currentRow, currentColumn + 1);
-        else
-            MapControl.movePlayer(map, currentRow + 1, 0);
+        // @Team - add try . .. catch - 6/28/2017
+        if (currentColumn < 12) {
+            try {
+                MapControl.movePlayer(map, currentRow, currentColumn + 1);
+            } catch (MapControlException me) {
+                System.out.println(me.getMessage());
+            }
+        } 
+        else {
+            try {
+                MapControl.movePlayer(map, currentRow + 1, 0);
+            } catch (MapControlException me) {
+                System.out.println(me.getMessage());
+            }
+        }    
         
         if (map.getCurrentRow() == 1 && map.getCurrentColumn() == 12) {
             System.out.println("You've arrived at the Salt Lake Valley!! "

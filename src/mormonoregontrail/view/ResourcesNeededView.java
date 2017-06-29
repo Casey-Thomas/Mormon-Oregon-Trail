@@ -194,10 +194,31 @@ public class ResourcesNeededView {
                           + "\n======================================"
                           );
         
-        int time = Integer.parseInt(this.journeyTime);
-        int people = Integer.parseInt(this.noPeople);
-        int required = Integer.parseInt(this.minRequired);
-
+        // @Team - added try . . . catch - 6/28/2017
+        int time = 0;
+        int people = 0;
+        int required = 0;
+        try {
+            time = Integer.parseInt(this.journeyTime);
+        } catch (NumberFormatException nf) {
+            System.out.println("\nYou must enter a valid number for the journey."
+                    + " Try again or enter Q to quit.");
+        }
+        
+        try {
+            people = Integer.parseInt(this.noPeople);
+        } catch (NumberFormatException nf) {
+            System.out.println("\nYou must enter a valid number of people."
+                    + " Try again or enter Q to quit.");
+        }
+        
+        try {
+            required = Integer.parseInt(this.minRequired);
+        } catch (NumberFormatException nf) {
+            System.out.println("\nYou must enter a valid number for minimum required."
+                    + " Try again or enter Q to quit.");
+        }
+            
         // Create MainMenuView object
         UtilitiesControl needed = new UtilitiesControl();
         int resourcesNeeded = needed.calcResourcesNeeded(time, people, required, this.resourceType, 365000);

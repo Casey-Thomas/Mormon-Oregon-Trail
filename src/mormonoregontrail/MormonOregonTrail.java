@@ -9,10 +9,6 @@ import mormonoregontrail.model.Game;
 import mormonoregontrail.model.Player;
 import mormonoregontrail.view.StartProgramView;
 
-/**
- *
- * @author Team
- */
 public class MormonOregonTrail {
     
     private static Game currentGame = null;
@@ -25,7 +21,15 @@ public class MormonOregonTrail {
         
         // create StartProgramViewOrig and display the start program view
         StartProgramView startProgramView = new StartProgramView();
-        startProgramView.displayStartProgramView();
+        
+        // @Team - added try . . . catch - 6/28/2017
+        try {
+            startProgramView.displayStartProgramView();
+        } catch (Throwable te) {
+            System.out.println(te.getMessage());
+            te.printStackTrace();
+            startProgramView.display();
+        }
         
     }
 

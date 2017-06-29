@@ -6,6 +6,7 @@
 package mormonoregontrail.control;
 
 import mormonoregontrail.MormonOregonTrail;
+import mormonoregontrail.exceptions.MapControlException;
 import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
@@ -50,7 +51,12 @@ public class GameControl {
         game.setActor(actor); // create game player names
         
         // move actors to starting position in the map
-        MapControl.moveActorsToStartingLocation(map);
+        // @Team - add try . . . catch - 6/28/2017
+        try {
+            MapControl.moveActorsToStartingLocation(map);            
+        } catch (MapControlException me) {
+            System.out.println(me.getMessage());
+        }
     }
     public enum Item {
         axles,

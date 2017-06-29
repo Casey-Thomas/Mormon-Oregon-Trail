@@ -10,6 +10,7 @@ import mormonoregontrail.model.Game;
 import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
 import mormonoregontrail.control.MapControl;
+import mormonoregontrail.exceptions.MapControlException;
 
 /**
  *
@@ -44,7 +45,12 @@ public class MapView extends View {
             for (int column = 0; column < locations[row].length; column++) {
                  if (locations[row][column].getScene() != null) {               
                       if (mapOption.equals(locations[row][column].getScene().getMapSymbol())) {
-                           MapControl.movePlayer(map, row, column);
+                          // @Team - Add try . . . catch - 6/28/2017
+                           try{
+                               MapControl.movePlayer(map, row, column);
+                           } catch (MapControlException me) {
+                               System.out.println(me.getMessage());
+                           }
                            return true;
                       }
                    }
