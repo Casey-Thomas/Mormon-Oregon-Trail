@@ -11,7 +11,7 @@ package mormonoregontrail.view;
  */
 public class InventoryMenuView extends View {
     /**
-     * HandleAnObstacleMenuView function
+     * InventoryMenuView function
      */
     public InventoryMenuView() {            
         super("\n"
@@ -55,7 +55,7 @@ public class InventoryMenuView extends View {
                 break;    
             case "M": // Quantity of money
                 this.money();
-                break;                
+                break;
             default:
                 System.out.println("\n*** Invalid selection *** Try again.");
                 break;
@@ -66,7 +66,7 @@ public class InventoryMenuView extends View {
     private void oxen() {        
         System.out.println("\n*** oxen() inventory function called ***");
     }
-
+    
     private void wheels() {        
         System.out.println("\n*** handcart/wagon wheels() inventory function called ***");
     }

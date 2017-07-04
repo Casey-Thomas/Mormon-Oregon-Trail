@@ -65,6 +65,7 @@ public class GameControl {
         oxen,
         bullets,
         food,
+        clothing,
         money,
         wagon,
         handcart;
@@ -72,10 +73,11 @@ public class GameControl {
 
     private static InventoryItem[] createInventoryList() {
         // created array(list) of inventory items
-        InventoryItem[] inventory = new InventoryItem[9];
+        InventoryItem[] inventory = new InventoryItem[10];
         
         // Axles
         InventoryItem axles = new InventoryItem();
+        axles.setType("Store");
         axles.setDescription("Axles");
         axles.setQuantityInStock(10);
         axles.setRequiredAmount(1);
@@ -85,6 +87,7 @@ public class GameControl {
         
         // Wheels
         InventoryItem wheels = new InventoryItem();
+        wheels.setType("Store");
         wheels.setDescription("Wheels");
         wheels.setQuantityInStock(20);
         wheels.setRequiredAmount(2);
@@ -94,6 +97,7 @@ public class GameControl {
 
         // Tongues
         InventoryItem tongues = new InventoryItem();
+        tongues.setType("Store");
         tongues.setDescription("Tongues");
         tongues.setQuantityInStock(20);
         tongues.setRequiredAmount(1);
@@ -103,6 +107,7 @@ public class GameControl {
 
         // Oxen
         InventoryItem oxen = new InventoryItem();
+        oxen.setType("Store");
         oxen.setDescription("Oxen");
         oxen.setQuantityInStock(30);
         oxen.setRequiredAmount(2);
@@ -112,6 +117,7 @@ public class GameControl {
 
         // Bullets
         InventoryItem bullets = new InventoryItem();
+        bullets.setType("Store");
         bullets.setDescription("Bullets");
         bullets.setQuantityInStock(500);
         bullets.setRequiredAmount(100);
@@ -121,6 +127,7 @@ public class GameControl {
 
         // Food
         InventoryItem food = new InventoryItem();
+        food.setType("Store");
         food.setDescription("Food");
         food.setQuantityInStock(500);
         food.setRequiredAmount(150);
@@ -128,8 +135,19 @@ public class GameControl {
         food.setUnits("Pound");
         inventory[Item.food.ordinal()] = food;
 
+        // Clothes
+        InventoryItem clothing = new InventoryItem();
+        clothing.setType("Store");
+        clothing.setDescription("Clothing");
+        clothing.setQuantityInStock(700);
+        clothing.setRequiredAmount(75);
+        clothing.setCost(1);
+        clothing.setUnits("Pound");
+        inventory[Item.clothing.ordinal()] = clothing;
+
         // Money
         InventoryItem money = new InventoryItem();
+        money.setType("Store");
         money.setDescription("Money");
         money.setQuantityInStock(1000);
         money.setRequiredAmount(250);
@@ -139,6 +157,7 @@ public class GameControl {
 
         // Wagon
         InventoryItem wagon = new InventoryItem();
+        wagon.setType("Store");
         wagon.setDescription("Wagon");
         wagon.setQuantityInStock(18);
         wagon.setRequiredAmount(1);
@@ -148,6 +167,7 @@ public class GameControl {
 
         // Handcart
         InventoryItem handcart = new InventoryItem();
+        handcart.setType("Store");
         handcart.setDescription("Handcart");
         handcart.setQuantityInStock(22);
         handcart.setRequiredAmount(1);

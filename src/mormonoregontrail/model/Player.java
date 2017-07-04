@@ -7,6 +7,7 @@ package mormonoregontrail.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import mormonoregontrail.control.GameControl;
 
 /**
  *
@@ -16,8 +17,17 @@ public class Player implements Serializable{
     
     // class instance variables
     private String name;
+    InventoryItem[] inventory;    
     
     public Player() {
+        inventory = new InventoryItem[10];
+
+        // Money
+        InventoryItem money = new InventoryItem();
+        money.setDescription("Money");
+        money.setQuantityInStock(2000);
+        money.setUnits("Dollar");
+        inventory[GameControl.Item.money.ordinal()] = money;        
     }    
 
     public String getName() {
@@ -27,6 +37,14 @@ public class Player implements Serializable{
     public void setName(String name) {
         this.name = name;
     }  
+    
+    public InventoryItem[] getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(InventoryItem[] inventory) {
+        this.inventory = inventory;
+    }    
 
     @Override
     public int hashCode() {
