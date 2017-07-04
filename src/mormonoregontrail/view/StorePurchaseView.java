@@ -42,7 +42,6 @@ public class StorePurchaseView extends View{
                  + "\nT - Buy handcart/wagon tongues"
                  + "\nG - Buy Wagon"
                  + "\nH - Buy Handcart"
-                 + "\nI - View All Store Inventory"
                  + "\nQ - Quit"
                  + "\n------------------------------------------------"
                  + "\nPlease choose an option: ");
@@ -67,9 +66,6 @@ public class StorePurchaseView extends View{
                 case "B": // Quantity of bullets
                     this.buyItem("Bullets");
                     break;
-                case "M": // Quantity of Money
-                    this.buyItem("Money");
-                    break;
                case "A": // Quantity of handcart/wagon axles
                     this.buyAxles();
                     break;
@@ -84,9 +80,6 @@ public class StorePurchaseView extends View{
                     break;
                 case "H": // Quantity of Oxen
                     this.buyItem("Handcarts");
-                    break;
-                case "I": // Total Inventory
-                    this.totalInventory();
                     break;
                 default:
                     System.out.println("\n**Invalid selection *** Try again.");
@@ -241,7 +234,7 @@ public class StorePurchaseView extends View{
          *  This prompts the player to purchase inventory items.
          **********************************************************************/
         
-        System.out.println("Enter the number of " + item.getDescription() + " you wish to purchase: ");
+        System.out.println("Enter the amount of " + item.getDescription() + " you wish to purchase: ");
         
         int amount = 0;
         
@@ -273,8 +266,4 @@ public class StorePurchaseView extends View{
     private void buyTongues() {
         System.out.println("\n*** buyTongues function called ***");
     }       
-            
-    private void totalInventory() {
-        System.out.println("\n*** totalInventory function called ***");
-    }
 }
