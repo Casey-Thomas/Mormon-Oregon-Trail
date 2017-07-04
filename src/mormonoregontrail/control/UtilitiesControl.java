@@ -5,11 +5,9 @@
  */
 package mormonoregontrail.control;
 
-import java.util.ArrayList;
 import java.util.Random;
 import mormonoregontrail.exceptions.UtilitiesControlException;
 import mormonoregontrail.model.InventoryItem;
-import mormonoregontrail.model.Map;
 import mormonoregontrail.model.Player;
 
 /**
@@ -100,7 +98,7 @@ public class UtilitiesControl {
         playerMoney.setQuantityInStock(playerMoney.getQuantityInStock() - (costOfFood * foodCount));        
         
     }
-    
+        
     public int calcResourcesLeft(int startAmount, int daysTraveled, int unitsPerDay) {
         
         if (startAmount < 10) { //start amount is too low
