@@ -7,7 +7,7 @@ package mormonoregontrail.exceptions;
 
 /**
  *
- * @author Laura
+ * @author Team
  */
 public class UtilitiesControlException extends Exception{
 
