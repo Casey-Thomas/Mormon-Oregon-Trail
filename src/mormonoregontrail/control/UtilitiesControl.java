@@ -5,15 +5,101 @@
  */
 package mormonoregontrail.control;
 
+import java.util.ArrayList;
 import java.util.Random;
+import mormonoregontrail.exceptions.UtilitiesControlException;
 import mormonoregontrail.model.InventoryItem;
 import mormonoregontrail.model.Map;
+import mormonoregontrail.model.Player;
 
 /**
  *
  * @author haradab
  */
 public class UtilitiesControl {
+    
+    /**
+     * author Mariam Erickson
+     * @param gameInventory
+     * @param player
+     * @param oxenCount
+     * @throws UtilitiesControlException 
+     */
+    public static void purchaseOxen(InventoryItem[] gameInventory, Player player, int oxenCount) throws UtilitiesControlException {
+       if (oxenCount <=0) {
+           throw new UtilitiesControlException("This is an invalid oxen count. You must purchase at least one ox.");
+       }
+//        InventoryItem oxen = new InventoryItem();
+//        oxen.setDescription("Oxen");
+//        oxen.setQuantityInStock(30);
+//        oxen.setRequiredAmount(2);
+//        oxen.setCost(20);
+//        oxen.setUnits("Each");
+//        inventory[Item.oxen.ordinal()] = oxen;       
+
+        InventoryItem playerMoney = player.getInventory()[GameControl.Item.money.ordinal()];
+        InventoryItem playerOxen = player.getInventory()[GameControl.Item.oxen.ordinal()];
+        InventoryItem storeMoney = gameInventory[GameControl.Item.money.ordinal()];
+        InventoryItem storeOxen = gameInventory[GameControl.Item.oxen.ordinal()];
+        int costOfOxen = storeOxen.getCost();
+        int availableOxen = storeOxen.getQuantityInStock();
+        // They do not have enough money
+        if (costOfOxen * oxenCount > playerMoney.getQuantityInStock()) {
+           throw new UtilitiesControlException("You do not have enough money for this purchase.");
+            
+        }
+        // The store does not have enough inventory
+        if (availableOxen < oxenCount) {
+           throw new UtilitiesControlException("There are only " + availableOxen + " oxen available to purchase.");
+            
+        }
+
+        // Make purchase
+        storeOxen.setQuantityInStock(availableOxen - oxenCount);
+        playerOxen.setQuantityInStock(playerOxen.getQuantityInStock() + oxenCount);   
+        
+        storeMoney.setQuantityInStock(storeMoney.getQuantityInStock() + (costOfOxen * oxenCount));
+        playerMoney.setQuantityInStock(playerMoney.getQuantityInStock() - (costOfOxen * oxenCount));        
+        
+    }
+
+    /**
+     * author Mariam Erickson
+     * @param gameInventory
+     * @param player
+     * @param foodCount
+     * @throws UtilitiesControlException 
+     */
+    public static void purchaseFood(InventoryItem[] gameInventory, Player player, int foodCount) throws UtilitiesControlException {
+       if (foodCount <=0) {
+           throw new UtilitiesControlException("This is an invalid food count. You must purchase at least one food unit.");
+       }
+
+        InventoryItem playerMoney = player.getInventory()[GameControl.Item.money.ordinal()];
+        InventoryItem playerFood = player.getInventory()[GameControl.Item.food.ordinal()];
+        InventoryItem storeMoney = gameInventory[GameControl.Item.money.ordinal()];
+        InventoryItem storeFood = gameInventory[GameControl.Item.food.ordinal()];
+        int costOfFood = storeFood.getCost();
+        int availableFood = storeFood.getQuantityInStock();
+        // They do not have enough money
+        if (costOfFood * foodCount > playerMoney.getQuantityInStock()) {
+           throw new UtilitiesControlException("You do not have enough money for this purchase.");
+            
+        }
+        // The store does not have enough inventory
+        if (availableFood < foodCount) {
+           throw new UtilitiesControlException("There are only " + availableFood + " food units available to purchase.");
+            
+        }
+
+        // Make purchase
+        storeFood.setQuantityInStock(availableFood - foodCount);
+        playerFood.setQuantityInStock(playerFood.getQuantityInStock() + foodCount);   
+        
+        storeMoney.setQuantityInStock(storeMoney.getQuantityInStock() + (costOfFood * foodCount));
+        playerMoney.setQuantityInStock(playerMoney.getQuantityInStock() - (costOfFood * foodCount));        
+        
+    }
     
     public int calcResourcesLeft(int startAmount, int daysTraveled, int unitsPerDay) {
         
