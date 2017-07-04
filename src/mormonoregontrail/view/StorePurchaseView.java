@@ -67,13 +67,13 @@ public class StorePurchaseView extends View{
                     this.buyItem("Bullets");
                     break;
                case "A": // Quantity of handcart/wagon axles
-                    this.buyAxles();
+                    this.buyItem("Axles");
                     break;
                 case "W": // Quantity of handcart/wagon wheels
-                    this.buyWheels();
+                    this.buyItem("Wheels");
                     break;
                 case "T": // Quantity of handcart/wagon tongues
-                    this.buyTongues();
+                    this.buyItem("Tongues");
                     break;
                 case "G": // Quantity of Wagons
                     this.buyItem("Wagons");
@@ -253,17 +253,5 @@ public class StorePurchaseView extends View{
             System.out.println("\nINPUT ERROR: You must enter a valid number of " + item.getDescription() + " to purchase."
                     + " Please try to make another purchase or 'Q' to Quit.");
         }
-    }
-    
-    private void buyAxles() {
-        System.out.println("\n*** buyAxles function called ***");
-    }
-    
-    private void buyWheels() {
-        System.out.println("\n*** buyWheels function called ***");
-    }
-    
-    private void buyTongues() {
-        System.out.println("\n*** buyTongues function called ***");
-    }       
+    }  
 }
