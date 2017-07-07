@@ -51,28 +51,28 @@ public class HandleAnObstacleMenuView extends View {
                 this.sleepOnIt();
                 break;    
             default:
-                System.out.println("\n*** Invalid selection *** Try again.");
+                this.console.println("\n*** Invalid selection *** Try again.");
                 break;
         }
         
         Random rand = new Random();
         int randomValue = rand.nextInt(10); //50 percent chance of being less than 5.
         if (randomValue < 4){
-            System.out.println("\n*** It worked! *** ");
+            this.console.println("\n*** It worked! *** ");
             return true;
         }else{
-            System.out.println("\n*** It didn't work. *** Try again.");
+            this.console.println("\n*** It didn't work. *** Try again.");
         }
 
         return false;
     }
 
     private void spiritualGuidance() {
-        System.out.println("\nI went to my Bishop and repented.");
+        this.console.println("\nI went to my Bishop and repented.");
     }
 
     private void hailMary() {
-        System.out.println("\n" + "Hail Mary, full of grace. " +
+        this.console.println("\n" + "Hail Mary, full of grace. " +
             "Our Lord is with thee." +
             "\nBlessed art thou among women, " +
             "and blessed is the fruit of thy womb," +
@@ -84,15 +84,15 @@ public class HandleAnObstacleMenuView extends View {
     }
 
     private void doNothing() {        
-        System.out.println("\nOkay, I am doing nothing.");
+        this.console.println("\nOkay, I am doing nothing.");
     }
 
     private void prayAboutIt() {        
-        System.out.println("\nOkay, I am saying a 'Mormon' prayer.");
+        this.console.println("\nOkay, I am saying a 'Mormon' prayer.");
     }
 
     private void sleepOnIt() {
-        System.out.println("\nzzzzz, Wow, I feel better already.");
+        this.console.println("\nzzzzz, Wow, I feel better already.");
     }
 
 }

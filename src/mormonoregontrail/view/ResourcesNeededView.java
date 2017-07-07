@@ -5,7 +5,9 @@
  */
 package mormonoregontrail.view;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.UtilitiesControl;
 
 /**
@@ -20,7 +22,11 @@ public class ResourcesNeededView {
         private String journeyTime;
         private String noPeople;
         private String minRequired = "50";
-        private char resourceType = 'D';
+        private char resourceType = 'D';     
+        
+        private BufferedReader keyboard = MormonOregonTrail.getInFile();
+        private PrintWriter console = MormonOregonTrail.getOutFile();
+        
     
     public ResourcesNeededView() {
         
@@ -34,7 +40,7 @@ public class ResourcesNeededView {
     }
 
     private void displayBanner() {
-        System.out.println(
+        this.console.println(
             "\n*******************************************************"
            +"\n*                                                     *"
            +"\n* Calculate Resources Needed                          *"
@@ -108,22 +114,25 @@ public class ResourcesNeededView {
     }
 
     private String getUserString(String promptMessage) {
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
         String value = ""; // value to be returned
         boolean valid = false; // initialize to not valid
         
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + promptMessage);
+        try{
+            while (!valid) { // loop while an invalid value is entered
+                this.console.println("\n" + promptMessage);
             
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim(); // trim off leading and trailing blanks
+                value = this.keyboard.readLine(); // get next line typed on keyboard
+                value = value.trim(); // trim off leading and trailing blanks
             
-            if (value.length() < 1) { // value is blank
-                System.out.println("\nInvalid value: value cannot be blank");
-                continue;
+                if (value.length() < 1) { // value is blank
+                    this.console.println("\nInvalid value: value cannot be blank");
+                    continue;
+                }
+
+                break; // end the loop
             }
-            
-            break; // end the loop
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), e.getMessage());
         }
         
         return value; // return the value entered
@@ -132,13 +141,13 @@ public class ResourcesNeededView {
     private boolean doNumericAction(String userInput) {
         
         if (userInput.contains("[a-zA-Z]+") == true) {        
-            System.out.println("\nInvalid Value: "
+            this.console.println("\nInvalid Value: "
                 + "must be numeric only");
             return false;
         }
         
         if (userInput.length() < 1) {        
-            System.out.println("\nInvalid Value: "
+            this.console.println("\nInvalid Value: "
                 + "value cannot be blank");
             return false;
         }
@@ -147,35 +156,37 @@ public class ResourcesNeededView {
     }
 
     private char getUserChar(String promptMessage) {
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
         String value = ""; // value to be returned
         boolean valid = false; // initialize to not valid
                 
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + promptMessage);
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                this.console.println("\n" + promptMessage);
             
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim(); // trim off leading and trailing blanks
+                value = keyboard.readLine(); // get next line typed on keyboard
+                value = value.trim(); // trim off leading and trailing blanks
             
-            if (value.length() < 1) { // value is blank
-                System.out.println("\nInvalid value: value cannot be blank");
-                continue;
+                if (value.length() < 1) { // value is blank
+                    this.console.println("\nInvalid value: value cannot be blank");
+                    continue;
+                }
+                if (value.length() > 1) { // value is too long
+                    this.console.println("\nInvalid value: value cannot be more than 1 character");
+                    continue;
+                }
+            
+               break; // end the loop
             }
-            if (value.length() > 1) { // value is too long
-                System.out.println("\nInvalid value: value cannot be more than 1 character");
-                continue;
-            }
-            
-            break; // end the loop
+        } catch(Exception e) {
+            ErrorView.display(this.getClass().getName(), e.getMessage());
         }
-        
         return value.charAt(0); // return the value entered
     }
 
     private boolean doAlphaAction(char userInput) {
         
         if (!Character.isLetter(userInput)) {        
-            System.out.println("\nInvalid Value: "
+            this.console.println("\nInvalid Value: "
                 + "must be a letter only");
             return false;
         }
@@ -185,7 +196,7 @@ public class ResourcesNeededView {
 
     private void displayNextView() {
         // display a message showing user input
-        System.out.println("\n========================================"
+        this.console.println("\n========================================"
                           + "\n Number of Days: " + this.journeyTime
                           + "\n Number of People in Group: " + this.noPeople
                           + "\n Minimum Resources Needed: " + this.minRequired
@@ -201,22 +212,25 @@ public class ResourcesNeededView {
         try {
             time = Integer.parseInt(this.journeyTime);
         } catch (NumberFormatException nf) {
-            System.out.println("\nYou must enter a valid number for the journey."
-                    + " Try again or enter Q to quit.");
+            ErrorView.display(this.getClass().getName(), 
+                    "Invalid number for the journey: " + nf.getMessage()
+                   + " Try again or enter Q to quit.");
         }
         
         try {
             people = Integer.parseInt(this.noPeople);
         } catch (NumberFormatException nf) {
-            System.out.println("\nYou must enter a valid number of people."
-                    + " Try again or enter Q to quit.");
+            ErrorView.display(this.getClass().getName(), 
+                    "Invalid valid number of people: " + nf.getMessage()
+                   + " Try again or enter Q to quit.");
         }
         
         try {
             required = Integer.parseInt(this.minRequired);
         } catch (NumberFormatException nf) {
-            System.out.println("\nYou must enter a valid number for minimum required."
-                    + " Try again or enter Q to quit.");
+            ErrorView.display(this.getClass().getName(), 
+                    "Invalid number for minimum required: " + nf.getMessage()
+                   + " Try again or enter Q to quit.");
         }
             
         // Create MainMenuView object
@@ -225,28 +239,28 @@ public class ResourcesNeededView {
         
         switch (resourcesNeeded) {
             case -1:
-                System.out.println("\n*** Journey Time is too low ***");
+                this.console.println("\n*** Journey Time is too low ***");
                 break;
             case -2:
-                System.out.println("\n*** Journey Time is too high ***");
+                this.console.println("\n*** Journey Time is too high ***");
                 break;
             case -3:
-                System.out.println("\n*** Number of People is too low ***");
+                this.console.println("\n*** Number of People is too low ***");
                 break;
             case -4:
-                System.out.println("\n*** Number of People is too high ***");
+                this.console.println("\n*** Number of People is too high ***");
                 break;
             case -5:
-                System.out.println("\n*** Minimum suppies required too low ***");
+                this.console.println("\n*** Minimum suppies required too low ***");
                 break;
             case -6:
-                System.out.println("\n*** Minimum supplies required is too high  ***");
+                this.console.println("\n*** Minimum supplies required is too high  ***");
                 break;
             case -7:
-                System.out.println("\n*** Resource type does not equal (J)ourney or (D)aily ***");
+                this.console.println("\n*** Resource type does not equal (J)ourney or (D)aily ***");
                 break;
             default:
-                System.out.println("\n*** Total amount of this resource required: " + resourcesNeeded);
+                this.console.println("\n*** Total amount of this resource required: " + resourcesNeeded);
                 break;
         }
         

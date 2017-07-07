@@ -78,7 +78,7 @@ public class UserDirectionMenuView extends View{
                 this.goWest();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                this.console.println("\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -86,7 +86,7 @@ public class UserDirectionMenuView extends View{
     }
 
     private void goNorth() {
-        System.out.println("\n*** goNorth() function called ***");
+        this.console.println("\n*** goNorth() function called ***");
         int result = UtilitiesControl.advanceAlongTheTrail(location, 
                 daysTraveled,          //number of days traveled
                 sceneDescription[location].getDistanceFromNauvoo(),
@@ -101,13 +101,13 @@ public class UserDirectionMenuView extends View{
             setLocationMessage();
                 
         }
-        //System.out.println("daysTraveled = "+daysTraveled + "location =" + location);
+        //this.console.println("daysTraveled = "+daysTraveled + "location =" + location);
         // call the UtilitiesControl.AdvanceAlongTheTrail with a "N"
         // and handle error messages
     }
 
     private void goSouth() {
-        System.out.println("\n*** goSouth() function called ***");
+        this.console.println("\n*** goSouth() function called ***");
         int result = UtilitiesControl.advanceAlongTheTrail(location, 
                 daysTraveled,          //number of days traveled
                 sceneDescription[location].getDistanceFromNauvoo(),
@@ -122,13 +122,13 @@ public class UserDirectionMenuView extends View{
             setLocationMessage();
                 
         }
-        // System.out.println("daysTraveled = "+daysTraveled + "location =" + location);
+        // this.console.println("daysTraveled = "+daysTraveled + "location =" + location);
        // call the UtilitiesControl.AdvanceAlongTheTrail with a "S"
         // and handle error messages
     }
 
     private void goEast() {        
-        System.out.println("\n*** goEast() function called ***");
+        this.console.println("\n*** goEast() function called ***");
         int result = UtilitiesControl.advanceAlongTheTrail(location, 
                 daysTraveled,          //number of days traveled
                 sceneDescription[location].getDistanceFromNauvoo(),
@@ -143,13 +143,13 @@ public class UserDirectionMenuView extends View{
             setLocationMessage();
                 
         }
-        //System.out.println("daysTraveled = "+daysTraveled + "location =" + location);
+        //this.console.println("daysTraveled = "+daysTraveled + "location =" + location);
         // call the UtilitiesControl.AdvanceAlongTheTrail with a "E"
         // and handle error messages
     }
 
     private void goWest() {
-        System.out.println("\n*** goWest() function called ***");
+        this.console.println("\n*** goWest() function called ***");
         int result = UtilitiesControl.advanceAlongTheTrail(location, 
                 daysTraveled,          //number of days traveled
                 sceneDescription[location].getDistanceFromNauvoo(),
@@ -164,7 +164,7 @@ public class UserDirectionMenuView extends View{
             setLocationMessage();
                 
         }
-        //System.out.println("daysTraveled = "+daysTraveled + "location =" + location);
+        //this.console.println("daysTraveled = "+daysTraveled + "location =" + location);
         // call the UtilitiesControl.AdvanceAlongTheTrail with a "W"
         // and handle error messages
     }
@@ -187,29 +187,29 @@ public class UserDirectionMenuView extends View{
 
     private void handleErrorMessage(int error) {
         boolean needToHandleObstacle = false;
-        //System.out.println("handleErrorMessage = " + error);
+        //this.console.println("handleErrorMessage = " + error);
         switch (error) {
             case -11: // Invalid direction.
-                System.out.println("\nInvalid direction.");
+                this.console.println("\nInvalid direction.");
                 break;
             case -7: // You have an ox that is sick.
-                System.out.println("\nYou have an ox that is sick.");
+                this.console.println("\nYou have an ox that is sick.");
                 needToHandleObstacle = true;
                 break;
             case -8: // You have a health challenge.
-                System.out.println("\nYou have a health challenge.");
+                this.console.println("\nYou have a health challenge.");
                 needToHandleObstacle = true;
                 break;
             case -9: // Your wagon is damaged.
-                System.out.println("\nYour wagon is damaged.");
+                this.console.println("\nYour wagon is damaged.");
                 needToHandleObstacle = true;
                 break;
             case -10: // You have an obstacle in your path.
-                System.out.println("\nYou have an obstacle in your path.");
+                this.console.println("\nYou have an obstacle in your path.");
                 needToHandleObstacle = true;
                 break;
             case -13: // You are not allowed to go this direction.
-                System.out.println("\nYou are not allowed to go this direction.");
+                this.console.println("\nYou are not allowed to go this direction.");
                 needToHandleObstacle = false;
                 break;
            default:

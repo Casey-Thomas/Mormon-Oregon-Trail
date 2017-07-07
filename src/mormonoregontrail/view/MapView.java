@@ -49,14 +49,14 @@ public class MapView extends View {
                            try{
                                MapControl.movePlayer(map, row, column);
                            } catch (MapControlException me) {
-                               System.out.println(me.getMessage());
+                                ErrorView.display(this.getClass().getName(), me.getMessage());
                            }
                            return true;
                       }
                    }
               }
        }
-       System.out.println("\n*** Invalid selection *** Try Again later");
+       this.console.println("\n*** Invalid selection *** Try Again later");
        return false;
      }
 }

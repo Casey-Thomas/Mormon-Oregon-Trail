@@ -5,7 +5,6 @@
  */
 package mormonoregontrail.view;
 
-import java.util.Scanner;
 import mormonoregontrail.control.GameControl;
 import mormonoregontrail.model.Player;
 
@@ -18,7 +17,7 @@ public class StartProgramView extends View{
     private String promptMessage;
     
     public StartProgramView() {
-        
+        super("");
         this.promptMessage = "\nPlease enter your name: ";
         
         // display the banner when view is created
@@ -26,7 +25,7 @@ public class StartProgramView extends View{
     }
 
     private void displayBanner() {
-        System.out.println(
+        this.console.println(
             "\n*******************************************************"
            +"\n*                                                     *"
            +"\n* Welcome to the Mormon Oregon Trail game!            *"
@@ -65,22 +64,26 @@ public class StartProgramView extends View{
     }
 
     private String getPlayersName() {
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
         String value = ""; // value to be returned
         boolean valid = false; // initialize to not valid
         
-        while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n" + this.promptMessage);
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                this.console.println("\n" + this.promptMessage);
             
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim(); // trim off leading and trailing blanks
+                value = keyboard.readLine(); // get next line typed on keyboard
+                value = value.trim(); // trim off leading and trailing blanks
             
-            if (value.length() < 1) { // value is blank
-                System.out.println("\nInvalid value: value can not be blank");
+                if (value.length() < 1) { // value is blank
+                    this.console.println("\nInvalid value: value can not be blank");
                 continue;
-            }
+                }
             
-            break; // end the loop
+                break; // end the loop
+            }
+        } catch(Exception e) {
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Reading Input: " + e.getMessage());
         }
         
         return value; // return the value entered
@@ -90,7 +93,7 @@ public class StartProgramView extends View{
     public boolean doAction(String playersName) {
         
         if (playersName.length() < 2) {
-            System.out.println("\nInvalid players name: "
+            this.console.println("\nInvalid players name: "
                 + "The name must be greater than one character in length");
             return false;
         }
@@ -99,7 +102,7 @@ public class StartProgramView extends View{
         Player player = GameControl.createPlayer(playersName);
         
         if(player == null) { // if unsuccessful
-            System.out.println("\nError creating the player.");
+            this.console.println("\nError creating the player.");
             return false;
         }
         
@@ -111,7 +114,7 @@ public class StartProgramView extends View{
 
     private void displayNextView(Player player) {
         // display a custom welcome message
-        System.out.println("\n========================================"
+        this.console.println("\n========================================"
                           + "\n Welcome to the game " + player.getName()
                           + "\n We hope you have a lot of fun!"
                           + "\n======================================"

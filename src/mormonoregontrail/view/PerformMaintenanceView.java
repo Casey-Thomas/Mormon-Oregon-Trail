@@ -63,34 +63,34 @@ public class PerformMaintenanceView extends View{
                 this.talkToBishop();
                 break;
             default:
-                System.out.println("\n**Invalid selection *** Try again.");
+                this.console.println("\n**Invalid selection *** Try again.");
                 break;
         }
         return false;
     }
     
     private void changeWheel() {
-        System.out.println("\n*** changeWheel() function called ***");
+        this.console.println("\n*** changeWheel() function called ***");
     }
     private void repairSpoke() {
-        System.out.println("\n*** repairSpoke() function called ***");
+        this.console.println("\n*** repairSpoke() function called ***");
     }
     private void replaceRim() {
-        System.out.println("\n*** replaceRim() function called ***");
+        this.console.println("\n*** replaceRim() function called ***");
     }
     private void checkTongue() {
-        System.out.println("\n*** checkTongue() function called ***");
+        this.console.println("\n*** checkTongue() function called ***");
     }
     private void sayPrayer() {
-        System.out.println("\n*** sayPrayer() function called ***");
+        this.console.println("\n*** sayPrayer() function called ***");
     }
     private void feedAnimal() {
-        System.out.println("\n*** feedAnimal() function called ***");
+        this.console.println("\n*** feedAnimal() function called ***");
     }
     private void repent() {
-        System.out.println("\n*** repent() function called ***");
+        this.console.println("\n*** repent() function called ***");
     }
     private void talkToBishop() {
-        System.out.println("\n*** talkToBishop() function called ***");
+        this.console.println("\n*** talkToBishop() function called ***");
     }
 }

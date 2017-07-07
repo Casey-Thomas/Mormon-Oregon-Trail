@@ -17,7 +17,6 @@ public class Actor implements Serializable{
     private String description;
     private int row;
     private int column;
-    private Point coordinates;
     
 //    Actor(String description){
 //        this.description = description;
@@ -29,7 +28,6 @@ public class Actor implements Serializable{
         this.description = description;
         this.row = row;
         this.column = column;
-        this.coordinates = coordinates;
     }
 
     public String getName() {
@@ -47,9 +45,6 @@ public class Actor implements Serializable{
         return column;
     }
 
-    public Point getCoordinates() {
-        return coordinates;
-    }
 //    @Override
 //    public String toString() {
 //        return "Actor{" + "name=" + name + ", description=" + description + ", coordinates=" + coordinates + '}';
@@ -69,9 +64,5 @@ public class Actor implements Serializable{
 
     public void setColumn(int column) {
         this.column = column;
-    }
-
-    public void coordinates(Point coordinates) {
-        this.coordinates = coordinates;
     }
 }

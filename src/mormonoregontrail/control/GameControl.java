@@ -5,6 +5,7 @@
  */
 package mormonoregontrail.control;
 
+import static java.lang.System.console;
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.exceptions.MapControlException;
 import mormonoregontrail.model.Actor;
@@ -14,6 +15,7 @@ import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
 import mormonoregontrail.model.Player;
 import mormonoregontrail.model.Scene;
+import mormonoregontrail.view.ErrorView;
 
 /**
  *
@@ -54,8 +56,8 @@ public class GameControl {
         // @Team - add try . . . catch - 6/28/2017
         try {
             MapControl.moveActorsToStartingLocation(map);            
-        } catch (MapControlException me) {
-            System.out.println(me.getMessage());
+        } catch(MapControlException me) {
+            ErrorView.display("GameControl: ", me.getMessage());
         }
     }
     public enum Item {
@@ -176,11 +178,6 @@ public class GameControl {
         inventory[Item.handcart.ordinal()] = handcart;
 
         return inventory;
-    }
-
-    private static Actor[] Actor() {
-        System.out.println("\n*** Actor() function called ***");
-        return null;
     }
 
     public enum Actors {

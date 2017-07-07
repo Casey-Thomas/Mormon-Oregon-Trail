@@ -106,7 +106,7 @@ public class GameMenuView extends View{
                 this.displayResourcesNeeded();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                this.console.println("\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -122,20 +122,20 @@ public class GameMenuView extends View{
         Location[][] locations = map.getLocations(); // retreive the locations from map
         
           // Game Title
-          System.out.println("               MORMON OREGON TRAIL");
+          this.console.println("               MORMON OREGON TRAIL");
           // Build the heading of the map
-          System.out.print("  |");
+          this.console.print("  |");
           for( int column = 0; column < locations[0].length; column++){
             // print col numbers to side of map
             if (column < 10)
-                System.out.print("  " + column + " |");
+                this.console.print("  " + column + " |");
             else
-                System.out.print(" " + column + " |");
+                this.console.print(" " + column + " |");
           }
           // Now build the map.  For each row, show the column information
-          System.out.println();
+          this.console.println();
           for( int row = 0; row < locations.length; row++){
-           System.out.print(row + " "); // print row numbers to side of map
+           this.console.print(row + " "); // print row numbers to side of map
             for( int column = 0; column < locations[row].length; column++){
               // set default indicators as blanks
               leftIndicator = " ";
@@ -150,21 +150,21 @@ public class GameMenuView extends View{
                  leftIndicator = ">"; // can be stars or whatever these are indicators showing visited
                  rightIndicator = "<"; // same as above
               }
-             System.out.print("|"); // start map with a |
+             this.console.print("|"); // start map with a |
               if(locations[row][column].getScene() == null)
               {
                    // No scene assigned here so use ?? for the symbol
-                   System.out.print(leftIndicator + "??" + rightIndicator);
+                   this.console.print(leftIndicator + "??" + rightIndicator);
               }
               else
-                System.out.print(leftIndicator
+                this.console.print(leftIndicator
                    + locations[row][column].getScene().getMapSymbol()
                    + rightIndicator);
             }
-           System.out.println("|");
+           this.console.println("|");
           } 
           if (map.getCurrentLocation().getScene() != null)
-              System.out.println("Your current location is: "
+              this.console.println("Your current location is: "
                 + map.getCurrentLocation().getScene().getName()
                 + "\nYou are " + map.getCurrentLocation().getScene().getDistanceFromNauvoo() + " miles from Nauvoo!"
                 + "\n" + map.getCurrentLocation().getScene().getDescription()
@@ -178,7 +178,7 @@ public class GameMenuView extends View{
         int locationcount = (map.getCurrentLocation().getRow() + 1) * (map.getCurrentLocation().getColumn());
         
           if (map.getCurrentLocation().getScene() != null)
-              System.out.println("Your current location is "
+              this.console.println("Your current location is "
                 + "(" + map.getCurrentLocation().getScene().getMapSymbol() + ") " + map.getCurrentLocation().getScene().getName()
                 + " and you are " + map.getCurrentLocation().getScene().getDistanceFromNauvoo() + " miles from Nauvoo!"
                 + "\n" + map.getCurrentLocation().getScene().getDescription()
@@ -194,14 +194,14 @@ public class GameMenuView extends View{
         Map map = game.getMap(); // retrieve the map from the game
         Location[][] locations = map.getLocations(); // retrieve the locations from map
                        
-        System.out.println("\n          LIST OF SCENES");
+        this.console.println("\n          LIST OF SCENES");
         line = new StringBuilder("                                                                                ");
         line.insert(0, "NAME");
         line.insert(30, "SYMBOL");
         line.insert(40, "BLOCKED");
         line.insert(50, "DIST. FROM NAUVOO");
         line.insert(70, "LOCATION");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         
        // for each scene
        for (int row = 0; row < locations.length; row++) {
@@ -220,7 +220,7 @@ public class GameMenuView extends View{
                      }
             
                      // Display the line
-                     System.out.println(line.toString());
+                     this.console.println(line.toString());
                  }
             }
        }
@@ -232,14 +232,14 @@ public class GameMenuView extends View{
         Game game = MormonOregonTrail.getCurrentGame();
         InventoryItem[] inventory = game.getInventory();
                 
-        System.out.println("\n          LIST OF INVENTORY ITEMS");
+        this.console.println("\n          LIST OF INVENTORY ITEMS");
         line = new StringBuilder("                                                                                ");
         line.insert(0, "DESCRIPTION");
         line.insert(20, "REQUIRED");
         line.insert(30, "IN STOCK");
         line.insert(40, "UNITS");
         line.insert(50, "COST");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         
         // for each inventory item
         for (InventoryItem item : inventory) {
@@ -251,7 +251,7 @@ public class GameMenuView extends View{
             line.insert(50, String.valueOf(item.getCost()));
             
             // Display the line
-            System.out.println(line.toString());
+            this.console.println(line.toString());
         }
     }
 
@@ -264,7 +264,7 @@ public class GameMenuView extends View{
                 
         // Find the Maximum Value in the inventory list
         InventoryItem item = getMaxInventoryItem(inventory);     
-        System.out.println("\nInventory Item with Max Quantity in Stock:"
+        this.console.println("\nInventory Item with Max Quantity in Stock:"
                 + "\nDescription: " + item.getDescription()
                 + "\nQuanity In Stock: " + item.getQuantityInStock());
         
@@ -272,14 +272,14 @@ public class GameMenuView extends View{
         InventoryItem[] sortedArray = doDescInventorySort(inventory);
         
         // Display a sorted list, in descending order
-        System.out.println("\nLIST OF INVENTORY ITEMS BY QUANITY IN STOCK IN DESCENDING ORDER");
+        this.console.println("\nLIST OF INVENTORY ITEMS BY QUANITY IN STOCK IN DESCENDING ORDER");
         line = new StringBuilder("                                                                                ");
         line.insert(0, "DESCRIPTION");
         line.insert(20, "REQUIRED");
         line.insert(30, "IN STOCK");
         line.insert(40, "UNITS");
         line.insert(50, "COST");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         
         // for each inventory item
         for (InventoryItem sortedItem : sortedArray) {
@@ -291,7 +291,7 @@ public class GameMenuView extends View{
             line.insert(50, String.valueOf(item.getCost()));
             
             // Display the line
-            System.out.println(line.toString());
+            this.console.println(line.toString());
         }
     }
     
@@ -301,7 +301,7 @@ public class GameMenuView extends View{
         
         InventoryItem item = getMinInventoryItem(inventory);
         
-        System.out.println("\nInventory Item with the Lowest Quantity in Stock:"
+        this.console.println("\nInventory Item with the Lowest Quantity in Stock:"
                 + "\nDescription: " + item.getDescription()
                 + "\nQuanity In Stock: " + item.getQuantityInStock()
                 + "\nPlease re-order soon!");
@@ -313,11 +313,11 @@ public class GameMenuView extends View{
         Game game = MormonOregonTrail.getCurrentGame();
         Actor[] actor = game.getActor();
         
-        System.out.println("\n          LIST OF ACTORS IN THE GAME");
+        this.console.println("\n          LIST OF ACTORS IN THE GAME");
         line = new StringBuilder("                                                                                ");
         line.insert(0, "NAME");
         line.insert(12, "DESCRIPTION");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         
         // for each inventory item
         for (Actor oneactor : actor) {
@@ -325,7 +325,7 @@ public class GameMenuView extends View{
             line.insert(0, oneactor.getName());
             line.insert(12, oneactor.getDescription());            
             // Display the line
-            System.out.println(line.toString());
+            this.console.println(line.toString());
         }
     }
     
@@ -340,7 +340,7 @@ public class GameMenuView extends View{
     }
 
     private void huntForSupplies() {
-        System.out.println("\n*** huntForSupplies() function called ***");
+        this.console.println("\n*** huntForSupplies() function called ***");
     }
 
     private void displayOvercomeObstacleMenu() {
@@ -354,7 +354,7 @@ public class GameMenuView extends View{
     }
 
     private void verifyWagonCanFunction() {
-        System.out.println("\n*** verifyWagonCanFunction() function called ***");
+        this.console.println("\n*** verifyWagonCanFunction() function called ***");
     }
 
     private void performMaintenance() {
@@ -363,7 +363,7 @@ public class GameMenuView extends View{
     }
 
     private void seekSpiritualGuidance() {
-        System.out.println("\n*** seekSpiritualGuidance() function called ***");
+        this.console.println("\n*** seekSpiritualGuidance() function called ***");
     }
 
     private boolean advanceAlongTheTrail() {
@@ -378,19 +378,19 @@ public class GameMenuView extends View{
             try {
                 MapControl.movePlayer(map, currentRow, currentColumn + 1);
             } catch (MapControlException me) {
-                System.out.println(me.getMessage());
+                ErrorView.display(this.getClass().getName(), me.getMessage());
             }
         } 
         else {
             try {
                 MapControl.movePlayer(map, currentRow + 1, 0);
             } catch (MapControlException me) {
-                System.out.println(me.getMessage());
+                ErrorView.display(this.getClass().getName(), me.getMessage());
             }
         }    
         
         if (map.getCurrentRow() == 1 && map.getCurrentColumn() == 12) {
-            System.out.println("You've arrived at the Salt Lake Valley!! "
+            this.console.println("You've arrived at the Salt Lake Valley!! "
                               + "\n The game is over! Thanks for playing . . .");
             return true;
         }

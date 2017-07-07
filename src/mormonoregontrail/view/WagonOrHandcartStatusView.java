@@ -43,7 +43,7 @@ public class WagonOrHandcartStatusView extends View{
                 this.viewInventory();
                 break;
             default:
-                System.out.println("\n**Invalid selection *** Try again.");
+                this.console.println("\n**Invalid selection *** Try again.");
                 break;
         }
         return false;
@@ -54,7 +54,7 @@ public class WagonOrHandcartStatusView extends View{
         performMaintenanceView.display();
     }
     private void checkWagon() {
-        System.out.println("\n***checkWagon function called ***");
+        this.console.println("\n***checkWagon function called ***");
     }
     private void viewInventory() {
         InventoryMenuView inventoryMenuView = new InventoryMenuView();

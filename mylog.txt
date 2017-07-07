@@ -1,0 +1,1 @@
+mormonoregontrail.view.StorePurchaseView - Error Reading Input: There are only 30 oxen available to purchase.

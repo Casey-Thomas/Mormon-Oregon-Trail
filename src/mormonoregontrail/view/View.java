@@ -5,7 +5,9 @@
  */
 package mormonoregontrail.view;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import mormonoregontrail.MormonOregonTrail;
 
 /**
  *
@@ -16,6 +18,9 @@ public abstract class View implements ViewInterface {
     protected String promptMessage;
     
     protected String additionalMessage = null;
+    
+    protected final BufferedReader keyboard = MormonOregonTrail.getInFile();
+    protected final PrintWriter console = MormonOregonTrail.getOutFile();
     
     public View() {
         
@@ -28,9 +33,10 @@ public abstract class View implements ViewInterface {
     @Override
     public void display() {
         boolean done = false; // set flag to not done
+        String value = "";
         do {
             // prompt for and get input from user
-            String value = this.getInput();
+            value = this.getInput();
             if (value.toUpperCase().equals("Q")) // user wants to quit
                 return; // exit the view
             
@@ -50,33 +56,36 @@ public abstract class View implements ViewInterface {
     
     @Override
     public String getInput() {
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
         String value = ""; // value to be returned
         boolean valid = false; // initialize to not valid
         
-        // while a valid name has not been retrieved
-        while (!valid) { // loop while an invalid value is entered
-
-            if (additionalMessage != null) {
-                // display the additional message
-                System.out.println(this.additionalMessage);               
-            }
-            // display the prompt message
-            System.out.println("\n" + this.promptMessage);
+        try {
+            // while a valid name has not been retrieved
+            while (!valid) { // loop while an invalid value is entered
             
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            value = value.trim(); // trim off leading and trailing blanks
+              if (additionalMessage != null) {
+                  // display the additional message
+                  this.console.println(this.additionalMessage);               
+              }
+              // display the prompt message
+              this.console.println("\n" + this.promptMessage);
+                          
+              value = this.keyboard.readLine(); // get next line typed on keyboard
+              value = value.trim(); // trim off leading and trailing blanks
             
-            if (value.length() < 1) { // value is blank
-                System.out.println("\nInvalid value: value cannot be blank");
+              if (value.length() < 1) { // value is blank
+                  ErrorView.display(this.getClass().getName(),
+                                    "Invalid value: value cannot be blank");
                 continue;
-            }
+              }
             
-            break; // end the loop
+              break; // end the loop
+            }
+        } catch(Exception e) {
+            ErrorView.display(this.getClass().getName(),
+                              "Error reading input: " + e.getMessage());
         }
         
         return value; // return the value entered
-    }
-    
-    
+    }  
 }

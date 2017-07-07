@@ -5,9 +5,6 @@
  */
 package mormonoregontrail.view;
 
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.GameControl;
 import mormonoregontrail.control.UtilitiesControl;
@@ -82,11 +79,12 @@ public class StorePurchaseView extends View{
                     this.buyItem("Handcarts");
                     break;
                 default:
-                    System.out.println("\n**Invalid selection *** Try again.");
+                    this.console.println("\n**Invalid selection *** Try again.");
                     break;
             }
         } catch (UtilitiesControlException ex) {
-            Logger.getLogger(StorePurchaseView.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Reading Input: " + ex.getMessage());
         }
         return false;
     }
@@ -95,6 +93,8 @@ public class StorePurchaseView extends View{
      * author Mariam Erickson
      */
     private void buyOxen() {
+        String value = ""; // value to be returned
+
         Game game = MormonOregonTrail.getCurrentGame();
 
         InventoryItem[] gameInventory = game.getInventory();
@@ -110,34 +110,39 @@ public class StorePurchaseView extends View{
             player.getInventory()[GameControl.Item.oxen.ordinal()] = oxen;
         }
         
-        System.out.println("\nYou have " + oxen.getQuantityInStock() + " oxen.  You have $" + money.getQuantityInStock());
-        System.out.println("There are "+gameInventory[GameControl.Item.oxen.ordinal()].getQuantityInStock() + " oxen available.  They cost $" +
+        this.console.println("\nYou have " + oxen.getQuantityInStock() + " oxen.  You have $" + money.getQuantityInStock());
+        this.console.println("There are "+gameInventory[GameControl.Item.oxen.ordinal()].getQuantityInStock() + " oxen available.  They cost $" +
                 gameInventory[GameControl.Item.oxen.ordinal()].getCost() + " each.");
-        System.out.println("\nHow many oxen would you like to purchase (Enter '0' quit)?");
+        this.console.println("\nHow many oxen would you like to purchase (Enter '0' quit)?");
         boolean valid = false;
         int oxenCount = 0;
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
-        while(! valid) {
-         
-            String value = ""; // value to be returned
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            try {
-                //parse and convert keyboard input to an integer
-                oxenCount = Integer.parseInt(value);
-                valid = true;
-                if (oxenCount == 0)
-                    return;
-            } catch (NumberFormatException nf) {
-                
-                System.out.println("Enter a valid oxen amount.");
+        try {
+            while(!valid) {
+                value = keyboard.readLine(); // get next line typed on keyboard
+                try {
+                    //parse and convert keyboard input to an integer
+                    oxenCount = Integer.parseInt(value);
+                    valid = true;
+                    if (oxenCount == 0)
+                        return;
+                } catch (NumberFormatException nf) {
+
+                    ErrorView.display(this.getClass().getName(), 
+                            "Invalid Oxen Amoount: " + nf.getMessage());
+                }
+                break; // end the loop
             }
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Reading Input: " + e.getMessage());
         }
        try {
             UtilitiesControl.purchaseOxen(gameInventory, player, oxenCount);
-            System.out.println("You have purchased " + oxenCount + " oxen.");
+            this.console.println("You have purchased " + oxenCount + " oxen.");
             
        } catch (UtilitiesControlException uce) {
-            System.out.println(uce.getMessage());           
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Reading Input: " + uce.getMessage());
        }
     }
     
@@ -145,6 +150,8 @@ public class StorePurchaseView extends View{
      * author Mariam Erickson
      */
     private void buyFood() {
+        String value = ""; // value to be returned
+        
         Game game = MormonOregonTrail.getCurrentGame();
 
         InventoryItem[] gameInventory = game.getInventory();
@@ -160,48 +167,56 @@ public class StorePurchaseView extends View{
             player.getInventory()[GameControl.Item.food.ordinal()] = food;
         }
         
-        System.out.println("\nYou have " + food.getQuantityInStock() + " food.  You have $" + money.getQuantityInStock());
-        System.out.println("There are "+gameInventory[GameControl.Item.food.ordinal()].getQuantityInStock() +
+        this.console.println("\nYou have " + food.getQuantityInStock() + " food.  You have $" + money.getQuantityInStock());
+        this.console.println("There are "+gameInventory[GameControl.Item.food.ordinal()].getQuantityInStock() +
                 " units of food available.  They cost $" +
                 gameInventory[GameControl.Item.food.ordinal()].getCost() + " each.");
-        System.out.println("\nHow much food would you like to purchase (Enter '0' quit)?");
+        this.console.println("\nHow much food would you like to purchase (Enter '0' quit)?");
         boolean valid = false;
         int foodCount = 0;
-        Scanner keyboard = new Scanner(System.in); // get infile for keyboard
-        while(! valid) {
-         
-            String value = ""; // value to be returned
-            value = keyboard.nextLine(); // get next line typed on keyboard
-            try {
-                //parse and convert keyboard input to an integer
-                foodCount = Integer.parseInt(value);
-                valid = true;
-                if (foodCount == 0)
-                    return;
-            } catch (NumberFormatException nf) {
-                
-                System.out.println("Enter a valid food unit count.");
+        try {
+            while(!valid) {
+
+                value = keyboard.readLine(); // get next line typed on keyboard
+                try {
+                    //parse and convert keyboard input to an integer
+                    foodCount = Integer.parseInt(value);
+                    valid = true;
+                    if (foodCount == 0)
+                        return;
+                } catch (NumberFormatException nf) {
+
+                    ErrorView.display(this.getClass().getName(), 
+                            "Invalid Food Unit Count: " + nf.getMessage());
+                }
+                break; // end the loop
             }
+        } catch(Exception e) {
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Reading Input: " + e.getMessage());
         }
        try {
             UtilitiesControl.purchaseFood(gameInventory, player, foodCount);
-            System.out.println("You have purchased " + foodCount + " units of food.");
+            this.console.println("You have purchased " + foodCount + " units of food.");
             
        } catch (UtilitiesControlException uce) {
-            System.out.println(uce.getMessage());           
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Reading Input: " + uce.getMessage());
        }
             
     }
     
     private void buyItem(String singleItem) throws UtilitiesControlException {        
-        Scanner keyboard = new Scanner(System.in);
         StringBuilder line;
-        String itemAmount;
+        String itemAmount = "";
+        boolean valid = false; // initialize to not valid
+        int amount = 0;
+        
         
         Game game = MormonOregonTrail.getCurrentGame(); // get the game
         InventoryItem[] inventory = game.getInventory(); // get the inventory list
         
-        System.out.println("\n          AMOUNT OF " + singleItem.toUpperCase() + " IN INVENTORY");
+        this.console.println("\n          AMOUNT OF " + singleItem.toUpperCase() + " IN INVENTORY");
         // Find the Maximum Value in the inventory list
         InventoryItem item = getInventoryItem(inventory, singleItem);
         
@@ -210,14 +225,14 @@ public class StorePurchaseView extends View{
          **********************************************************************/
         
         // Display the status of the selected inventory item
-        System.out.println("\nINVENTORY STATUS OF " + item.getDescription());
+        this.console.println("\nINVENTORY STATUS OF " + item.getDescription());
         line = new StringBuilder("                                                                                ");
         line.insert(0, "DESCRIPTION");
         line.insert(20, "REQUIRED");
         line.insert(30, "IN STOCK");
         line.insert(40, "UNITS");
         line.insert(50, "COST");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         
         // display the selected inventory item
         line = new StringBuilder("                                                                                ");
@@ -226,32 +241,46 @@ public class StorePurchaseView extends View{
         line.insert(30, String.valueOf(item.getQuantityInStock()));
         line.insert(40, item.getUnits());
         line.insert(50, String.valueOf(item.getCost()));
+        
+        try{
+            while (!valid) {
+                
+                // Display the line
+                this.console.println(line.toString());
             
-        // Display the line
-        System.out.println(line.toString());
-            
-        /***********************************************************************
-         *  This prompts the player to purchase inventory items.
-         **********************************************************************/
+                /***********************************************************************
+                *  This prompts the player to purchase inventory items.
+                **********************************************************************/
         
-        System.out.println("Enter the amount of " + item.getDescription() + " you wish to purchase: ");
+                this.console.println("Enter the amount of " + item.getDescription() + " you wish to purchase: ");
         
-        int amount = 0;
+                itemAmount = keyboard.readLine();
+                itemAmount = itemAmount.trim();
+                
+                if (itemAmount.length() < 1) { // value is blank
+                    this.console.println("\nInvalid value: value cannot be blank");
+                    continue;
+                }
+            break;
+            }
         
-        itemAmount = keyboard.nextLine();
-        itemAmount = itemAmount.trim();
+        } catch(Exception e) {
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Reading Input: " + e.getMessage());
+        }
                 
         try {
             amount = Integer.parseInt(itemAmount);
             if (amount > item.getQuantityInStock()){
-                System.out.println("\nError: You cannot purchase an amount greater than current quantity in stock!");
+                this.console.println("\nError: You cannot purchase an amount greater than current quantity in stock!");
             } else {
-                System.out.println("\n Congratulations! You purchased " + itemAmount + " " 
+                this.console.println("\n Congratulations! You purchased " + itemAmount + " " 
                     + item.getDescription() + " from inventory.");
             }
         } catch (NumberFormatException nf) {
-            System.out.println("\nINPUT ERROR: You must enter a valid number of " + item.getDescription() + " to purchase."
-                    + " Please try to make another purchase or 'Q' to Quit.");
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Reading Input: " + nf.getMessage()
+                  + "\n Please try to make another purchase or 'Q' to Quit.");
         }
     }  
 }

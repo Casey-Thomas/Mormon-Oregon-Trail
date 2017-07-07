@@ -22,13 +22,13 @@ public class UtilitiesControlTest {
      */
     @Test
     public void testCalcResourcesLeft() {
-        System.out.println("calcResourcesLeft");
+        this.console.println("calcResourcesLeft");
         
         /*************************************
         *  Test case #1 - All valid variables *
         *************************************/
         
-        System.out.println("\tTest case #1");
+        this.console.println("\tTest case #1");
         
         int startAmount = 50;
         int daysTraveled = 30;
@@ -44,7 +44,7 @@ public class UtilitiesControlTest {
         *  Test case #2 - Start amount is too low*
         *************************************/
         
-        System.out.println("\tTest case #2");
+        this.console.println("\tTest case #2");
         
         startAmount = 5;
         daysTraveled = 30;
@@ -60,7 +60,7 @@ public class UtilitiesControlTest {
         *  Test case #3 - Start amount is too high*
         *************************************/
         
-        System.out.println("\tTest case #3");
+        this.console.println("\tTest case #3");
         
         startAmount = 2100;
         daysTraveled = 30;
@@ -76,7 +76,7 @@ public class UtilitiesControlTest {
         *  Test case #4 - Days traveled is too low*
         *************************************/
         
-        System.out.println("\tTest case #4");
+        this.console.println("\tTest case #4");
         
         startAmount = 50;
         daysTraveled = 0;
@@ -92,7 +92,7 @@ public class UtilitiesControlTest {
         *  Test case #5 - Days traveled is too high*
         *************************************/
         
-        System.out.println("\tTest case #5");
+        this.console.println("\tTest case #5");
         
         startAmount = 50;
         daysTraveled = 375;
@@ -108,7 +108,7 @@ public class UtilitiesControlTest {
         *  Test case #6 - Units per day is too low*
         *************************************/
         
-        System.out.println("\tTest case #6");
+        this.console.println("\tTest case #6");
         
         startAmount = 50;
         daysTraveled = 30;
@@ -124,7 +124,7 @@ public class UtilitiesControlTest {
         *  Test case #7 - Units per day is too high*
         *************************************/
         
-        System.out.println("\tTest case #7");
+        this.console.println("\tTest case #7");
         
         startAmount = 50;
         daysTraveled = 30;
@@ -145,7 +145,7 @@ public class UtilitiesControlTest {
      */
     @Test
     public void testAdvanceAlongTheTrail() {
-        System.out.println("advanceAlongTheTrail");
+        this.console.println("advanceAlongTheTrail");
         int currentLocation = 0;
         int numOfDaysTraveled = 0;
         int distanceFromNauvoo = 0;
@@ -168,7 +168,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = 2;
-        System.out.println("\tTest case #1");
+        this.console.println("\tTest case #1");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
 
@@ -184,7 +184,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = -1;
-        System.out.println("\tTest case #2");
+        this.console.println("\tTest case #2");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
         
@@ -200,7 +200,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = -2;
-        System.out.println("\tTest case #3");
+        this.console.println("\tTest case #3");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
      
@@ -216,7 +216,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = -3;
-        System.out.println("\tTest case #4");
+        this.console.println("\tTest case #4");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
     
@@ -232,7 +232,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = -4;
-        System.out.println("\tTest case #5");
+        this.console.println("\tTest case #5");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
    
@@ -248,7 +248,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = -5;
-        System.out.println("\tTest case #6");
+        this.console.println("\tTest case #6");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
         
@@ -264,7 +264,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = -6;
-        System.out.println("\tTest case #7");
+        this.console.println("\tTest case #7");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
         
@@ -280,7 +280,7 @@ public class UtilitiesControlTest {
         userDirection = "s";
         instance = new UtilitiesControl();
         expResult = -11;
-        System.out.println("\tTest case #8");
+        this.console.println("\tTest case #8");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
         
@@ -296,7 +296,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = -12;
-        System.out.println("\tTest case #9");
+        this.console.println("\tTest case #9");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
         
@@ -312,7 +312,7 @@ public class UtilitiesControlTest {
         userDirection = "y";
         instance = new UtilitiesControl();
         expResult = -13;
-        System.out.println("\tTest case #10");
+        this.console.println("\tTest case #10");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
         
@@ -328,7 +328,7 @@ public class UtilitiesControlTest {
         userDirection = "n";
         instance = new UtilitiesControl();
         expResult = -10;
-        System.out.println("\tTest case #11");
+        this.console.println("\tTest case #11");
         result = instance.advanceAlongTheTrail(currentLocation, numOfDaysTraveled, distanceFromNauvoo, obstacle, allowedDirection, userDirection);
         assertEquals(expResult, result);
 
@@ -342,13 +342,13 @@ public class UtilitiesControlTest {
      */
     @Test
     public void testCalcResourcesNeeded() {
-        System.out.println("calcResourcesNeeded");
+        this.console.println("calcResourcesNeeded");
         
         /**************************************
         *  Test case #1 - All valid variables *
         ***************************************/
         
-        System.out.println("\tTest case #1 - all valid variables");
+        this.console.println("\tTest case #1 - all valid variables");
         
         int journeyTime = 200;
         int noPeople = 5;
@@ -366,7 +366,7 @@ public class UtilitiesControlTest {
         *  Test case #2 - Journey Time is too low *
         *******************************************/
         
-        System.out.println("\tTest case #2 - Journey Time is too low");
+        this.console.println("\tTest case #2 - Journey Time is too low");
         
         journeyTime = 50;
         noPeople = 5;
@@ -382,7 +382,7 @@ public class UtilitiesControlTest {
         *  Test case #3 - Journey Time is too high *
         ********************************************/
         
-        System.out.println("\tTest case #3 - Journey Time is too high");
+        this.console.println("\tTest case #3 - Journey Time is too high");
         
         journeyTime = 375;
         noPeople = 5;
@@ -398,7 +398,7 @@ public class UtilitiesControlTest {
         *  Test case #4 - Number of People is too low *
         ***********************************************/
         
-        System.out.println("\tTest case #4 - Number of People is too low");
+        this.console.println("\tTest case #4 - Number of People is too low");
         
         journeyTime = 200;
         noPeople = 0;
@@ -414,7 +414,7 @@ public class UtilitiesControlTest {
         *  Test case #5 - Number of People is too high *
         ************************************************/
         
-        System.out.println("\tTest case #5 - Number of People is too high");
+        this.console.println("\tTest case #5 - Number of People is too high");
         
         journeyTime = 200;
         noPeople = 6;
@@ -430,7 +430,7 @@ public class UtilitiesControlTest {
         *  Test case #6 - Minimum Required is too low *
         ***********************************************/
         
-        System.out.println("\tTest case #6 - Minimum Required is too low");
+        this.console.println("\tTest case #6 - Minimum Required is too low");
         
         journeyTime = 200;
         noPeople = 5;
@@ -446,7 +446,7 @@ public class UtilitiesControlTest {
         *  Test case #7- Minimum Required is too high *
         ***********************************************/
         
-        System.out.println("\tTest case #7 - Minimum Required is too high");
+        this.console.println("\tTest case #7 - Minimum Required is too high");
         
         journeyTime = 200;
         noPeople = 5;
@@ -462,7 +462,7 @@ public class UtilitiesControlTest {
         *  Test case #8 - Resource Type is not invalid - not "J" or "D" *
         *****************************************************************/
         
-        System.out.println("\tTest case #8 - Resource Type is not invalid");
+        this.console.println("\tTest case #8 - Resource Type is not invalid");
         
         journeyTime = 200;
         noPeople = 5;
@@ -478,7 +478,7 @@ public class UtilitiesControlTest {
         *  Test case #9 - Quantity in Stock is too low *
         ************************************************/
         
-        System.out.println("\tTest case #9 - Quantity in Stock is too low");
+        this.console.println("\tTest case #9 - Quantity in Stock is too low");
         
         journeyTime = 200;
         noPeople = 5;
@@ -494,7 +494,7 @@ public class UtilitiesControlTest {
         *  Test case #10 - Quantity in Stock is too high *
         **************************************************/
         
-        System.out.println("\tTest case #10 - Quantity in Stock is too high");
+        this.console.println("\tTest case #10 - Quantity in Stock is too high");
         
         journeyTime = 200;
         noPeople = 5;
@@ -515,13 +515,13 @@ public class UtilitiesControlTest {
      */
     @Test
     public void testCalcDistToNext() {
-        System.out.println("calcDistToNext");
+        this.console.println("calcDistToNext");
         
         /**************************************
         *  Test case #1 - All valid variables *
         ***************************************/
         
-        System.out.println("\tTest case #1 - all valid variables");
+        this.console.println("\tTest case #1 - all valid variables");
         
         int currentRow = 6;
         int currentColumn = 2;
@@ -539,7 +539,7 @@ public class UtilitiesControlTest {
         *  Test case #2 - Next stop and current coordinates cannot be equal *
         ********************************************************************/
         
-        System.out.println("\tTest case #2");
+        this.console.println("\tTest case #2");
         
         currentRow = 6;
         currentColumn = 2;
@@ -555,7 +555,7 @@ public class UtilitiesControlTest {
         *  Test case #3 - Current row cannot be less than 1*
         ***************************************************/
         
-        System.out.println("\tTest case #3");
+        this.console.println("\tTest case #3");
         
         currentRow = 0;
         currentColumn = 2;
@@ -571,7 +571,7 @@ public class UtilitiesControlTest {
         *  Test case #4 - Current column cannot be less than 1 *
         *******************************************************/
         
-        System.out.println("\tTest case #4");
+        this.console.println("\tTest case #4");
         
         currentRow = 6;
         currentColumn = 0;
@@ -587,7 +587,7 @@ public class UtilitiesControlTest {
         *  Test case #5 - Next stop row cannot be less than 1 *
         ******************************************************/
         
-        System.out.println("\tTest case #5");
+        this.console.println("\tTest case #5");
         
         currentRow = 6;
         currentColumn = 2;
@@ -603,7 +603,7 @@ public class UtilitiesControlTest {
         *  Test case #6 - Next stop column cannot be less than 1 *
         ******************************************************/
         
-        System.out.println("\tTest case #6");
+        this.console.println("\tTest case #6");
         
         currentRow = 6;
         currentColumn = 2;

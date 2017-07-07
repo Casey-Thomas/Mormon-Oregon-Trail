@@ -37,7 +37,7 @@ public class HelpMenuView extends View{
                 this.aboutTrek();
                 break;
              default:
-                System.out.println("\n*** Invalid selection *** Try again");
+                this.console.println("\n*** Invalid selection *** Try again");
                 break;
         }
         
@@ -45,14 +45,14 @@ public class HelpMenuView extends View{
     }
 
     private void goal() {
-        System.out.println("\n"
+        this.console.println("\n"
                 + "\nThe overall goal of the game is to travel from"
                 + "\n Nauvoo, Illinois to the Salt Lake Valley in "
                 + "\n less than 365 days (or one full year.");
     }
 
     private void aboutTrek() {
-        System.out.println("\n"
+        this.console.println("\n"
                 + "\nThere will be many things to take on your journey"
                 + "\n and many trials to overcome during your travels."
                 + "\n You will get to choose how many people are in your"

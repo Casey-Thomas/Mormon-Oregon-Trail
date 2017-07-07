@@ -57,38 +57,38 @@ public class InventoryMenuView extends View {
                 this.money();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again.");
+                this.console.println("\n*** Invalid selection *** Try again.");
                 break;
         }
         return false;
     }
 
     private void oxen() {        
-        System.out.println("\n*** oxen() inventory function called ***");
+        this.console.println("\n*** oxen() inventory function called ***");
     }
     
     private void wheels() {        
-        System.out.println("\n*** handcart/wagon wheels() inventory function called ***");
+        this.console.println("\n*** handcart/wagon wheels() inventory function called ***");
     }
 
     private void axles() {
-        System.out.println("\n*** handcart/wagon axles() inventory function called ***");
+        this.console.println("\n*** handcart/wagon axles() inventory function called ***");
     }
 
     private void tongues() {
-        System.out.println("\n*** handcart/wagon tongues() inventory function called ***");
+        this.console.println("\n*** handcart/wagon tongues() inventory function called ***");
     }
 
     private void bullets() {
-        System.out.println("\n*** bullets() inventory function called ***");
+        this.console.println("\n*** bullets() inventory function called ***");
     }
 
     private void food() {
-        System.out.println("\n*** food() inventory function called ***");
+        this.console.println("\n*** food() inventory function called ***");
     }
     
     private void money() {
-        System.out.println("\n*** money() inventory function called ***");
+        this.console.println("\n*** money() inventory function called ***");
     }
 
 }
