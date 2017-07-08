@@ -5,8 +5,12 @@
  */
 package mormonoregontrail.control;
 
-import static java.lang.System.console;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import mormonoregontrail.MormonOregonTrail;
+import mormonoregontrail.exceptions.GameControlException;
 import mormonoregontrail.exceptions.MapControlException;
 import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
@@ -270,6 +274,35 @@ public class GameControl {
         locations[1][10].setScene(scenes[MapControl.SceneType.bridger.ordinal()]);
         locations[1][11].setScene(scenes[MapControl.SceneType.needles.ordinal()]);
         locations[1][12].setScene(scenes[MapControl.SceneType.saltLakeValley.ordinal()]);
+    }
+    
+    public static void saveGame(Game game, String fileName)
+            throws GameControlException {
+        try( FileOutputStream fops = new FileOutputStream(fileName)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(game); //write the game object out to a file
+        }
+        catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+    }
+    
+    public static void getSavedGame(String fileName)
+            throws GameControlException {
+        Game game = null;
+        
+        try( FileInputStream fips = new FileInputStream(fileName)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            
+            game = (Game) input.readObject(); // read the game object from the file
+        }
+        catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+        
+        // save the game from the file into MormonOregonTrail
+        MormonOregonTrail.setCurrentGame(game);
     }
     
 }

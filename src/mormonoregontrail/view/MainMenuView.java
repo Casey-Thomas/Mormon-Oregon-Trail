@@ -39,7 +39,7 @@ public class MainMenuView extends View{
                 this.startNewGame();
                 break;
             case "G": // get and start an existing game
-                this.startExistingGame();
+                this.startSavedGame();
                 break;
             case "H": // display the help menu
                 this.displayHelpMenu();
@@ -64,8 +64,28 @@ public class MainMenuView extends View{
         gameMenu.display();
     }
 
-    private void startExistingGame() {
-        this.console.println("\n*** startExistingGame() function called ***");
+    private void startSavedGame() {
+        String savePrompt = promptMessage;
+        
+        promptMessage = "\nEnter the file name where the game is saved (or type 'Q' to Quit): ";
+        
+        String fileName = this.getInput();
+        if (fileName.toUpperCase().equals("Q")) { // user wants to quit
+            promptMessage = savePrompt;
+            return; // exit the view
+        }
+        
+        try {
+            // start a saved gamee
+            GameControl.getSavedGame(fileName);
+            
+            // display the game menu
+            GameMenuView gameMenu = new GameMenuView();
+            gameMenu.display();
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        promptMessage = savePrompt;
     }
 
     private void displayHelpMenu() {        
@@ -75,7 +95,24 @@ public class MainMenuView extends View{
     }
 
     private void saveGame() {
-        this.console.println("\n*** saveGame() function called ***");
+        String savePrompt = promptMessage;
+        
+        // prompt for and get the name of the file to save the game in        
+        promptMessage = "\nEnter the file name to save the game to (or type 'Q' to Quit): ";
+        
+        String fileName = this.getInput();
+        if (fileName.toUpperCase().equals("Q")) { // user wants to quit
+            promptMessage = savePrompt;
+            return; // exit the view
+        }
+        
+        try {
+            // save the game to the specified file
+            GameControl.saveGame(MormonOregonTrail.getCurrentGame(), fileName);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        promptMessage = savePrompt;        
     }
 
 }
