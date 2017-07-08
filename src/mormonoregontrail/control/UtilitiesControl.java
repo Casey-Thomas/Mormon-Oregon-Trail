@@ -98,6 +98,52 @@ public class UtilitiesControl {
         playerMoney.setQuantityInStock(playerMoney.getQuantityInStock() - (costOfFood * foodCount));        
         
     }
+    
+ /**
+     * author Mariam Erickson
+     * @param gameInventory
+     * @param player
+     * @param purchaseQty
+     * @throws UtilitiesControlException 
+     */
+    public static void purchaseInventoryItem(InventoryItem[] gameInventory, Player player, int purchaseQty) throws UtilitiesControlException {
+        InventoryItem playerMoney = player.getInventory()[GameControl.Item.money.ordinal()];
+        InventoryItem playerInventoryItem = player.getInventory()[GameControl.Item.oxen.ordinal()];
+        InventoryItem storeMoney = gameInventory[GameControl.Item.money.ordinal()];
+        InventoryItem storeInventoryItem = gameInventory[GameControl.Item.oxen.ordinal()];
+        int itemCost = storeInventoryItem.getCost();
+        int availableQty = storeInventoryItem.getQuantityInStock();
+
+        if (purchaseQty <=0) {
+           throw new UtilitiesControlException("This is an invalid amount. You must purchase at least one " + storeInventoryItem.getDescription());
+       }
+//        InventoryItem oxen = new InventoryItem();
+//        oxen.setDescription("Oxen");
+//        oxen.setQuantityInStock(30);
+//        oxen.setRequiredAmount(2);
+//        oxen.setCost(20);
+//        oxen.setUnits("Each");
+//        inventory[Item.oxen.ordinal()] = oxen;       
+
+        // They do not have enough money
+        if (itemCost * purchaseQty > playerMoney.getQuantityInStock()) {
+           throw new UtilitiesControlException("You do not have enough money for this purchase.");
+            
+        }
+        // The store does not have enough inventory
+        if (availableQty < purchaseQty) {
+           throw new UtilitiesControlException("There are only " + availableQty + " " + storeInventoryItem.getDescription() + " available to purchase.");
+            
+        }
+
+        // Make purchase
+        storeInventoryItem.setQuantityInStock(availableQty - purchaseQty);
+        playerInventoryItem.setQuantityInStock(playerInventoryItem.getQuantityInStock() + purchaseQty);   
+        
+        storeMoney.setQuantityInStock(storeMoney.getQuantityInStock() + (itemCost * purchaseQty));
+        playerMoney.setQuantityInStock(playerMoney.getQuantityInStock() - (itemCost * purchaseQty));        
+    }
+    
         
     public int calcResourcesLeft(int startAmount, int daysTraveled, int unitsPerDay) {
         
@@ -294,6 +340,9 @@ public class UtilitiesControl {
         else return distToPoint = ((currentRow - nextStopRow) + (currentColumn - nextStopColumn)) * 46;
     }
     
+    /*
+     * @Laura
+    */
     // sort inventory by maximum value
     public static InventoryItem[] doDescInventorySort(InventoryItem[] item) {
         for (int i = 0; i < item.length - 1; i++)
@@ -335,6 +384,9 @@ public class UtilitiesControl {
         return item[arrayvalue];
     }
     
+    /*
+     * @Laura
+    */
     // get a single inventory item
     public static InventoryItem getInventoryItem(InventoryItem[] item, String singleItem)
                                     throws UtilitiesControlException {
@@ -345,4 +397,19 @@ public class UtilitiesControl {
         }
         throw new UtilitiesControlException("No " + singleItem + " Inventory in Stock");
     }
+    
+    /*
+     * @Laura
+     */
+    // get a player inventory item
+    public static InventoryItem getPlayerInventoryItem(InventoryItem[] item, String singleItem)
+                                    throws UtilitiesControlException {
+        for (InventoryItem item1 : item) {
+            if (item1.getDescription().equals(singleItem)) {
+                return item1;
+            }
+        }
+        throw new UtilitiesControlException("No " + singleItem + " in Player's Inventory");
+    }
+    
 }

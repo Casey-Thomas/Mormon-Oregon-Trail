@@ -29,9 +29,6 @@ public class MormonOregonTrail {
      */
     public static void main(String[] args) {
 
-        
-        
-        // @Team - added try . . . catch - 6/28/2017
         try {
             // open character stream files for end user input and output
             MormonOregonTrail.inFile =
@@ -50,7 +47,6 @@ public class MormonOregonTrail {
             StartProgramView startProgramView = new StartProgramView();
             
             startProgramView.displayStartProgramView();
-//            startProgramView.display();
 
         } catch (Throwable te) {
             ErrorView.display("MormonOregonTrail",

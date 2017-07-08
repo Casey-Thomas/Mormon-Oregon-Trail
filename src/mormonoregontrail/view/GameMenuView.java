@@ -7,13 +7,9 @@ package mormonoregontrail.view;
 
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.MapControl;
-import static mormonoregontrail.control.UtilitiesControl.doDescInventorySort;
-import static mormonoregontrail.control.UtilitiesControl.getMaxInventoryItem;
-import static mormonoregontrail.control.UtilitiesControl.getMinInventoryItem;
 import mormonoregontrail.exceptions.MapControlException;
 import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
-import mormonoregontrail.model.InventoryItem;
 import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
 
@@ -33,21 +29,18 @@ public class GameMenuView extends View{
             + "\n| Game Menu                                    |"
             + "\n------------------------------------------------"
             + "\nM - Show Map"
+            + "\nT - Advance Along the Trail"
             + "\nL - View Current Location"
             + "\nE - View Scenes"
-            + "\nI - Show Inventory"
-            + "\nX - Show Inventory Item with Maximum Quantity In Stock"
-            + "\nU - Show Inventory Item with Minimum Quantity In Stock"
+            + "\nI - Manage Inventory"
             + "\nA - Show List of Actors"
-            + "\nP - Purchase Items from Store"
             + "\nH - Hunt (Scavenge) for Supplies"
             + "\nO - Overcome an Obstacle"
             + "\nW - Wagon/Handcart Status"
             + "\nV - Verify Wagon or Cart can Function"
             + "\nF - Perform Maintenance (Fix)"
             + "\nG - Seek Spiritual Guidance"
-            + "\nT - Advance Along the Trail"
-            + "\nN - Estimate Resources Needed"
+            + "\nR = Reports"
             + "\nQ - Quit"
             + "\n------------------------------------------------"
             + "\nPlease choose an option: ");
@@ -61,6 +54,8 @@ public class GameMenuView extends View{
             case "M": // show the map
                 this.showMap();
                 break;
+            case "T": // advance along the trail
+                return this.advanceAlongTheTrail();
             case "L": // show distance traveled
                 this.viewCurrentLocation();
                 break;
@@ -68,19 +63,10 @@ public class GameMenuView extends View{
                 this.viewScenes();
                 break;
             case "I": // show inventory
-                this.viewInventory();
-                break;
-            case "X": // show item with maximum inventory
-                this.viewMaxInventory();
-                break;
-            case "U": // show item with minimum inventory
-                this.viewMinInventory();
+                this.displayManageInventoryMenu();
                 break;
             case "A": // show list of actors
                 this.viewActors();
-                break;
-            case "P": // purchase items from the store
-                this.displayPurchaseFromStoreMenu();
                 break;
             case "H": // hunt (scavenge) for supplies
                 this.huntForSupplies();
@@ -100,10 +86,8 @@ public class GameMenuView extends View{
             case "G": // seek spiritual guidance
                 this.seekSpiritualGuidance();
                 break;
-            case "T": // advance along the trail
-                return this.advanceAlongTheTrail();
-            case "N": // estimate resources needed
-                this.displayResourcesNeeded();
+            case "R": // show inventory
+                this.displayReportsMenu();
                 break;
             default:
                 this.console.println("\n*** Invalid selection *** Try again");
@@ -226,85 +210,9 @@ public class GameMenuView extends View{
        }
     }
 
-    private void viewInventory() {
-        StringBuilder line;
-        
-        Game game = MormonOregonTrail.getCurrentGame();
-        InventoryItem[] inventory = game.getInventory();
-                
-        this.console.println("\n          LIST OF INVENTORY ITEMS");
-        line = new StringBuilder("                                                                                ");
-        line.insert(0, "DESCRIPTION");
-        line.insert(20, "REQUIRED");
-        line.insert(30, "IN STOCK");
-        line.insert(40, "UNITS");
-        line.insert(50, "COST");
-        this.console.println(line.toString());
-        
-        // for each inventory item
-        for (InventoryItem item : inventory) {
-            line = new StringBuilder("                                                                                ");
-            line.insert(0, item.getDescription());
-            line.insert(20, String.valueOf(item.getRequiredAmount()));
-            line.insert(30, String.valueOf(item.getQuantityInStock()));
-            line.insert(40, item.getUnits());
-            line.insert(50, String.valueOf(item.getCost()));
-            
-            // Display the line
-            this.console.println(line.toString());
-        }
-    }
-
-    // @Laura
-    private void viewMaxInventory() {
-        StringBuilder line;
-        
-        Game game = MormonOregonTrail.getCurrentGame(); // get the game
-        InventoryItem[] inventory = game.getInventory(); // get the inventory list
-                
-        // Find the Maximum Value in the inventory list
-        InventoryItem item = getMaxInventoryItem(inventory);     
-        this.console.println("\nInventory Item with Max Quantity in Stock:"
-                + "\nDescription: " + item.getDescription()
-                + "\nQuanity In Stock: " + item.getQuantityInStock());
-        
-        // Sort the inventory items by quanity in stock in descending order
-        InventoryItem[] sortedArray = doDescInventorySort(inventory);
-        
-        // Display a sorted list, in descending order
-        this.console.println("\nLIST OF INVENTORY ITEMS BY QUANITY IN STOCK IN DESCENDING ORDER");
-        line = new StringBuilder("                                                                                ");
-        line.insert(0, "DESCRIPTION");
-        line.insert(20, "REQUIRED");
-        line.insert(30, "IN STOCK");
-        line.insert(40, "UNITS");
-        line.insert(50, "COST");
-        this.console.println(line.toString());
-        
-        // for each inventory item
-        for (InventoryItem sortedItem : sortedArray) {
-            line = new StringBuilder("                                                                                ");
-            line.insert(0, sortedItem.getDescription());
-            line.insert(20, String.valueOf(sortedItem.getRequiredAmount()));
-            line.insert(30, String.valueOf(sortedItem.getQuantityInStock()));
-            line.insert(40, sortedItem.getUnits());
-            line.insert(50, String.valueOf(item.getCost()));
-            
-            // Display the line
-            this.console.println(line.toString());
-        }
-    }
-    
-    private void viewMinInventory() {
-        Game game = MormonOregonTrail.getCurrentGame();
-        InventoryItem[] inventory = game.getInventory();
-        
-        InventoryItem item = getMinInventoryItem(inventory);
-        
-        this.console.println("\nInventory Item with the Lowest Quantity in Stock:"
-                + "\nDescription: " + item.getDescription()
-                + "\nQuanity In Stock: " + item.getQuantityInStock()
-                + "\nPlease re-order soon!");
+    private void displayManageInventoryMenu() {
+        ManageInventoryMenuView manageInventoryMenuView = new ManageInventoryMenuView();
+        manageInventoryMenuView.display();
     }
     
     private void viewActors() {
@@ -329,16 +237,6 @@ public class GameMenuView extends View{
         }
     }
     
-    private void displayInventoryMenu() {
-        InventoryMenuView inventoryMenuView = new InventoryMenuView();
-        inventoryMenuView.display();
-    }
-
-    private void displayPurchaseFromStoreMenu() {
-        StorePurchaseView storePurchaseView = new StorePurchaseView();
-        storePurchaseView.display();
-    }
-
     private void huntForSupplies() {
         this.console.println("\n*** huntForSupplies() function called ***");
     }
@@ -398,21 +296,20 @@ public class GameMenuView extends View{
         showMap();
         return false;
     }
-    private void displayUserDirectionMenu() {
-        UserDirectionMenuView userDirectionView = new UserDirectionMenuView();
-        int location = 1;
-        int daysTraveled = 1;
-        userDirectionView.setLocation(location);
-        userDirectionView.setDaysTraveled(daysTraveled);
-        userDirectionView.display();
-        location = userDirectionView.getLocation();
-        daysTraveled = userDirectionView.getDaysTraveled();
-    }
+//    private void displayUserDirectionMenu() {
+//        UserDirectionMenuView userDirectionView = new UserDirectionMenuView();
+//        int location = 1;
+//        int daysTraveled = 1;
+//        userDirectionView.setLocation(location);
+//        userDirectionView.setDaysTraveled(daysTraveled);
+//        userDirectionView.display();
+//        location = userDirectionView.getLocation();
+//        daysTraveled = userDirectionView.getDaysTraveled();
+//    }
+//
 
-    private void displayResourcesNeeded() {
-        ResourcesNeededView resourcesNeededView = new ResourcesNeededView();
-        resourcesNeededView.displayResourcesNeededView();
+    private void displayReportsMenu() {
+        ReportsMenuView reportsMenuView = new ReportsMenuView();
+        reportsMenuView.display();
     }
-
-    
 }

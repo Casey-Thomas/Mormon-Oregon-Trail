@@ -20,14 +20,14 @@ public class Player implements Serializable{
     InventoryItem[] inventory;    
     
     public Player() {
-        inventory = new InventoryItem[10];
-
-        // Money
-        InventoryItem money = new InventoryItem();
-        money.setDescription("Money");
-        money.setQuantityInStock(2000);
-        money.setUnits("Dollar");
-        inventory[GameControl.Item.money.ordinal()] = money;        
+//        inventory = new InventoryItem[10];
+//
+//        // Money
+//        InventoryItem money = new InventoryItem();
+//        money.setDescription("Money");
+//        money.setQuantityInStock(2000);
+//        money.setUnits("Dollar");
+//        inventory[GameControl.Item.money.ordinal()] = money;        
     }    
 
     public String getName() {

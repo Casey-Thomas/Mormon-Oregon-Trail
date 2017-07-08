@@ -45,6 +45,8 @@ public class GameControl {
         MormonOregonTrail.setCurrentGame(game); // save in Mormon Oregon Trail
         
         game.setPlayer(player); // save player in game
+        InventoryItem[] playerInventoryList = GameControl.createPlayerInventoryList();
+        player.setInventory(playerInventoryList);
         
         // create the inventory list and save in the game
         InventoryItem[] inventoryList = GameControl.createInventoryList();
@@ -183,6 +185,114 @@ public class GameControl {
 
         return inventory;
     }
+    
+    private static InventoryItem[] createPlayerInventoryList() {
+        // created array(list) of inventory items
+        InventoryItem[] inventory = new InventoryItem[10];
+        
+        // Axles
+        InventoryItem axles = new InventoryItem();
+        axles.setType("Player");
+        axles.setDescription("Axles");
+        axles.setQuantityInStock(0);
+        axles.setRequiredAmount(0);
+        axles.setCost(0);
+        axles.setUnits("Each");
+        inventory[Item.axles.ordinal()] = axles;
+        
+        // Wheels
+        InventoryItem wheels = new InventoryItem();
+        wheels.setType("Player");
+        wheels.setDescription("Wheels");
+        wheels.setQuantityInStock(0);
+        wheels.setRequiredAmount(0);
+        wheels.setCost(0);
+        wheels.setUnits("Each");
+        inventory[Item.wheels.ordinal()] = wheels;
+
+        // Tongues
+        InventoryItem tongues = new InventoryItem();
+        tongues.setType("Player");
+        tongues.setDescription("Tongues");
+        tongues.setQuantityInStock(0);
+        tongues.setRequiredAmount(0);
+        tongues.setCost(0);
+        tongues.setUnits("Each");
+        inventory[Item.tongues.ordinal()] = tongues;
+
+        // Oxen
+        InventoryItem oxen = new InventoryItem();
+        oxen.setType("Player");
+        oxen.setDescription("Oxen");
+        oxen.setQuantityInStock(0);
+        oxen.setRequiredAmount(0);
+        oxen.setCost(0);
+        oxen.setUnits("Each");
+        inventory[Item.oxen.ordinal()] = oxen;
+
+        // Bullets
+        InventoryItem bullets = new InventoryItem();
+        bullets.setType("Player");
+        bullets.setDescription("Bullets");
+        bullets.setQuantityInStock(0);
+        bullets.setRequiredAmount(0);
+        bullets.setCost(0);
+        bullets.setUnits("50 Rounds");
+        inventory[Item.bullets.ordinal()] = bullets;
+
+        // Food
+        InventoryItem food = new InventoryItem();
+        food.setType("Player");
+        food.setDescription("Food");
+        food.setQuantityInStock(0);
+        food.setRequiredAmount(0);
+        food.setCost(0);
+        food.setUnits("Pound");
+        inventory[Item.food.ordinal()] = food;
+
+        // Clothes
+        InventoryItem clothing = new InventoryItem();
+        clothing.setType("Player");
+        clothing.setDescription("Clothing");
+        clothing.setQuantityInStock(0);
+        clothing.setRequiredAmount(0);
+        clothing.setCost(0);
+        clothing.setUnits("Pound");
+        inventory[Item.clothing.ordinal()] = clothing;
+
+        // Money
+        InventoryItem money = new InventoryItem();
+        money.setType("Player");
+        money.setDescription("Money");
+        money.setQuantityInStock(2000);
+        money.setRequiredAmount(0);
+        money.setCost(0);
+        money.setUnits("Dollar");
+        inventory[Item.money.ordinal()] = money;
+
+        // Wagon
+        InventoryItem wagon = new InventoryItem();
+        wagon.setType("Player");
+        wagon.setDescription("Wagon");
+        wagon.setQuantityInStock(0);
+        wagon.setRequiredAmount(0);
+        wagon.setCost(0);
+        wagon.setUnits("Each");
+        inventory[Item.wagon.ordinal()] = wagon;
+
+        // Handcart
+        InventoryItem handcart = new InventoryItem();
+        handcart.setType("Player");
+        handcart.setDescription("Handcart");
+        handcart.setQuantityInStock(0);
+        handcart.setRequiredAmount(0);
+        handcart.setCost(0);
+        handcart.setUnits("Each");
+        inventory[Item.handcart.ordinal()] = handcart;
+
+        return inventory;
+    }
+    
 
     public enum Actors {
         brigham,

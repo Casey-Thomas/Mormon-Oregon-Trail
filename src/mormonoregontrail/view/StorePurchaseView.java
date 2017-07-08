@@ -9,6 +9,7 @@ import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.GameControl;
 import mormonoregontrail.control.UtilitiesControl;
 import static mormonoregontrail.control.UtilitiesControl.getInventoryItem;
+import static mormonoregontrail.control.UtilitiesControl.getPlayerInventoryItem;
 import mormonoregontrail.exceptions.UtilitiesControlException;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
@@ -111,7 +112,7 @@ public class StorePurchaseView extends View{
         }
         
         this.console.println("\nYou have " + oxen.getQuantityInStock() + " oxen.  You have $" + money.getQuantityInStock());
-        this.console.println("There are "+gameInventory[GameControl.Item.oxen.ordinal()].getQuantityInStock() + " oxen available.  They cost $" +
+        this.console.println("There are "+ gameInventory[GameControl.Item.oxen.ordinal()].getQuantityInStock() + " oxen available.  They cost $" +
                 gameInventory[GameControl.Item.oxen.ordinal()].getCost() + " each.");
         this.console.println("\nHow many oxen would you like to purchase (Enter '0' quit)?");
         boolean valid = false;
@@ -212,7 +213,6 @@ public class StorePurchaseView extends View{
         boolean valid = false; // initialize to not valid
         int amount = 0;
         
-        
         Game game = MormonOregonTrail.getCurrentGame(); // get the game
         InventoryItem[] inventory = game.getInventory(); // get the inventory list
         
@@ -225,7 +225,7 @@ public class StorePurchaseView extends View{
          **********************************************************************/
         
         // Display the status of the selected inventory item
-        this.console.println("\nINVENTORY STATUS OF " + item.getDescription());
+        this.console.println("\nSTORE INVENTORY STATUS OF " + item.getDescription());
         line = new StringBuilder("                                                                                ");
         line.insert(0, "DESCRIPTION");
         line.insert(20, "REQUIRED");
@@ -241,6 +241,13 @@ public class StorePurchaseView extends View{
         line.insert(30, String.valueOf(item.getQuantityInStock()));
         line.insert(40, item.getUnits());
         line.insert(50, String.valueOf(item.getCost()));
+        
+        Player player = game.getPlayer(); // get the player object
+        InventoryItem[] playerInventory = player.getInventory(); // get the player's inventory
+        
+        // Get the Inventory Item for the player
+        InventoryItem money = playerInventory[GameControl.Item.money.ordinal()];
+        InventoryItem playerItem = getPlayerInventoryItem(playerInventory, singleItem);
         
         try{
             while (!valid) {
