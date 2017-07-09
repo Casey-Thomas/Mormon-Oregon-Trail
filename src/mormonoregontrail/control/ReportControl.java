@@ -67,9 +67,10 @@ public class ReportControl {
      * @param fileName
      * @throws ReportControlException 
      */
-    public static void sceneReport(Map map, String fileName)
+    public static boolean sceneReport(Map map, String fileName)
             throws ReportControlException {
 
+        boolean success = true;
         try (PrintWriter out = new PrintWriter(fileName)){
             DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
@@ -99,7 +100,9 @@ public class ReportControl {
  
         } catch (IOException ex) {
             ErrorView.display("ReportControl", ex.getMessage());
+            success = false;
         }
+        return success;
     }    
     
 }

@@ -39,7 +39,7 @@ public class GameMenuView extends View{
             + "\nV - Verify Wagon or Cart can Function"
             + "\nF - Perform Maintenance (Fix)"
             + "\nG - Seek Spiritual Guidance"
-            + "\nR = Reports"
+            + "\nR - Reports"
             + "\nQ - Quit"
             + "\n------------------------------------------------"
             + "\nPlease choose an option: ");

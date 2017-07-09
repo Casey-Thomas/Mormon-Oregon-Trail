@@ -153,7 +153,9 @@ class ReportsMenuView extends View{
             promptMessage = savePrompt;
             return; // exit the view
         }
+        
         exportScenesToFile(map, fileName);
+
         promptMessage = savePrompt;        
       
     }
@@ -165,8 +167,9 @@ class ReportsMenuView extends View{
     private void exportScenesToFile(Map map, String fileName) {
         try {
             // save the game to the specified file
-            ReportControl.sceneReport(map, fileName); 
-            this.console.println("\n     Your file was successfully saved.");
+            boolean success = ReportControl.sceneReport(map, fileName); 
+            if (success)
+                this.console.println("\n     Your file was successfully saved.");
         } catch (Exception ex) {
             ErrorView.display("ReportsMenuView", ex.getMessage());
         }
