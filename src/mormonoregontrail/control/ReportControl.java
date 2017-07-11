@@ -8,7 +8,6 @@ package mormonoregontrail.control;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
