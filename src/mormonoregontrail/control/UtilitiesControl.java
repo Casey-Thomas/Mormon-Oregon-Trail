@@ -12,7 +12,7 @@ import mormonoregontrail.model.Player;
 
 /**
  *
- * @author haradab
+ * @author Braden
  */
 public class UtilitiesControl {
 

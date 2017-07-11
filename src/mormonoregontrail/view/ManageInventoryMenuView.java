@@ -76,7 +76,7 @@ public class ManageInventoryMenuView extends View{
         Player player = MormonOregonTrail.getPlayer();
         InventoryItem[] playerInventory = player.getInventory();
                 
-        this.console.println("\n     LIST OF PLAYER NVENTORY ITEMS");
+        this.console.println("\n     LIST OF PLAYER INVENTORY ITEMS");
         line = new StringBuilder("                                                                                ");
         line.insert(0, "DESCRIPTION");
         line.insert(20, "REQUIRED");

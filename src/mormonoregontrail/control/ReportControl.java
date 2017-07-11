@@ -11,7 +11,9 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.exceptions.ReportControlException;
+import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
 import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
@@ -64,6 +66,7 @@ public class ReportControl {
      * Mariam E.
      * @param map
      * @param fileName
+     * @return 
      * @throws ReportControlException 
      */
     public static boolean sceneReport(Map map, String fileName)
@@ -103,5 +106,44 @@ public class ReportControl {
         }
         return success;
     }    
+
+    /**
+    * @author Braden
+    */
+    public static void storeInventoryReport(Player player, String fileName)
+        throws ReportControlException {
+//        try( FileOutputStream fops = new FileOutputStream(fileName)) {
+//            ObjectOutputStream output = new ObjectOutputStream(fops);
+//            
+//            output.writeObject(player); //write the game object out to a file
+//        }
+//        catch(Exception e) {
+//            throw new ReportControlException(e.getMessage());
+//        }
+        Game game = MormonOregonTrail.getCurrentGame();
+        FileWriter outFile = null;
+        try (PrintWriter out = new PrintWriter(fileName)){
+            InventoryItem[] storeInventory = game.getInventory();
+            DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+            Date date = new Date();
+
+            // create and open a new filestream for the output file
+            out.println("\n\n             Store Inventory Report - as of " + sdf.format(date));
+            out.printf("%n%-20s%10s%10s%15s%10s", "Description", "Required", "Quantity", "Units", "Price");
+            out.printf("%n%-20s%10s%10s%15s%10s", "-----------", "--------", "--------", "-----", "-----");
+            
+            // print the description, quantity, and price of each item
+            for (InventoryItem item : storeInventory) {
+                out.printf("%n%-20s%10d%10s%15s%10d", item.getDescription()
+                                            , item.getRequiredAmount()
+                                            , item.getQuantityInStock()
+                                            , item.getUnits()
+                                            , item.getCost());
+            }
+        } catch (IOException ex) {
+            ErrorView.display("ReportControl", ex.getMessage());
+        }
+    }
     
 }

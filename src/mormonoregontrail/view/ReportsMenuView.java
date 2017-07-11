@@ -7,6 +7,8 @@ package mormonoregontrail.view;
 
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.ReportControl;
+import mormonoregontrail.control.UtilitiesControl;
+import mormonoregontrail.exceptions.ReportControlException;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.InventoryItem;
 import mormonoregontrail.model.Location;
@@ -28,6 +30,7 @@ class ReportsMenuView extends View{
             + "\n| Reports Menu                                 |"
             + "\n------------------------------------------------"
             + "\nI - Print Player Inventory"
+            + "\nT - Print Store Inventory"
             + "\nS - Print Scenes"
             + "\nQ - Quit"
             + "\n------------------------------------------------"
@@ -41,6 +44,9 @@ class ReportsMenuView extends View{
         switch (value) {
             case "I": // show the map
                 this.printPlayerInventory();
+                break;
+            case "T": // show all actors
+                this.printStoreInventory();
                 break;
             case "S": // show all scenes
                 this.printScenes();
@@ -100,6 +106,56 @@ class ReportsMenuView extends View{
         }
         promptMessage = savePrompt;        
         
+    }
+    
+    /**
+     * author Braden
+     */
+    private void printStoreInventory() {
+        StringBuilder line;
+        
+        Game game = MormonOregonTrail.getCurrentGame(); // retrieve the game
+        InventoryItem[] storeInventory = game.getInventory();
+                
+        this.console.println("\n     LIST OF STORE INVENTORY ITEMS");
+        line = new StringBuilder("                                                                                ");
+        line.insert(0, "DESCRIPTION");
+        line.insert(20, "REQUIRED");
+        line.insert(30, "IN STOCK");
+        line.insert(40, "UNITS");
+        line.insert(50, "COST");
+        this.console.println(line.toString());
+        
+        // for each inventory item
+        for (InventoryItem item : storeInventory) {
+            line = new StringBuilder("                                                                                ");
+            line.insert(0, item.getDescription());
+            line.insert(20, String.valueOf(item.getRequiredAmount()));
+            line.insert(30, String.valueOf(item.getQuantityInStock()));
+            line.insert(40, item.getUnits());
+            line.insert(50, String.valueOf(item.getCost()));
+            
+            // Display the line
+            this.console.println(line.toString());
+        }
+        String savePrompt = promptMessage;
+        
+        // prompt for and get the name of the file to save the game in        
+        promptMessage = "\n*** TO PRINT THIS REPORT, PLEASE ENTER A FILE NAME (or type 'Q' to Quit): ";
+        
+        String fileName = this.getInput();
+        if (fileName.toUpperCase().equals("Q")) { // user wants to quit
+            promptMessage = savePrompt;
+            return; // exit the view
+        }
+        
+        try {
+            // save the game to the specified file
+            ReportControl.storeInventoryReport(MormonOregonTrail.getCurrentGame().getPlayer(), fileName);
+        } catch (ReportControlException ex) {
+            ErrorView.display("ReportsMenuView", ex.getMessage());
+        }
+        promptMessage = savePrompt;
     }
 
     /**
@@ -175,6 +231,4 @@ class ReportsMenuView extends View{
         }
    
     }
-    
-    
 }
