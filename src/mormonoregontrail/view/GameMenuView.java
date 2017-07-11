@@ -31,7 +31,6 @@ public class GameMenuView extends View{
             + "\nM - Show Map"
             + "\nT - Advance Along the Trail"
             + "\nL - View Current Location"
-            + "\nE - View Scenes"
             + "\nI - Manage Inventory"
             + "\nA - Show List of Actors"
             + "\nH - Hunt (Scavenge) for Supplies"
@@ -40,7 +39,7 @@ public class GameMenuView extends View{
             + "\nV - Verify Wagon or Cart can Function"
             + "\nF - Perform Maintenance (Fix)"
             + "\nG - Seek Spiritual Guidance"
-            + "\nR = Reports"
+            + "\nR - Reports"
             + "\nQ - Quit"
             + "\n------------------------------------------------"
             + "\nPlease choose an option: ");
@@ -58,9 +57,6 @@ public class GameMenuView extends View{
                 return this.advanceAlongTheTrail();
             case "L": // show distance traveled
                 this.viewCurrentLocation();
-                break;
-            case "E": // show all scenes
-                this.viewScenes();
                 break;
             case "I": // show inventory
                 this.displayManageInventoryMenu();
@@ -169,45 +165,6 @@ public class GameMenuView extends View{
                 + "\n\nYou have also traveled to " + locationcount + " locations and have "
                 + (1300 - map.getCurrentLocation().getScene().getDistanceFromNauvoo()) + " miles to go!");
           
-    }
-
-    private void viewScenes() {
-        StringBuilder line;
-        
-        Game game = MormonOregonTrail.getCurrentGame(); // retrieve the game
-        Map map = game.getMap(); // retrieve the map from the game
-        Location[][] locations = map.getLocations(); // retrieve the locations from map
-                       
-        this.console.println("\n          LIST OF SCENES");
-        line = new StringBuilder("                                                                                ");
-        line.insert(0, "NAME");
-        line.insert(30, "SYMBOL");
-        line.insert(40, "BLOCKED");
-        line.insert(50, "DIST. FROM NAUVOO");
-        line.insert(70, "LOCATION");
-        this.console.println(line.toString());
-        
-       // for each scene
-       for (int row = 0; row < locations.length; row++) {
-            for (int column = 0; column < locations[row].length; column++) {
-                 if (locations[row][column].getScene() != null) {                      
-                     line = new StringBuilder("                                                                                ");
-                     line.insert(0, locations[row][column].getScene().getName());
-                     line.insert(30, locations[row][column].getScene().getMapSymbol());
-                     line.insert(40, locations[row][column].getScene().getBlocked());
-                     line.insert(50, String.valueOf(locations[row][column].getScene().getDistanceFromNauvoo()));
-                     if(row == 0){
-                         line.insert(70, String.valueOf(((row + 1)*(column + 1))));
-                     }
-                     else {
-                         line.insert(70, String.valueOf(((row * 13) + (column + 1))));
-                     }
-            
-                     // Display the line
-                     this.console.println(line.toString());
-                 }
-            }
-       }
     }
 
     private void displayManageInventoryMenu() {

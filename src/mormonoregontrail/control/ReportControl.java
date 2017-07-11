@@ -13,7 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import mormonoregontrail.exceptions.ReportControlException;
 import mormonoregontrail.model.InventoryItem;
+import mormonoregontrail.model.Location;
+import mormonoregontrail.model.Map;
 import mormonoregontrail.model.Player;
+import mormonoregontrail.model.Scene;
 import mormonoregontrail.view.ErrorView;
 
 /**
@@ -55,5 +58,50 @@ public class ReportControl {
         } catch (IOException ex) {
             ErrorView.display("ReportControl", ex.getMessage());
         }
+    } 
+    
+    /**
+     * Mariam E.
+     * @param map
+     * @param fileName
+     * @throws ReportControlException 
+     */
+    public static boolean sceneReport(Map map, String fileName)
+            throws ReportControlException {
+
+        boolean success = true;
+        try (PrintWriter out = new PrintWriter(fileName)){
+            DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+            Date date = new Date();
+
+            // create and open a new filestream for the output file
+            out.println("\n\n             Scene Report - as of " + sdf.format(date));
+            out.printf("%n%-30s%-10s%-10s%-10s%-20s", "Name", "Symbol", "Location", "Visited", "Dist. from Nauvoo");
+            out.printf("%n%-30s%-10s%-10s%-10s%-20s", "----", "------", "--------", "-------", "-----------------");
+
+            // print the Name, Symbol, Location, Visited, Dist. from Nauvoo
+        for (int row = 0; row < map.getRowCount(); row++) {
+            for (int column = 0; column < map.getColumnCount(); column++) {
+                // create and initialize new Location object instance
+                Location location = map.getLocations()[row][column];
+                Scene scene = location.getScene();
+                out.printf("%n%-30s%-10s%-10d%-10s%-20d", scene.getName()
+                                            , scene.getMapSymbol()
+                                            , scene.getMapLocation()
+                                            , (location.getVisited()?"Y":"N")
+                                            , scene.getDistanceFromNauvoo());
+
+            }
+        }
+            
+
+ 
+        } catch (IOException ex) {
+            ErrorView.display("ReportControl", ex.getMessage());
+            success = false;
+        }
+        return success;
     }    
+    
 }
