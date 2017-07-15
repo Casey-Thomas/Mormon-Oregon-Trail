@@ -16,9 +16,8 @@ public class Scene implements Serializable {
 
     private String name;
     private String description;
-    private String obstacle;
+    private Obstacle obstacle;
     private int mapLocation; // this represents integer location associated with this scence
-    private String validDirection;
     private int distanceFromNauvoo;
     private String mapSymbol;
     private boolean blocked;
@@ -39,11 +38,11 @@ public class Scene implements Serializable {
         this.description = description;
     }
 
-    public String getObstacle() {
+    public Obstacle getObstacle() {
         return obstacle;
     }
 
-    public void setObstacle(String obstacle) {
+    public void setObstacle(Obstacle obstacle) {
         this.obstacle = obstacle;
     }
 
@@ -53,14 +52,6 @@ public class Scene implements Serializable {
 
     public void setMapLocation(int mapLocation) {
         this.mapLocation = mapLocation;
-    }
-
-    public String getValidDirection() {
-        return validDirection;
-    }
-
-    public void setValidDirection(String validDirection) {
-        this.validDirection = validDirection;
     }
 
     public int getDistanceFromNauvoo() {
@@ -94,7 +85,6 @@ public class Scene implements Serializable {
         hash = 89 * hash + Objects.hashCode(this.description);
         hash = 89 * hash + Objects.hashCode(this.obstacle);
         hash = 89 * hash + this.mapLocation;
-        hash = 89 * hash + Objects.hashCode(this.validDirection);
         hash = 89 * hash + this.distanceFromNauvoo;
         return hash;
     }
@@ -126,27 +116,23 @@ public class Scene implements Serializable {
         if (!Objects.equals(this.obstacle, other.obstacle)) {
             return false;
         }
-        if (!Objects.equals(this.validDirection, other.validDirection)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Scene{" + "name=" + name + ", description=" + description + ", obstacle=" + obstacle + ", mapLocation=" + mapLocation + ", validDirection=" + validDirection + ", distanceFromNauvoo=" + distanceFromNauvoo + '}';
+        return "Scene{" + "name=" + name + ", description=" + description + ", obstacle=" + obstacle + ", mapLocation=" + mapLocation + ", distanceFromNauvoo=" + distanceFromNauvoo + '}';
     }
 
 
     public Scene() {
     }
 
-    public Scene(String name, String description, String obstacle, int mapLocation, String validDirection, int distanceFromNauvoo) {
+    public Scene(String name, String description, Obstacle obstacle, int mapLocation, int distanceFromNauvoo) {
         this.name = name;
         this.description = description;
         this.obstacle = obstacle;
         this.mapLocation = mapLocation;
-        this.validDirection = validDirection;
         this.distanceFromNauvoo = distanceFromNauvoo;
     }
 

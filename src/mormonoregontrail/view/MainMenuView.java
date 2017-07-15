@@ -7,6 +7,7 @@ package mormonoregontrail.view;
 
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.GameControl;
+import mormonoregontrail.model.Game;
 
 /**
  *
@@ -97,6 +98,14 @@ public class MainMenuView extends View{
     private void saveGame() {
         String savePrompt = promptMessage;
         
+        Game game = MormonOregonTrail.getCurrentGame(); // retreive the game
+        
+        if (game.getPlayerDeath() != null)
+        {
+            System.out.println("\nYOU ARE DEAD!!! "+game.getPlayerDeath()+" - Game is over.");
+            return;
+        }
+
         // prompt for and get the name of the file to save the game in        
         promptMessage = "\nEnter the file name to save the game to (or type 'Q' to Quit): ";
         

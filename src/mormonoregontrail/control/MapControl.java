@@ -7,6 +7,7 @@ package mormonoregontrail.control;
 
 import mormonoregontrail.exceptions.MapControlException;
 import mormonoregontrail.model.Map;
+import mormonoregontrail.model.Obstacle;
 import mormonoregontrail.model.Scene;
 
 
@@ -132,6 +133,13 @@ public class MapControl {
               + "\n Saints thrived there from 1846 to 1852.");
         pisgahScene.setMapSymbol("MP");
         pisgahScene.setBlocked(false);
+        Obstacle pisgahObstacle = new Obstacle();
+        pisgahObstacle.setDescription("You got bitten by a snake.");
+        pisgahObstacle.setPossibilityOfDeath(50);       // 50%
+        pisgahObstacle.setAllowSpiritualGuidance(true);
+        pisgahObstacle.setPossibilityOfHappening(30);   // 30%
+        pisgahScene.setObstacle(pisgahObstacle);
+        
         pisgahScene.setDistanceFromNauvoo(153);
         scenes[SceneType.pisgah.ordinal()] = pisgahScene;
 
@@ -167,6 +175,12 @@ public class MapControl {
               + "\n the Platte River.");
         elkhornScene.setMapSymbol("ER");
         elkhornScene.setBlocked(false);
+        Obstacle elkhornObstacle = new Obstacle();
+        elkhornObstacle.setDescription("You have contracted dysentery.");
+        elkhornObstacle.setPossibilityOfDeath(50);       // 50%
+        elkhornObstacle.setAllowSpiritualGuidance(true);
+        elkhornObstacle.setPossibilityOfHappening(50);   // 50%
+        elkhornScene.setObstacle(elkhornObstacle);       
         elkhornScene.setDistanceFromNauvoo(293);
         scenes[SceneType.elkhorn.ordinal()] = elkhornScene;
         
@@ -205,6 +219,12 @@ public class MapControl {
                   + "\n Your patience will be tested.");
         sandHillScene.setMapSymbol("SH");
         sandHillScene.setBlocked(false);
+        Obstacle sandHillObstacle = new Obstacle();
+        sandHillObstacle.setDescription("You have an ox that is sick and needs some time to rest.");
+        sandHillObstacle.setPossibilityOfDeath(0);       // 0%
+        sandHillObstacle.setAllowSpiritualGuidance(true);
+        sandHillObstacle.setPossibilityOfHappening(40);   // 40%
+        sandHillScene.setObstacle(sandHillObstacle);      
         sandHillScene.setDistanceFromNauvoo(528);
         scenes[SceneType.sand.ordinal()] = sandHillScene;
         
@@ -256,6 +276,12 @@ public class MapControl {
                   + "\n want to add your name to it.");
         chimneyScene.setMapSymbol("CR");
         chimneyScene.setBlocked(false);
+        Obstacle chimneyObstacle = new Obstacle();
+        chimneyObstacle.setDescription("Unfortunately, you have been attacked by a wolf.");
+        chimneyObstacle.setPossibilityOfDeath(50);       // 50%
+        chimneyObstacle.setAllowSpiritualGuidance(true);
+        chimneyObstacle.setPossibilityOfHappening(30);   // 30%
+        chimneyScene.setObstacle(chimneyObstacle);    
         chimneyScene.setDistanceFromNauvoo(718);
         scenes[SceneType.chimney.ordinal()] = chimneyScene;
         
@@ -315,6 +341,12 @@ public class MapControl {
 		  + "\n Winter snow storms may be fatal.");
         upperPlatteScene.setMapSymbol("UP");
         upperPlatteScene.setBlocked(false);
+        Obstacle upperPlatteObstacle = new Obstacle();
+        upperPlatteObstacle.setDescription("You now have malaria.");
+        upperPlatteObstacle.setPossibilityOfDeath(30);       // 30%
+        upperPlatteObstacle.setAllowSpiritualGuidance(true);
+        upperPlatteObstacle.setPossibilityOfHappening(50);   // 50%
+        upperPlatteScene.setObstacle(upperPlatteObstacle);              
         upperPlatteScene.setDistanceFromNauvoo(914);
         scenes[SceneType.platte.ordinal()] = upperPlatteScene;
 
@@ -387,6 +419,12 @@ public class MapControl {
 	      + "\nwill descend into Echo Canyon as you enter the Utah territory.");
         theNeedlesScene.setMapSymbol("TN");
         theNeedlesScene.setBlocked(false);
+        Obstacle theNeedlesObstacle = new Obstacle();
+        theNeedlesObstacle.setDescription("You got ran over by a wagon wheel.");
+        theNeedlesObstacle.setPossibilityOfDeath(50);       // 50%
+        theNeedlesObstacle.setAllowSpiritualGuidance(true);
+        theNeedlesObstacle.setPossibilityOfHappening(40);   // 40%
+        theNeedlesScene.setObstacle(theNeedlesObstacle);            
         theNeedlesScene.setDistanceFromNauvoo(1236);
         scenes[SceneType.needles.ordinal()] = theNeedlesScene;
         

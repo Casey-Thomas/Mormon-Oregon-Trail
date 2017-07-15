@@ -19,9 +19,10 @@ public class Game implements Serializable{
     
     private Map map;
     private Player player;
-    private Question question;
     private Actor[] actor;
     private InventoryItem[] inventory;
+    private String playerDeath;
+    private boolean seenMap = false;
 
     public Actor[] getActor() {
         return actor;
@@ -38,6 +39,14 @@ public class Game implements Serializable{
     public void setInventory(InventoryItem[] inventory) {
         this.inventory = inventory;
     }
+
+    public boolean isSeenMap() {
+        return seenMap;
+    }
+
+    public void setSeenMap(boolean seenMap) {
+        this.seenMap = seenMap;
+    }
     
     public Map getMap() {
         return map;
@@ -53,6 +62,14 @@ public class Game implements Serializable{
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public String getPlayerDeath() {
+        return playerDeath;
+    }
+
+    public void setPlayerDeath(String playerDeath) {
+        this.playerDeath = playerDeath;
     }
     
     // Default Constructor

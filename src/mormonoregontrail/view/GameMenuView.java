@@ -5,6 +5,7 @@
  */
 package mormonoregontrail.view;
 
+import java.util.Random;
 import mormonoregontrail.MormonOregonTrail;
 import mormonoregontrail.control.MapControl;
 import mormonoregontrail.exceptions.MapControlException;
@@ -12,6 +13,8 @@ import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
 import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
+import mormonoregontrail.model.Obstacle;
+import mormonoregontrail.model.Scene;
 
 /**
  *
@@ -23,7 +26,7 @@ public class GameMenuView extends View{
     /**
      * MainMenuView function
      */
-    public GameMenuView() {            
+    public GameMenuView() { 
         super("\n"
             + "\n------------------------------------------------"
             + "\n| Game Menu                                    |"
@@ -34,11 +37,9 @@ public class GameMenuView extends View{
             + "\nI - Manage Inventory"
             + "\nA - Show List of Actors"
             + "\nH - Hunt (Scavenge) for Supplies"
-            + "\nO - Overcome an Obstacle"
             + "\nW - Wagon/Handcart Status"
             + "\nV - Verify Wagon or Cart can Function"
             + "\nF - Perform Maintenance (Fix)"
-            + "\nG - Seek Spiritual Guidance"
             + "\nR - Reports"
             + "\nQ - Quit"
             + "\n------------------------------------------------"
@@ -67,9 +68,6 @@ public class GameMenuView extends View{
             case "H": // hunt (scavenge) for supplies
                 this.huntForSupplies();
                 break;
-            case "O": // overcome an obstacle
-                this.displayOvercomeObstacleMenu();
-                break;
             case "W": // check the status of the wagon
                 this.wagonStatus();
                 break;
@@ -78,9 +76,6 @@ public class GameMenuView extends View{
                 break;
             case "F": // perform wagon maintenance (fix)
                 this.performMaintenance();
-                break;
-            case "G": // seek spiritual guidance
-                this.seekSpiritualGuidance();
                 break;
             case "R": // show inventory
                 this.displayReportsMenu();
@@ -98,6 +93,7 @@ public class GameMenuView extends View{
         String rightIndicator;
 
         Game game = MormonOregonTrail.getCurrentGame(); // retreive the game
+        game.setSeenMap(true);
         Map map = game.getMap(); // retreive the map from game
         Location[][] locations = map.getLocations(); // retreive the locations from map
         
@@ -221,12 +217,18 @@ public class GameMenuView extends View{
         this.console.println("\n*** seekSpiritualGuidance() function called ***");
     }
 
-    private boolean advanceAlongTheTrail() {
+    private boolean advanceAlongTheTrail(){
         Game game = MormonOregonTrail.getCurrentGame(); // retreive the game
         Map map = game.getMap(); // retreive the map from game
 
         int currentRow = map.getCurrentRow();
         int currentColumn = map.getCurrentColumn();
+        
+        if(game.isSeenMap() == false)
+        {
+            showMap();
+            return false;
+        }
         
         // @Team - add try . .. catch - 6/28/2017
         if (currentColumn < 12) {
@@ -251,6 +253,27 @@ public class GameMenuView extends View{
         }
         // this is where we should go to a scene associated with the new location
         showMap();
+        Location currentLocation=map.getCurrentLocation();
+        Scene currentScene=currentLocation.getScene();
+        Obstacle currentObstacle=currentScene.getObstacle();
+        if (currentObstacle != null) {
+            
+            Random rand = new Random();
+            int randomValue = rand.nextInt(100);
+            if(randomValue < currentObstacle.getPossibilityOfHappening()) {
+              this.console.println("****"+ currentObstacle.getDescription());
+              int randomDeath = rand.nextInt(100);
+              if(randomDeath < currentObstacle.getPossibilityOfDeath()) {
+                this.console.println("**** Sorry, but you died.");
+                game.setPlayerDeath(currentObstacle.getDescription());
+                return true;
+              }
+              if (currentObstacle.isAllowSpiritualGuidance()) {
+                  HandleAnObstacleMenuView handleObstacle = new HandleAnObstacleMenuView();
+                  handleObstacle.display();
+              }
+            }
+        }
         return false;
     }
 //    private void displayUserDirectionMenu() {
