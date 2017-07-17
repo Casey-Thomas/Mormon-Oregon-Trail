@@ -18,7 +18,9 @@ public class MormonOregonTrail {
     
     private static Game currentGame = null;
     private static Player player = null;
-    
+    private static String playerDeath = "";
+    private static boolean playerIsDead = false;
+
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
     
@@ -85,6 +87,22 @@ public class MormonOregonTrail {
 
     public static void setPlayer(Player player) {
         MormonOregonTrail.player = player;
+    }
+    
+    public static String getPlayerDeath() {
+        return playerDeath;
+    }
+
+    public static void setPlayerDeath(String playerDeath) {
+        MormonOregonTrail.playerDeath = playerDeath;
+    }    
+
+    public static boolean getPlayerIsDead() {
+        return playerIsDead;
+    }
+
+    public static void setPlayerIsDead(boolean playerIsDead) {
+        MormonOregonTrail.playerIsDead = playerIsDead;
     }
     
     public static PrintWriter getOutFile() {

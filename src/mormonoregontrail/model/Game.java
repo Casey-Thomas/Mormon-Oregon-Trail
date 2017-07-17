@@ -21,7 +21,6 @@ public class Game implements Serializable{
     private Player player;
     private Actor[] actor;
     private InventoryItem[] inventory;
-    private String playerDeath;
     private boolean seenMap = false;
 
     public Actor[] getActor() {
@@ -64,14 +63,6 @@ public class Game implements Serializable{
         this.player = player;
     }
 
-    public String getPlayerDeath() {
-        return playerDeath;
-    }
-
-    public void setPlayerDeath(String playerDeath) {
-        this.playerDeath = playerDeath;
-    }
-    
     // Default Constructor
 
     public Game() {

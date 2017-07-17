@@ -100,9 +100,9 @@ public class MainMenuView extends View{
         
         Game game = MormonOregonTrail.getCurrentGame(); // retreive the game
         
-        if (game.getPlayerDeath() != null)
+        if (MormonOregonTrail.getPlayerIsDead() == true)
         {
-            System.out.println("\nYOU ARE DEAD!!! "+game.getPlayerDeath()+" - Game is over.");
+            System.out.println("\nYOU ARE DEAD!!! " + MormonOregonTrail.getPlayerDeath() + " - Game is over.");
             return;
         }
 

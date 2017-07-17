@@ -265,7 +265,8 @@ public class GameMenuView extends View{
               int randomDeath = rand.nextInt(100);
               if(randomDeath < currentObstacle.getPossibilityOfDeath()) {
                 this.console.println("**** Sorry, but you died.");
-                game.setPlayerDeath(currentObstacle.getDescription());
+                MormonOregonTrail.setPlayerDeath(currentObstacle.getDescription());
+                MormonOregonTrail.setPlayerIsDead(true);
                 return true;
               }
               if (currentObstacle.isAllowSpiritualGuidance()) {
