@@ -238,6 +238,11 @@ public class MapControl {
                   + "\n rest of the distance covered to the Salt Lake Valley.");
         confluencePointScene.setMapSymbol("CP");
         confluencePointScene.setBlocked(false);
+        Obstacle confluencePointObstacle = new Obstacle();
+        confluencePointObstacle.setDescription("A wheel has broken and needs repaired.");
+        confluencePointObstacle.setPossibilityOfDeath(0);       // 0%
+        confluencePointObstacle.setAllowSpiritualGuidance(true);
+        confluencePointObstacle.setPossibilityOfHappening(20);   // 20%
         confluencePointScene.setDistanceFromNauvoo(563);
         scenes[SceneType.confluence.ordinal()] = confluencePointScene;
         
@@ -304,6 +309,11 @@ public class MapControl {
 		  + "\n Winter snow storms may be fatal.");
         fortLaramieScene.setMapSymbol("FL");
         fortLaramieScene.setBlocked(false);
+        Obstacle fortLaramieObstacle = new Obstacle();
+        fortLaramieObstacle.setDescription("A wheel has broken.");
+        fortLaramieObstacle.setPossibilityOfDeath(0);       // 0%
+        fortLaramieObstacle.setAllowSpiritualGuidance(true);
+        fortLaramieObstacle.setPossibilityOfHappening(40);   // 40%
         fortLaramieScene.setDistanceFromNauvoo(788);
         scenes[SceneType.laramie.ordinal()] = fortLaramieScene;
 
@@ -406,6 +416,11 @@ public class MapControl {
 	      + "\n the Oregon Trail, the California Trail, and the Mormon Trail.");
         fortBridgerScene.setMapSymbol("FB");
         fortBridgerScene.setBlocked(false);
+        Obstacle fortBridgerObstacle = new Obstacle();
+        fortBridgerObstacle.setDescription("A wheel has broken.");
+        fortBridgerObstacle.setPossibilityOfDeath(0);       // 0%
+        fortBridgerObstacle.setAllowSpiritualGuidance(true);
+        fortBridgerObstacle.setPossibilityOfHappening(40);   // 40%
         fortBridgerScene.setDistanceFromNauvoo(1183);
         scenes[SceneType.bridger.ordinal()] = fortBridgerScene;
 

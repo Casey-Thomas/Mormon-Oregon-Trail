@@ -21,7 +21,6 @@ public class WagonOrHandcartStatusView extends View{
                  + "\n| Wagon/Handcart Status                        |"
                  + "\n------------------------------------------------"
                  + "\nP - Perform Maintenance"
-                 + "\nW - Check Wagon/Handcart"
                  + "\nI - View Inventory"
                  + "\nQ - Quit"
                  + "\n------------------------------------------------"
@@ -36,9 +35,6 @@ public class WagonOrHandcartStatusView extends View{
             case "P": // Perform Maintenance
                 this.performMaintenance();
                 break;
-            case "W": // Check Wagon/Handcart
-                this.checkWagon();
-                break;
             case "I": // View Inventory
                 this.viewInventory();
                 break;
@@ -52,9 +48,6 @@ public class WagonOrHandcartStatusView extends View{
     private void performMaintenance() {
         PerformMaintenanceView performMaintenanceView = new PerformMaintenanceView();
         performMaintenanceView.display();
-    }
-    private void checkWagon() {
-        this.console.println("\n***checkWagon function called ***");
     }
     private void viewInventory() {
         InventoryMenuView inventoryMenuView = new InventoryMenuView();
