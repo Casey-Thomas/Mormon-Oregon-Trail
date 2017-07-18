@@ -53,10 +53,10 @@ public class StorePurchaseView extends View{
             
             switch (value) {
                case "O": // Quantity of Oxen
-                   this.buyOxen();
+                   this.buyItem("Oxen");
                     break;
                case "F": // Quantity of food
-                   this.buyFood();
+                   this.buyItem("Food");
                     break;
                case "C": // Quantity of clothing
                     this.buyItem("Clothing");
@@ -74,10 +74,10 @@ public class StorePurchaseView extends View{
                     this.buyItem("Tongues");
                     break;
                 case "G": // Quantity of Wagons
-                    this.buyItem("Wagons");
+                    this.buyItem("Wagon");
                     break;
                 case "H": // Quantity of Oxen
-                    this.buyItem("Handcarts");
+                    this.buyItem("Handcart");
                     break;
                 default:
                     this.console.println("\n**Invalid selection *** Try again.");
@@ -212,12 +212,15 @@ public class StorePurchaseView extends View{
         String itemAmount = "";
         boolean valid = false; // initialize to not valid
         int amount = 0;
+        int cost = 0;
         
         Game game = MormonOregonTrail.getCurrentGame(); // get the game
         InventoryItem[] inventory = game.getInventory(); // get the inventory list
         
         this.console.println("\n          AMOUNT OF " + singleItem.toUpperCase() + " IN INVENTORY");
-        // Find the Maximum Value in the inventory list
+        
+        // Get the Money and Inventory Item for the Store
+        InventoryItem money = inventory[GameControl.Item.money.ordinal()];
         InventoryItem item = getInventoryItem(inventory, singleItem);
         
         /***********************************************************************
@@ -225,7 +228,7 @@ public class StorePurchaseView extends View{
          **********************************************************************/
         
         // Display the status of the selected inventory item
-        this.console.println("\nSTORE INVENTORY STATUS OF " + item.getDescription());
+        this.console.println("\nSTORE INVENTORY STATUS");
         line = new StringBuilder("                                                                                ");
         line.insert(0, "DESCRIPTION");
         line.insert(20, "REQUIRED");
@@ -239,22 +242,49 @@ public class StorePurchaseView extends View{
         line.insert(0, item.getDescription());
         line.insert(20, String.valueOf(item.getRequiredAmount()));
         line.insert(30, String.valueOf(item.getQuantityInStock()));
-        line.insert(40, item.getUnits());
+        line.insert(40, String.valueOf(item.getUnitQuantity()) + " " + item.getUnits());
         line.insert(50, String.valueOf(item.getCost()));
+        
+        // Display the line
+        this.console.println(line.toString());
         
         Player player = game.getPlayer(); // get the player object
         InventoryItem[] playerInventory = player.getInventory(); // get the player's inventory
         
-        // Get the Inventory Item for the player
-        InventoryItem money = playerInventory[GameControl.Item.money.ordinal()];
+        // Get the Money and Inventory Item for the player
+        InventoryItem playerMoney = playerInventory[GameControl.Item.money.ordinal()];
         InventoryItem playerItem = getPlayerInventoryItem(playerInventory, singleItem);
+        
+        /***********************************************************************
+         *  This displays the current status of the selected inventory item.
+         **********************************************************************/
+        
+        // Display the status of the selected inventory item
+        this.console.println("\nPLAYER INVENTORY STATUS");
+        line = new StringBuilder("                                                                                ");
+        line.insert(0, "DESCRIPTION");
+        line.insert(20, "REQUIRED");
+        line.insert(30, "IN STOCK");
+        line.insert(40, "UNITS");
+        line.insert(50, "COST");
+        this.console.println(line.toString());
+        
+        // display the selected inventory item
+        line = new StringBuilder("                                                                                ");
+        line.insert(0, playerItem.getDescription());
+        line.insert(20, String.valueOf(playerItem.getRequiredAmount()));
+        line.insert(30, String.valueOf(playerItem.getQuantityInStock()));
+        line.insert(40, String.valueOf(playerItem.getUnitQuantity()) + " " + playerItem.getUnits());
+        line.insert(50, String.valueOf(playerItem.getCost()));   
+
+        // Display the line
+        this.console.println(line.toString());
+        
+        this.console.println("\nYou have $" + playerMoney.getQuantityInStock() + " to spend.");
         
         try{
             while (!valid) {
                 
-                // Display the line
-                this.console.println(line.toString());
-            
                 /***********************************************************************
                 *  This prompts the player to purchase inventory items.
                 **********************************************************************/
@@ -275,19 +305,64 @@ public class StorePurchaseView extends View{
             ErrorView.display(this.getClass().getName(), 
                     "Error Reading Input: " + e.getMessage());
         }
-                
+        
         try {
             amount = Integer.parseInt(itemAmount);
+
             if (amount > item.getQuantityInStock()){
                 this.console.println("\nError: You cannot purchase an amount greater than current quantity in stock!");
+                return;
             } else {
-                this.console.println("\n Congratulations! You purchased " + itemAmount + " " 
-                    + item.getDescription() + " from inventory.");
-            }
+                if (amount <= 0) {
+                    this.console.println("\nYou can't purchase 0 items! Try Again.");
+                    return;
+                }
+            }            
         } catch (NumberFormatException nf) {
             ErrorView.display(this.getClass().getName(), 
                     "Error Reading Input: " + nf.getMessage()
                   + "\n Please try to make another purchase or 'Q' to Quit.");
         }
+        
+        try {
+            
+            // calculate amount to purchase based on unit cost
+            int qty = Math.round(amount / item.getUnitQuantity());
+            
+            // calculate total purchase amount
+            cost = qty * item.getCost();
+            
+            // make sure the cost doesn't exceed player money available
+            if (cost > playerMoney.getQuantityInStock()) {
+                this.console.println("You don't have enough money to purchase "
+                + amount + item.getDescription() + " from the store. Try Again!");
+                return;
+            }
+        } catch (NumberFormatException nf) {
+            ErrorView.display(this.getClass().getName(), 
+                    "Error Calculating  Quantity and Cost: " + nf.getMessage()
+                  + "\n Please try to make another purchase or 'Q' to Quit.");            
+        }
+        
+        // reduce store inventory amount and increase store money
+        item.setQuantityInStock(item.getQuantityInStock() - amount);
+        money.setQuantityInStock(money.getQuantityInStock() + cost);
+        
+        // increase player inventory amount and cost, and reduce player money
+        playerItem.setQuantityInStock(playerItem.getQuantityInStock() + amount);
+        playerItem.setCost(playerItem.getCost() + cost);
+        playerMoney.setQuantityInStock(playerMoney.getQuantityInStock() - cost);
+        playerMoney.setCost(playerMoney.getCost() + cost);
+        
+        this.console.println("\nCongratulations! You purchased "
+                + amount + " " + item.getUnits() + " of " + item.getDescription()
+                + " for $" + cost + " from the store!");
+        this.console.println("You now have " + playerItem.getQuantityInStock()
+                + " " + playerItem.getUnits() + " of " + playerItem.getDescription()
+                + " in stock and $" + playerMoney.getQuantityInStock()
+                + " left to spend!");
+        this.console.println("The store has "
+                + item.getQuantityInStock() + " " + item.getUnits()
+                + " of " + item.getDescription() + " available for purchase!");
     }  
 }

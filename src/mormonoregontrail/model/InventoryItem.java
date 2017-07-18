@@ -18,6 +18,7 @@ public class InventoryItem implements Serializable{
     private String description;
     private int quantityInStock;
     private int requiredAmount;
+    private int unitQuantity;
     private String units;
     private int cost;
     
@@ -55,6 +56,14 @@ public class InventoryItem implements Serializable{
 
     public void setRequiredAmount(int requiredAmount) {
         this.requiredAmount = requiredAmount;
+    }
+
+    public int getUnitQuantity() {
+        return unitQuantity;
+    }
+
+    public void setUnitQuantity(int unitQuantity) {
+        this.unitQuantity = unitQuantity;
     }
 
     public String getUnits() {

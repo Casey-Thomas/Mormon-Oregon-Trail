@@ -90,6 +90,7 @@ public class GameControl {
         axles.setQuantityInStock(10);
         axles.setRequiredAmount(1);
         axles.setCost(10);
+        axles.setUnitQuantity(1);
         axles.setUnits("Each");
         inventory[Item.axles.ordinal()] = axles;
         
@@ -100,6 +101,7 @@ public class GameControl {
         wheels.setQuantityInStock(20);
         wheels.setRequiredAmount(2);
         wheels.setCost(15);
+        wheels.setUnitQuantity(1);        
         wheels.setUnits("Each");      
         inventory[Item.wheels.ordinal()] = wheels;
 
@@ -110,6 +112,7 @@ public class GameControl {
         tongues.setQuantityInStock(20);
         tongues.setRequiredAmount(1);
         tongues.setCost(5);
+        tongues.setUnitQuantity(1);
         tongues.setUnits("Each");
         inventory[Item.tongues.ordinal()] = tongues;
 
@@ -120,6 +123,7 @@ public class GameControl {
         oxen.setQuantityInStock(30);
         oxen.setRequiredAmount(2);
         oxen.setCost(20);
+        oxen.setUnitQuantity(1);
         oxen.setUnits("Each");
         inventory[Item.oxen.ordinal()] = oxen;
 
@@ -130,7 +134,8 @@ public class GameControl {
         bullets.setQuantityInStock(500);
         bullets.setRequiredAmount(100);
         bullets.setCost(12);
-        bullets.setUnits("50 Rounds");
+        bullets.setUnitQuantity(50);
+        bullets.setUnits("Rounds");
         inventory[Item.bullets.ordinal()] = bullets;
 
         // Food
@@ -140,6 +145,7 @@ public class GameControl {
         food.setQuantityInStock(500);
         food.setRequiredAmount(150);
         food.setCost(2);
+        food.setUnitQuantity(1);
         food.setUnits("Pound");
         inventory[Item.food.ordinal()] = food;
 
@@ -150,6 +156,7 @@ public class GameControl {
         clothing.setQuantityInStock(700);
         clothing.setRequiredAmount(75);
         clothing.setCost(1);
+        clothing.setUnitQuantity(1);
         clothing.setUnits("Pound");
         inventory[Item.clothing.ordinal()] = clothing;
 
@@ -160,6 +167,7 @@ public class GameControl {
         money.setQuantityInStock(1000);
         money.setRequiredAmount(250);
         money.setCost(1);
+        money.setUnitQuantity(1);
         money.setUnits("Dollar");
         inventory[Item.money.ordinal()] = money;
 
@@ -170,6 +178,7 @@ public class GameControl {
         wagon.setQuantityInStock(18);
         wagon.setRequiredAmount(1);
         wagon.setCost(25);
+        wagon.setUnitQuantity(1);
         wagon.setUnits("Each");
         inventory[Item.wagon.ordinal()] = wagon;
 
@@ -180,6 +189,7 @@ public class GameControl {
         handcart.setQuantityInStock(22);
         handcart.setRequiredAmount(1);
         handcart.setCost(16);
+        handcart.setUnitQuantity(1);
         handcart.setUnits("Each");
         inventory[Item.handcart.ordinal()] = handcart;
 
@@ -197,6 +207,7 @@ public class GameControl {
         axles.setQuantityInStock(0);
         axles.setRequiredAmount(0);
         axles.setCost(0);
+        axles.setUnitQuantity(1);
         axles.setUnits("Each");
         inventory[Item.axles.ordinal()] = axles;
         
@@ -207,6 +218,7 @@ public class GameControl {
         wheels.setQuantityInStock(0);
         wheels.setRequiredAmount(0);
         wheels.setCost(0);
+        wheels.setUnitQuantity(1);
         wheels.setUnits("Each");
         inventory[Item.wheels.ordinal()] = wheels;
 
@@ -217,6 +229,7 @@ public class GameControl {
         tongues.setQuantityInStock(0);
         tongues.setRequiredAmount(0);
         tongues.setCost(0);
+        tongues.setUnitQuantity(1);
         tongues.setUnits("Each");
         inventory[Item.tongues.ordinal()] = tongues;
 
@@ -227,6 +240,7 @@ public class GameControl {
         oxen.setQuantityInStock(0);
         oxen.setRequiredAmount(0);
         oxen.setCost(0);
+        oxen.setUnitQuantity(1);
         oxen.setUnits("Each");
         inventory[Item.oxen.ordinal()] = oxen;
 
@@ -237,7 +251,8 @@ public class GameControl {
         bullets.setQuantityInStock(0);
         bullets.setRequiredAmount(0);
         bullets.setCost(0);
-        bullets.setUnits("50 Rounds");
+        bullets.setUnitQuantity(50);
+        bullets.setUnits("Rounds");
         inventory[Item.bullets.ordinal()] = bullets;
 
         // Food
@@ -247,6 +262,7 @@ public class GameControl {
         food.setQuantityInStock(0);
         food.setRequiredAmount(0);
         food.setCost(0);
+        food.setUnitQuantity(1);
         food.setUnits("Pound");
         inventory[Item.food.ordinal()] = food;
 
@@ -257,6 +273,7 @@ public class GameControl {
         clothing.setQuantityInStock(0);
         clothing.setRequiredAmount(0);
         clothing.setCost(0);
+        clothing.setUnitQuantity(1);
         clothing.setUnits("Pound");
         inventory[Item.clothing.ordinal()] = clothing;
 
@@ -267,6 +284,7 @@ public class GameControl {
         money.setQuantityInStock(2000);
         money.setRequiredAmount(0);
         money.setCost(0);
+        money.setUnitQuantity(1);
         money.setUnits("Dollar");
         inventory[Item.money.ordinal()] = money;
 
@@ -277,6 +295,7 @@ public class GameControl {
         wagon.setQuantityInStock(0);
         wagon.setRequiredAmount(0);
         wagon.setCost(0);
+        wagon.setUnitQuantity(1);
         wagon.setUnits("Each");
         inventory[Item.wagon.ordinal()] = wagon;
 
@@ -287,6 +306,7 @@ public class GameControl {
         handcart.setQuantityInStock(0);
         handcart.setRequiredAmount(0);
         handcart.setCost(0);
+        handcart.setUnitQuantity(1);
         handcart.setUnits("Each");
         inventory[Item.handcart.ordinal()] = handcart;
 

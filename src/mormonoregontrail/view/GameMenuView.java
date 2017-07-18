@@ -7,13 +7,17 @@ package mormonoregontrail.view;
 
 import java.util.Random;
 import mormonoregontrail.MormonOregonTrail;
+import mormonoregontrail.control.GameControl;
 import mormonoregontrail.control.MapControl;
+import static mormonoregontrail.control.UtilitiesControl.getPlayerInventoryItem;
 import mormonoregontrail.exceptions.MapControlException;
 import mormonoregontrail.model.Actor;
 import mormonoregontrail.model.Game;
+import mormonoregontrail.model.InventoryItem;
 import mormonoregontrail.model.Location;
 import mormonoregontrail.model.Map;
 import mormonoregontrail.model.Obstacle;
+import mormonoregontrail.model.Player;
 import mormonoregontrail.model.Scene;
 
 /**
@@ -219,6 +223,17 @@ public class GameMenuView extends View{
 
     private boolean advanceAlongTheTrail(){
         Game game = MormonOregonTrail.getCurrentGame(); // retreive the game
+        
+        // Check to see if the player has purchased inventory supplies from the store
+        Player player = game.getPlayer(); // get the player object
+        InventoryItem[] playerInventory = player.getInventory(); // get the player's inventory
+        InventoryItem playerMoney = playerInventory[GameControl.Item.money.ordinal()];        
+        if (playerMoney.getCost() == 0){
+            this.console.println("\nYou haven't purchased any supplies from the store yet."
+                    + "\n Please go the Manage Inventory menu to purchase your supplies.");
+            return false;
+        }
+        
         Map map = game.getMap(); // retreive the map from game
 
         int currentRow = map.getCurrentRow();

@@ -1,0 +1,1 @@
+mormonoregontrail.view.StorePurchaseView - Invalid value: value cannot be blank

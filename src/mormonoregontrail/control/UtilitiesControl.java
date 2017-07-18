@@ -411,5 +411,4 @@ public class UtilitiesControl {
         }
         throw new UtilitiesControlException("No " + singleItem + " in Player's Inventory");
     }
-    
 }
